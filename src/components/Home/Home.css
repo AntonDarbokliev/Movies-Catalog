@@ -1,0 +1,7 @@
+.heading{
+    color: white;
+    height: 500px;
+}
+.homeMovies{
+    display: inline-flex;
+}

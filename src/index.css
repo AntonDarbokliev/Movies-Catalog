@@ -21,12 +21,14 @@
   background-color: #3f0d0c;
   width: 1400px;
   height: 800px;
-  overflow: auto;
-  text-align: center;
   margin: auto;
   padding: 5px;
   border:#ff0000 solid 5px;
-  
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
 /*
 a {
