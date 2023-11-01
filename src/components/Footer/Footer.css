@@ -1,0 +1,29 @@
+.text {
+  color: white;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: black;
+  left: 0;
+  height: 110px;
+}
+
+.text {
+  text-align: center;
+  line-height: 40px;
+  font-family: var(--main-font-family);
+}
+
+.socialLinks a img {
+  width: 40px;
+}
+
+.socialLinks a {
+  bottom: 50px;
+  margin-left: 30px;
+  display: block;
+  position: relative;
+}
