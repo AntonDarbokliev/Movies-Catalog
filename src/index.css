@@ -3,6 +3,7 @@
   background-color: #242424;
 
   --main-text-color : #ff0000;
+  /* --main-font-family : Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
   --main-font-family : Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 
   /* font-weight: 400; */
@@ -20,12 +21,13 @@
 .main{
   background-color: #3f0d0c;
   width: 1400px;
-  height: 800px;
+  min-height: 100%;
   margin: auto;
   padding: 5px;
   border:#ff0000 solid 5px;
   text-align: center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 

@@ -5,10 +5,11 @@ import logo from '../../assets/images/logo.png'
 
 export const NavBar = () => {
     return (
-        <nav className="navBar">
-            <img src={logo} alt="logo" className='logo'/>
-            <Link to="/" className='link'>Home</Link>
-            <Link to="/about" className='link'>About</Link>
-        </nav>
+        <ul className="navBar">
+            <li><img src={logo} alt="logo" className='logo'/></li>
+            <li><Link to="/" className='link'>Home</Link></li>
+            <li><Link to="/about" className='link'>About</Link></li>
+            
+        </ul>
     )
 } 

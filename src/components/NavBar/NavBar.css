@@ -1,22 +1,29 @@
 .navBar {
     background-color: black;
-    right: 0;
-    top: 0;
-    left: 0;
-    position: fixed;
     display: flex;
+    list-style-type: none;
+    text-align: center;
+    vertical-align: middle;
     padding: 20px;
-    justify-content: flex-end;
+    /* justify-content: flex-end; */
 }
+
+/* li{
+    float: left;
+} */
 
 .link{
     color: var(--main-text-color);
-    margin-left: 200px;
-    padding-right: 50px;
+    /* margin-left: 200px; */
+    /* padding-right: 50px; */
     text-decoration-line: none;
+    padding: 14px 16px;
     font-size:x-large;
-    margin-right: 100px;
-    margin-top: 10px;
+    display: inline-block;
+    text-align: center;
+    font-family:var(--main-font-family);
+    /* margin-right: 100px; */
+    /* margin-top: 10px; */
 }
 
 .logo{

@@ -1,7 +1,20 @@
 .heading{
     color: white;
-    height: 500px;
+    /* font-family: var(--main-font-family); */
+    font-family: var(--main-font-family);
+
+}
+
+.headerDiv {
+    border: 5px solid black;
+    /* width: 150px; */
+    display: inline;
+    width: 900px;
+    margin-bottom: 50px;
 }
 .homeMovies{
-    display: inline-flex;
+    /* display: inline-flex; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }

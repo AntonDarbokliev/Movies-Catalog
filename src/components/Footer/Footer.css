@@ -3,12 +3,12 @@
 }
 
 footer {
-  position: fixed;
+  /* position: fixed; */
   bottom: 0;
   width: 100%;
   background: black;
   left: 0;
-  height: 110px;
+  height: 108px;
 }
 
 .text {
