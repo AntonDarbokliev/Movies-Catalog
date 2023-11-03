@@ -3,6 +3,8 @@
   background-color: #242424;
 
   --main-text-color : #ff0000;
+  --main-accent-color : #f5c518;
+  --main-text-font : Arial, Helvetica, sans-serif;
   /* --main-font-family : Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
   --main-font-family : Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 

@@ -1,0 +1,43 @@
+.imageDiv{
+    margin-right: 200px;
+    padding: 20px;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+}
+
+.movieInfo {
+    padding-right: 100px;
+}
+
+#title {
+    color : white;
+    font-weight: bold;
+    font-family: var(--main-font-family);
+    
+}
+
+.movieImages li{
+    margin-right: 10px;
+}
+
+.movieImages ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.description{
+    border: 3px var(--main-accent-color) solid;
+    font-family:var(--main-text-font);
+    padding: 40px;
+    padding-left: 80px;
+    padding-right: 80px;
+    text-align: center;
+    background-color: black;
+    color: white;
+    /* display: flex; */
+    /* justify-content: center; */
+}
