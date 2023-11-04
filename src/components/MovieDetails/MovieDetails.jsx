@@ -12,13 +12,13 @@ export const MovieDetails = () => {
         </div>
 
         <div className="videoPlayer">
-        <iframe width="580" height="400" src="https://www.youtube.com/embed/0VH9WCFV6XQ?si=uroSjV4I6rBiT6a7" frameborder="0" allowfullscreen></iframe>
-    </div>
+        <iframe width="580" height="400" src="https://www.youtube.com/embed/0VH9WCFV6XQ" frameborder="0" allowfullscreen></iframe>
+        </div>
         <div className="movieInfo">
           <ul>
-            <li>Director: Bla Bla</li>
-            <li>Year: Bla Bla</li>
-            <li>Top Cast: Bla Bla</li>
+            <li id="director"><span>Director:</span> Emma Tammi</li>
+            <li id="movieYear"><span>Year:</span> 2023</li>
+            <li id="topCast"><span> Top Cast:</span> Josh Hutcherson, Piper Rubio, Elizabeth Lail</li>
           </ul>
         </div>
       </div>

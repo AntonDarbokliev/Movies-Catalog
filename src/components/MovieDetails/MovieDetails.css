@@ -1,6 +1,15 @@
 .imageDiv{
-    margin-right: 200px;
+    margin-right: 150px;
     padding: 20px;
+}
+
+#poster{
+    position: relative;
+    left: 30px;
+}
+
+img{
+    border: 3px black solid;
 }
 
 .container{
@@ -9,11 +18,27 @@
 }
 
 .movieInfo {
-    padding-right: 100px;
+    position: relative;
+    right: 60px;
+    background-color: #121212;
+    border: 3px var(--main-accent-color) solid;
+    padding: 10px 20px;
+}
+.movieInfo ul {
+    list-style: none;
+    font-size: x-large;    
+    text-align: left;
+
 }
 
+.movieInfo ul li span{
+    color: white;
+    display: flex;
+}
+
+
 #title {
-    color : white;
+    color : var(--main-accent-color);
     font-weight: bold;
     font-family: var(--main-font-family);
     
@@ -32,12 +57,20 @@
 .description{
     border: 3px var(--main-accent-color) solid;
     font-family:var(--main-text-font);
+    font-size: x-large;
     padding: 40px;
     padding-left: 80px;
     padding-right: 80px;
-    text-align: center;
-    background-color: black;
-    color: white;
-    /* display: flex; */
-    /* justify-content: center; */
+    background-color: #121212;
+    color: white;    
 }
+
+.videoPlayer{
+    position: relative;
+    right: 90px;
+}
+
+ul li{
+    color: var(--main-accent-color);
+}
+
