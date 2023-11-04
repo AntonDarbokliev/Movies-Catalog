@@ -8,7 +8,7 @@
     left: 30px;
 }
 
-img{
+.movieImage{
     border: 3px black solid;
 }
 
@@ -30,6 +30,43 @@ img{
     text-align: left;
 
 }
+
+.genres{
+    color: var(--main-accent-color);
+    font-size:x-large;
+}
+
+.genreRating{
+    display: flex;
+}
+
+.ratingDiv button{
+    margin-right: 20px;
+    background: none;
+    border: none;
+}
+
+.ratingDiv button:hover{
+    background-color: var(--main-accent-color);
+    cursor: pointer;
+}
+
+.genres{
+    margin-right: 20px;
+}
+
+#rating {
+    font-size: x-large;
+    color: var(--main-accent-color);
+    margin-right: 200px;
+}
+
+.ratingDiv {
+    display: flex;
+    position: relative;
+    left: 290px;
+}
+
 
 .movieInfo ul li span{
     color: white;
@@ -74,3 +111,7 @@ ul li{
     color: var(--main-accent-color);
 }
 
+.ratingDiv img{
+    border: none;
+    width: 60px;
+}
