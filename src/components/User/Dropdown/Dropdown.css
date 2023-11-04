@@ -36,6 +36,7 @@
     display: block;
   }
 
+.dropdown-content a:hover {color: var(--main-accent-color);}
 
 .dropdown:hover .dropdown-content {display: block;}
 
