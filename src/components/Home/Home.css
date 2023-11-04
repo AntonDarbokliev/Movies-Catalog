@@ -1,19 +1,15 @@
 .heading{
     color: white;
-    /* font-family: var(--main-font-family); */
     font-family: var(--main-font-family);
-
+    border: 5px yellow;
 }
 
 .headerDiv {
-    border: 5px solid black;
-    /* width: 150px; */
-    display: inline;
-    width: 900px;
     margin-bottom: 50px;
+    /* background-color: var(--main-background-color); */
+    /* border-color: var(--main-background-color); */
 }
 .homeMovies{
-    /* display: inline-flex; */
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;

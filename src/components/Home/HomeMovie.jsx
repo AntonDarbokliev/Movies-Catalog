@@ -3,7 +3,7 @@ import './HomeMovie.css'
 
 export const HomeMovie = ({ imageUrl, movieId }) => {
   return (
-      <div className="movieImage">
+      <div className="movieHomeImage">
         <Link to={`movie/${movieId}/details`}>
           <img src={imageUrl} alt="movie poster" />
         </Link>

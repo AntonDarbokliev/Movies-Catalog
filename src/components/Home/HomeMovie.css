@@ -1,5 +1,6 @@
-.movieImage{
-    flex: 1;
+.movieHomeImage{
+    flex:auto;
+    border: yellow 1px;
 }
 
 img{

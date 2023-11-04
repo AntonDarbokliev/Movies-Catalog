@@ -2,13 +2,13 @@
   color: white;
 }
 
-footer {
-  /* position: fixed; */
-  bottom: 0;
-  width: 100%;
+#footer {
   background: black;
-  left: 0;
-  height: 108px;
+  padding: 20px;
+}
+
+#footer div {
+  max-width: 100%; 
 }
 
 .text {
@@ -21,9 +21,16 @@ footer {
   width: 40px;
 }
 
-.socialLinks a {
+
+.socialLinks a{
+  position: relative;
+  bottom: 25px;
+  left: 50px;
+}
+
+/* .socialLinks a {
   bottom: 50px;
   margin-left: 30px;
   display: block;
   position: relative;
-}
+} */

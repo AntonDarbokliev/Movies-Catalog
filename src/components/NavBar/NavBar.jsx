@@ -1,15 +1,16 @@
 import { Link } from 'react-router-dom'
 import './NavBar.css'
 import logo from '../../assets/images/logo.png'
-
+import { Dropdown } from '../User/Dropdown/DropDown.jsx'
 
 export const NavBar = () => {
     return (
-        <ul className="navBar">
-            <li><img src={logo} alt="logo" className='logo'/></li>
-            <li><Link to="/" className='link'>Home</Link></li>
-            <li><Link to="/about" className='link'>About</Link></li>
+        <div className="navBar">
+            <img src={logo} alt="logo" className='logo'/>
+            <Link to="/" className='link'>Home</Link>
+            <Link to="/about" className='link'>About</Link>
+            <Dropdown/>
             
-        </ul>
+        </div>
     )
 } 

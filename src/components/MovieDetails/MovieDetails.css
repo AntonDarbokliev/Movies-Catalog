@@ -20,7 +20,7 @@
 .movieInfo {
     position: relative;
     right: 60px;
-    background-color: #121212;
+    background-color: var(--main-background-color);
     border: 3px var(--main-accent-color) solid;
     padding: 10px 20px;
 }
@@ -98,7 +98,7 @@
     padding: 40px;
     padding-left: 80px;
     padding-right: 80px;
-    background-color: #121212;
+    background-color: var(--main-background-color);
     color: white;    
 }
 
