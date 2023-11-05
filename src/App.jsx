@@ -5,6 +5,7 @@ import { Home } from './components/Home/Home.jsx'
 import { Routes,Route } from 'react-router-dom'
 import { MovieDetails } from './components/MovieDetails/MovieDetails.jsx'
 import { UserRatings } from './components/User/UserRatings/UserRatings.jsx'
+import { Register } from './components/Auth/Register/Register.jsx'
 
 function App() {
 
@@ -15,7 +16,8 @@ function App() {
       <Routes>
       <Route path='/' element={<Home/>}></Route>
       <Route path='movie/:movieId/details' element={<MovieDetails/>}></Route>
-      <Route path='user/:id/ratings' element={<UserRatings/>}></Route>     
+      <Route path='user/:id/ratings' element={<UserRatings/>}></Route>
+      <Route path='user/register' element={<Register/>}></Route>
       <Route path='*' element={<h1 style={{color : 'white'}}>Page not found (404)</h1>}></Route>
       </Routes>
     </div>
