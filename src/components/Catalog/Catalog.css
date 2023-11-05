@@ -1,0 +1,27 @@
+.searchInput{
+    display: block;
+    margin-bottom: 20px;
+    width: 200px;
+    height: 30px;
+    text-align: center;
+    margin-left: 10px;
+}
+
+#searchContainer {
+    border: 2px solid var(--main-accent-color);
+    padding-left: 500px;
+    padding-right: 500px;
+    padding-bottom: 20px;
+    background-color: var(--main-background-color);
+}
+
+#searchContainer h1 {
+    color: var(--main-accent-color);
+}
+
+
+#catalogContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}

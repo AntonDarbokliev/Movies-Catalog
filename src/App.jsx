@@ -7,6 +7,7 @@ import { MovieDetails } from './components/MovieDetails/MovieDetails.jsx'
 import { UserRatings } from './components/User/UserRatings/UserRatings.jsx'
 import { Register } from './components/Auth/Register/Register.jsx'
 import { Login } from './components/Auth/Login/Login.jsx'
+import { Catalog } from './components/Catalog/Catalog.jsx'
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
       <Route path='user/:id/ratings' element={<UserRatings/>}></Route>
       <Route path='user/register' element={<Register/>}></Route>
       <Route path='user/login' element={<Login/>}></Route>
+      <Route path='movie/catalog' element={<Catalog/>}></Route>
       <Route path='*' element={<h1 style={{color : 'white'}}>Page not found (404)</h1>}></Route>
       </Routes>
     </div>

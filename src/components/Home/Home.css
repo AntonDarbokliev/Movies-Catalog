@@ -6,11 +6,10 @@
 
 .headerDiv {
     margin-bottom: 50px;
-    /* background-color: var(--main-background-color); */
-    /* border-color: var(--main-background-color); */
+
 }
 .homeMovies{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }

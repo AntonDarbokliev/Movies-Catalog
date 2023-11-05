@@ -115,3 +115,7 @@ ul li{
     border: none;
     width: 60px;
 }
+
+.movieImage{
+    width: 300px;
+}
