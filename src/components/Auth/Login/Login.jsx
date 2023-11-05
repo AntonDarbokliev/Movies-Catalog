@@ -1,15 +1,13 @@
 import { useState } from "react";
-import "./Register.css";
+import "./Login.css";
 import { SubmitButton } from "../../Shared/SubmitButton/SubmitButton.jsx";
 import { FormField } from "../../Shared/FormField/FormField.jsx";
 import { Link } from "react-router-dom";
 
-export const Register = () => {
+export const Login = () => {
   const [formData, setFormData] = useState({
-    username: "",
     email: "",
     password: "",
-    repeatPassword: ""
   });
 
   const handleInputChange = (e) => {
@@ -17,19 +15,13 @@ export const Register = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleRegister = () => {
+  const handleLogin = () => {
     console.log("Form Data:", formData);
   };
 
   return (
-    <form id="registerForm" onSubmit={handleRegister}>
-      <h1 id='header'>Register</h1>
-      <FormField
-        name="username"
-        type="text"
-        value={formData.username}
-        onChange={handleInputChange}
-      />
+    <form id="registerForm" onSubmit={handleLogin}>
+      <h1 id='header'>Login</h1>
       <FormField
         name="email"
         type="text"
@@ -42,15 +34,9 @@ export const Register = () => {
         value={formData.password}
         onChange={handleInputChange}
       />
-      <FormField
-        name="repeatPassword"
-        type="password"
-        value={formData.repeatPassword}
-        onChange={handleInputChange}
-      />
-      <SubmitButton text={"Register"} />
+      <SubmitButton text={"Login"} />
 
-    <p id="loginLink">Already have an account? Login <Link to='/user/login'>here</Link>!</p>
+    <p id="registerLink">Don't have an account? Register <Link to='/user/register'>here</Link>!</p>
     </form>
   );
 };
