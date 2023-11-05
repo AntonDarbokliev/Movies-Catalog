@@ -1,0 +1,28 @@
+#header {
+    color: var(--main-accent-color);
+}
+
+#userRatings {
+     list-style: none;
+}
+
+#movieRating p{
+    font-size: x-large;
+}
+
+.ratedMovie {
+     display: flex;
+     margin-bottom: 50px;
+     border-bottom: 2px black solid;
+     border-top: 2px black solid;     
+}
+
+
+#ratingIcon {
+    width: 100px;
+}
+
+#movieRating {
+    margin-left: 400px;
+    margin-top: 80px;
+}
