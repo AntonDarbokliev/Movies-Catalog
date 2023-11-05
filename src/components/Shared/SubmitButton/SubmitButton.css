@@ -1,0 +1,12 @@
+#submitButton {
+    width: 150px;
+    height: 50px;
+    margin-top: 20px;
+    background-color: var(--main-accent-color);
+    border: none;
+}
+
+#submitButton:hover{
+    background-color: var(--accent-color-hover);
+    /* color: var(--main-text-color); */
+}

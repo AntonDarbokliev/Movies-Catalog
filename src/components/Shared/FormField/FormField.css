@@ -1,0 +1,8 @@
+.formField{
+    display: block;
+    margin-bottom: 20px;
+    width: 200px;
+    height: 30px;
+    text-align: center;
+    margin-left: 30px;
+}
