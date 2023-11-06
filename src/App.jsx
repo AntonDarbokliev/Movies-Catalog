@@ -8,6 +8,7 @@ import { UserRatings } from './components/User/UserRatings/UserRatings.jsx'
 import { Register } from './components/Auth/Register/Register.jsx'
 import { Login } from './components/Auth/Login/Login.jsx'
 import { Catalog } from './components/Catalog/Catalog.jsx'
+import { About } from './components/About/About.jsx'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
     <div className='main'>
       <Routes>
       <Route path='/' element={<Home/>}></Route>
+      <Route path='/about' element={<About/>}></Route>
       <Route path='movie/:movieId/details' element={<MovieDetails/>}></Route>
       <Route path='user/:id/ratings' element={<UserRatings/>}></Route>
       <Route path='user/register' element={<Register/>}></Route>

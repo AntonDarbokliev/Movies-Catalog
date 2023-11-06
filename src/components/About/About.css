@@ -1,0 +1,16 @@
+#aboutTitle {
+    color: var(--main-accent-color);
+}
+
+#aboutInfo {
+    border: 3px var(--main-accent-color) solid;
+    background-color: var(--main-background-color);
+    margin-bottom: 50px;
+}
+
+#info {
+    color: var(--main-accent-color);
+    font-family: var(--main-text-font);
+    margin-left: 300px;
+    margin-right: 300px;
+}

@@ -13,6 +13,7 @@
     padding-right: 500px;
     padding-bottom: 20px;
     background-color: var(--main-background-color);
+    margin-top: 30px;
 }
 
 #searchContainer h1 {
@@ -24,4 +25,10 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin-top: 50px;
+    /* border: 5px solid black; */
 }
+
+#catalogContainer > *{
+    padding: 20px;
+} 
