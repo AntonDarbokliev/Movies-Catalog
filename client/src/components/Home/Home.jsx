@@ -1,6 +1,18 @@
 import './Home.css'
 import { MovieCard } from '../Shared/MovieCard/MovieCard.jsx'
+import { useEffect, useState } from 'react'
 export const Home = () => {
+    const [message,setMessage] = useState()
+
+    useEffect(() => {
+        fetch('http://localhost:3000/')
+            .then(res => res.json())
+            .then(data => setMessage(data))
+            .catch(err => console.log(err))
+    },[])
+
+    console.log(message);
+
     return (
         <>
         <div className='headerDiv'>
