@@ -2,14 +2,14 @@ import { useState } from "react";
 import "./Register.css";
 import { SubmitButton } from "../../Shared/SubmitButton/SubmitButton.jsx";
 import { FormField } from "../../Shared/FormField/FormField.jsx";
-import { Link } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 
 export const Register = () => {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
-    repeatPassword: ""
+    repeatPassword: "",
   });
 
   const handleInputChange = (e) => {
@@ -17,13 +17,22 @@ export const Register = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleRegister = () => {
-    console.log("Form Data:", formData);
+  const handleRegister = (e) => {
+    e.preventDefault();
+    fetch("http://localhost:3000/user/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body : JSON.stringify(formData)
+    })
+      .then(redirect("/"))
+      .catch((err) => console.log(err));
   };
 
   return (
     <form id="registerForm" onSubmit={handleRegister}>
-      <h1 id='header'>Register</h1>
+      <h1 id="header">Register</h1>
       <FormField
         name="username"
         type="text"
@@ -50,7 +59,9 @@ export const Register = () => {
       />
       <SubmitButton text={"Register"} />
 
-    <p id="loginLink">Already have an account? Login <Link to='/user/login'>here</Link>!</p>
+      <p id="loginLink">
+        Already have an account? Login <Link to="/user/login">here</Link>!
+      </p>
     </form>
   );
 };

@@ -1,11 +1,13 @@
 const cookieParser = require('cookie-parser')
-const homeController = require('../controllers/homeController.js')
+// const homeController = require('../controllers/homeController.js')
 const movieController = require('../controllers/movieController.js')
 const express = require('express')
+const userController = require('../controllers/userController.js')
 
 module.exports = (app) => {
     app.use(cookieParser())
     app.use(express.json());
-    app.use('/',homeController)
+    // app.use('/',homeController)
+    app.use('/user',userController)
     app.use('/movie', movieController)
 }
