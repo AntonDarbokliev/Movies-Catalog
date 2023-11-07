@@ -5,8 +5,8 @@ const connectionString = process.env.DATABASE_CONNECTION_STRING || 'mongodb://12
 module.exports = async () => {
     try{
         await mongoose.connect(connectionString,{
-            useUnifiedTopology : true,
-            useNewUrlParser: true,
+            // useUnifiedTopology : true,
+            // useNewUrlParser: true,
           })
           console.log('Database connected');
     } 

@@ -18,8 +18,8 @@ export const MovieDetails = () => {
             width="580"
             height="400"
             src="https://www.youtube.com/embed/0VH9WCFV6XQ"
-            frameborder="0"
-            allowfullscreen
+            frameBorder="0"
+            allowFullScreen
           ></iframe>
         </div>
 
