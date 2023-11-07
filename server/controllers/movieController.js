@@ -1,9 +1,11 @@
+const movieService = require('../services/movieService.js')
+
 const movieController = require('express').Router()
 
 
-movieController.post("/create", (req,res) => {
-    console.log(req.body);
-    res.json('created')
+
+movieController.post("/movie", async (req,res) => {
+    await movieService.create(req.body,{})
 })
 
 module.exports = movieController

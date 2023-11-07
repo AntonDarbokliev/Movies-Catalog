@@ -52,10 +52,21 @@ const movieSchema = new Schema({
     required: [true, "Movie's genres are required"],
     //TODO: Add validtaion making sure there atleast a certain amount of genres
   },
-  userRatings: [ 
+  upvotes: [
     {
-        type: Types.ObjectId,
-        ref: 'User',
-  }
-],
+      type: Types.ObjectId,
+      // ref: "User",
+    },
+  ],
+  downvotes: [
+    {
+      type: Types.ObjectId,
+      // ref: "User",
+    },
+  ],
+  // owner : { type: Types.ObjectId, ref: "User"}
 });
+
+
+const Movie = model('Movie', movieSchema)
+module.exports = Movie

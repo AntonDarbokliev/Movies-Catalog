@@ -6,6 +6,6 @@ const express = require('express')
 module.exports = (app) => {
     app.use(cookieParser())
     app.use(express.json());
-    app.use(homeController)
+    app.use('/',homeController)
     app.use('/movie', movieController)
 }
