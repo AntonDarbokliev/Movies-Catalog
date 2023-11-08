@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./Login.css";
 import { SubmitButton } from "../../Shared/SubmitButton/SubmitButton.jsx";
 import { FormField } from "../../Shared/FormField/FormField.jsx";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 export const Login = () => {
   const [formData, setFormData] = useState({
@@ -10,17 +10,33 @@ export const Login = () => {
     password: "",
   });
 
+  const [loggedIn, setLoggedIn] = useState(false)
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleLogin = () => {
-    console.log("Form Data:", formData);
+  const handleLogin = (e) => {
+    e.preventDefault()
+    console.log(formData);
+    fetch('http://localhost:3000/user/login',{
+      method : 'POST',
+      headers : {
+        'Content-Type' : 'application/json'
+      },
+      body : JSON.stringify(formData) ,
+      credentials : 'include'
+    })
+    .then(setLoggedIn(true))
+    .catch(err => console.log(err));
   };
 
   return (
     <form id="registerForm" onSubmit={handleLogin}>
+      {loggedIn && (
+        <Navigate to='/' replace={true}/>
+      )}
       <h1 id='header'>Login</h1>
       <FormField
         name="email"

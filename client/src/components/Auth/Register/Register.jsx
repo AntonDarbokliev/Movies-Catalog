@@ -11,7 +11,7 @@ export const Register = () => {
     password: "",
     repeatPassword: "",
   });
-  const [isRegistered,setIsRegsitered] = useState(false)
+  const [registered,setRegsitered] = useState(false)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -20,7 +20,6 @@ export const Register = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    // navigate = useNavigate()
     fetch("http://localhost:3000/user/register", {
       method: "POST",
       headers: {
@@ -29,17 +28,13 @@ export const Register = () => {
       body : JSON.stringify(formData),
       credentials : 'include'
     })
-    .then(setIsRegsitered(true))
+    .then(setRegsitered(true))
     .catch((err) => console.log(err));
   };
 
-  // if(isRegistered) {
-  //   return  redirect('/')
-  // }
-
   return (
     <form id="registerForm" onSubmit={handleRegister}>
-      {isRegistered && (
+      {registered && (
         <Navigate to='/' replace={true}/>
       )}
       <h1 id="header">Register</h1>
