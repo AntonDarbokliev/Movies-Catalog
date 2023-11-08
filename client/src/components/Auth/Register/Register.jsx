@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./Register.css";
 import { SubmitButton } from "../../Shared/SubmitButton/SubmitButton.jsx";
 import { FormField } from "../../Shared/FormField/FormField.jsx";
-import { Link, redirect } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 export const Register = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +11,7 @@ export const Register = () => {
     password: "",
     repeatPassword: "",
   });
+  const [isRegistered,setIsRegsitered] = useState(false)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -19,19 +20,28 @@ export const Register = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
+    // navigate = useNavigate()
     fetch("http://localhost:3000/user/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body : JSON.stringify(formData)
+      body : JSON.stringify(formData),
+      credentials : 'include'
     })
-      .then(redirect("/"))
-      .catch((err) => console.log(err));
+    .then(setIsRegsitered(true))
+    .catch((err) => console.log(err));
   };
+
+  // if(isRegistered) {
+  //   return  redirect('/')
+  // }
 
   return (
     <form id="registerForm" onSubmit={handleRegister}>
+      {isRegistered && (
+        <Navigate to='/' replace={true}/>
+      )}
       <h1 id="header">Register</h1>
       <FormField
         name="username"
