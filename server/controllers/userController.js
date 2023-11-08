@@ -6,6 +6,7 @@ userController.post('/register', async (req,res)=>{
     try {
         const token = await register(req.body)
         res.cookie('auth',token,{httpOnly : true})
+        return res.json()
     } catch (error) {
         console.log(error);
     }

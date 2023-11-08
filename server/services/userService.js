@@ -10,7 +10,7 @@ async function register(userData) {
         throw new Error('A user with this username already exists')
     }
 
-    const createdUser = User.create(userData);  
+    const createdUser = await User.create(userData);  
     const token = await createToken(createdUser);
 
     return token
