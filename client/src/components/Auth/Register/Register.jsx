@@ -3,20 +3,28 @@ import "./Register.css";
 import { SubmitButton } from "../../Shared/SubmitButton/SubmitButton.jsx";
 import { FormField } from "../../Shared/FormField/FormField.jsx";
 import { Link, Navigate } from "react-router-dom";
+import { useForm } from "../../../hooks/useForm.js";
 
 export const Register = () => {
-  const [formData, setFormData] = useState({
+  const { formValues, onChangeHandler} = useForm({
     username: "",
-    email: "",
-    password: "",
-    repeatPassword: "",
-  });
+      email: "",
+      password: "",
+      repeatPassword: "",
+  })
+
+  // const [formData, setFormData] = useState({
+  //   username: "",
+  //   email: "",
+  //   password: "",
+  //   repeatPassword: "",
+  // });
   const [registered,setRegsitered] = useState(false)
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  // const handleInputChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData({ ...formData, [name]: value });
+  // };
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -25,7 +33,7 @@ export const Register = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body : JSON.stringify(formData),
+      body : JSON.stringify(formValues),
       credentials : 'include'
     })
     .then(setRegsitered(true))
@@ -41,26 +49,26 @@ export const Register = () => {
       <FormField
         name="username"
         type="text"
-        value={formData.username}
-        onChange={handleInputChange}
+        value={formValues.username}
+        onChange={onChangeHandler}
       />
       <FormField
         name="email"
         type="text"
-        value={formData.email}
-        onChange={handleInputChange}
+        value={formValues.email}
+        onChange={onChangeHandler}
       />
       <FormField
         name="password"
         type="password"
-        value={formData.password}
-        onChange={handleInputChange}
+        value={formValues.password}
+        onChange={onChangeHandler}
       />
       <FormField
         name="repeatPassword"
         type="password"
-        value={formData.repeatPassword}
-        onChange={handleInputChange}
+        value={formValues.repeatPassword}
+        onChange={onChangeHandler}
       />
       <SubmitButton text={"Register"} />
 

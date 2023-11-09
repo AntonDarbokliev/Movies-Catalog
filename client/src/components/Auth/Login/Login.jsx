@@ -3,29 +3,26 @@ import "./Login.css";
 import { SubmitButton } from "../../Shared/SubmitButton/SubmitButton.jsx";
 import { FormField } from "../../Shared/FormField/FormField.jsx";
 import { Link, Navigate } from "react-router-dom";
+import { useForm } from "../../../hooks/useForm.js";
 
 export const Login = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  
+  const { formValues ,onChangeHandler } = useForm({
+    email : '',
+    password : ''
+  })
 
   const [loggedIn, setLoggedIn] = useState(false)
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
   const handleLogin = (e) => {
     e.preventDefault()
-    console.log(formData);
+    // console.log(formData);
     fetch('http://localhost:3000/user/login',{
       method : 'POST',
       headers : {
         'Content-Type' : 'application/json'
       },
-      body : JSON.stringify(formData) ,
+      body : JSON.stringify(formValues) ,
       credentials : 'include'
     })
     .then(setLoggedIn(true))
@@ -41,14 +38,14 @@ export const Login = () => {
       <FormField
         name="email"
         type="text"
-        value={formData.email}
-        onChange={handleInputChange}
+        value={formValues.email}
+        onChange={onChangeHandler}
       />
       <FormField
         name="password"
         type="password"
-        value={formData.password}
-        onChange={handleInputChange}
+        value={formValues.password}
+        onChange={onChangeHandler}
       />
       <SubmitButton text={"Login"} />
 
