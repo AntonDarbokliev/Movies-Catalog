@@ -13,18 +13,9 @@ export const Register = () => {
       repeatPassword: "",
   })
 
-  // const [formData, setFormData] = useState({
-  //   username: "",
-  //   email: "",
-  //   password: "",
-  //   repeatPassword: "",
-  // });
-  const [registered,setRegsitered] = useState(false)
+  
 
-  // const handleInputChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFormData({ ...formData, [name]: value });
-  // };
+  const [registered,setRegsitered] = useState(false)
 
   const handleRegister = (e) => {
     e.preventDefault();
