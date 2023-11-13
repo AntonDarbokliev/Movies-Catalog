@@ -1,12 +1,14 @@
 import './Home.css'
 import { MovieCard } from '../Shared/MovieCard/MovieCard.jsx'
 import { useEffect, useState } from 'react'
+import { requestFactory } from '../../services/requester.js'
+
 export const Home = () => {
     const [movies,setMovies] = useState([])
+    const baseUrl = 'http://localhost:3000/movie'
 
     useEffect(() => {
-            fetch('http://localhost:3000/movie')
-            .then( res => res.json())
+        requestFactory.get(baseUrl)
             .then( data => setMovies(data))
             .catch(err => console.log(err))
    },[])

@@ -4,6 +4,8 @@ import { SubmitButton } from "../../Shared/SubmitButton/SubmitButton.jsx";
 import { FormField } from "../../Shared/FormField/FormField.jsx";
 import { Link, Navigate } from "react-router-dom";
 import { useForm } from "../../../hooks/useForm.js";
+import { requestFactory } from "../../../services/requester.js";
+
 
 export const Login = () => {
   
@@ -12,19 +14,13 @@ export const Login = () => {
     password : ''
   })
 
+  const baseUrl = 'http://localhost:3000/user/login'
+
   const [loggedIn, setLoggedIn] = useState(false)
 
   const handleLogin = (e) => {
     e.preventDefault()
-    // console.log(formData);
-    fetch('http://localhost:3000/user/login',{
-      method : 'POST',
-      headers : {
-        'Content-Type' : 'application/json'
-      },
-      body : JSON.stringify(formValues) ,
-      credentials : 'include'
-    })
+    requestFactory.post(baseUrl,formValues)
     .then(setLoggedIn(true))
     .catch(err => console.log(err));
   };

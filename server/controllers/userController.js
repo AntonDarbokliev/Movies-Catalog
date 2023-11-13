@@ -6,10 +6,9 @@ const userController = require('express').Router()
         try {
             const {token , createdUser} = await register(req.body)
             const userObj = createdUser.toObject()
-            res.cookie('auth',token,{httpOnly : true})
             return res.json({...userObj,token})
-        } catch (error) {
-            console.log(error);
+        } catch (err) {
+            throw err
         }
     })
 
@@ -20,7 +19,7 @@ const userController = require('express').Router()
             res.cookie('auth',token,{httpOnly : true})
             return res.json({...userObj,token})
         }catch(err){
-            console.log(err);
+            throw err
         }
     })
 
