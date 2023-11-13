@@ -1,33 +1,22 @@
-import { useState } from "react";
+import { useContext } from "react";
 import "./Register.css";
 import { SubmitButton } from "../../Shared/SubmitButton/SubmitButton.jsx";
 import { FormField } from "../../Shared/FormField/FormField.jsx";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useForm } from "../../../hooks/useForm.js";
-import { requestFactory } from "../../../services/requester.js";
+import { AuthContext } from "../../../contexts/AuthContext.js";
 
 export const Register = () => {
-  const { formValues, onChangeHandler } = useForm({
+  const { onRegisterSubmit } = useContext(AuthContext)
+  const { formValues, onChangeHandler,onSubmit } = useForm({
     username: "",
     email: "",
     password: "",
     repeatPassword: "",
-  });
-  const baseUrl = "http://localhost:3000/user/register";
-
-  const [registered, setRegsitered] = useState(false);
-
-  const handleRegister = (e) => {
-    e.preventDefault();
-    requestFactory
-      .post(baseUrl, formValues)
-      .then(setRegsitered(true))
-      .catch((err) => console.log(err));
-  };
+  },onRegisterSubmit);
 
   return (
-    <form id="registerForm" onSubmit={handleRegister}>
-      {registered && <Navigate to="/" replace={true} />}
+    <form id="registerForm" onSubmit={onSubmit}>
       <h1 id="header">Register</h1>
       <FormField
         name="username"

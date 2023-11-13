@@ -6,9 +6,10 @@ import { requestFactory } from '../../services/requester.js'
 export const Home = () => {
     const [movies,setMovies] = useState([])
     const baseUrl = 'http://localhost:3000/movie'
+    const request = requestFactory()
 
     useEffect(() => {
-        requestFactory.get(baseUrl)
+        request.get(baseUrl)
             .then( data => setMovies(data))
             .catch(err => console.log(err))
    },[])

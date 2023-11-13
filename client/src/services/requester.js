@@ -8,9 +8,6 @@ const request = async (method, url, data) => {
       options.headers = {
         "Content-Type": "application/json",
       };
-
-    //   options.credentials = 'include'
-
       options.body = JSON.stringify(data);
     }
   }
@@ -30,9 +27,11 @@ const request = async (method, url, data) => {
   return result;
 };
 
-export const requestFactory = {
-  get: request.bind(null, "GET"),
-  post: request.bind(null, "POST"),
-  put: request.bind(null, "PUT"),
-  delete: request.bind(null, "DELETE"),
+export const requestFactory = () => {
+    return {
+        get: request.bind(null, "GET"),
+        post: request.bind(null, "POST"),
+        put: request.bind(null, "PUT"),
+        delete: request.bind(null, "DELETE"),
+    }
 };
