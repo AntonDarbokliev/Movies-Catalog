@@ -14,7 +14,7 @@ async function register(userData) {
   const createdUser = await User.create(userData);
   const token = await createToken(createdUser);
 
-  return token;
+  return {token,createdUser};
 }
 
 async function login(userData) {
@@ -32,7 +32,7 @@ async function login(userData) {
 
   const token = await createToken(user);
 
-  return token;
+  return {token,user};
 }
 
 module.exports = {

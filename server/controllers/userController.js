@@ -4,9 +4,10 @@ const userController = require('express').Router()
 
     userController.post('/register', async (req,res)=>{
         try {
-            const token = await register(req.body)
+            const {token , createdUser} = await register(req.body)
+            const userObj = createdUser.toObject()
             res.cookie('auth',token,{httpOnly : true})
-            return res.json()
+            return res.json({...userObj,token})
         } catch (error) {
             console.log(error);
         }
@@ -14,9 +15,10 @@ const userController = require('express').Router()
 
     userController.post('/login', async (req,res)=>{
         try{
-            const token = await login(req.body)
+            const {token , user} = await login(req.body)
+            const userObj = user.toObject()
             res.cookie('auth',token,{httpOnly : true})
-            return res.json()
+            return res.json({...userObj,token})
         }catch(err){
             console.log(err);
         }
