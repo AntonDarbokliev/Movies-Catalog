@@ -4,7 +4,6 @@ import { SubmitButton } from "../../Shared/SubmitButton/SubmitButton.jsx";
 import { FormField } from "../../Shared/FormField/FormField.jsx";
 import { Link } from "react-router-dom";
 import { useForm } from "../../../hooks/useForm.js";
-// import { requestFactory } from "../../../services/requester.js";
 import { AuthContext } from "../../../contexts/AuthContext.jsx";
 
 
@@ -14,17 +13,6 @@ export const Login = () => {
     email : '',
     password : ''
   },onLoginSubmit)
-
-  // const baseUrl = 'http://localhost:3000/user/login'
-
-  // const [loggedIn, setLoggedIn] = useState(false)
-
-  // const handleLogin = (e) => {
-  //   e.preventDefault()
-  //   requestFactory.post(baseUrl,formValues)
-  //   .then(setLoggedIn(true))
-  //   .catch(err => console.log(err));
-  // };
 
   return (
     <form id="registerForm" onSubmit={onSubmit}>

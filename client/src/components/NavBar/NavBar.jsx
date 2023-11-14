@@ -13,6 +13,7 @@ export const NavBar = () => {
             <img src={logo} alt="logo" className='logo'/>
             <Link to="/" className='link'>Home</Link>
             <Link to="/movie/catalog" className='link'>Catalog</Link>
+            <Link to="/movie/create" className='link'>Create</Link>
             <Link to="/about" className='link'>About</Link>
             {isAuthenticated && 
             <Dropdown/>
