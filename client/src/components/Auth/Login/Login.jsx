@@ -5,7 +5,7 @@ import { FormField } from "../../Shared/FormField/FormField.jsx";
 import { Link } from "react-router-dom";
 import { useForm } from "../../../hooks/useForm.js";
 // import { requestFactory } from "../../../services/requester.js";
-import { AuthContext } from "../../../contexts/AuthContext.js";
+import { AuthContext } from "../../../contexts/AuthContext.jsx";
 
 
 export const Login = () => {

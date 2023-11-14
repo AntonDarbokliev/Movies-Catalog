@@ -3,7 +3,7 @@ import './NavBar.css'
 import logo from '../../assets/images/logo.png'
 import { Dropdown } from '../User/Dropdown/DropDown.jsx'
 import { useContext } from 'react'
-import { AuthContext } from '../../contexts/AuthContext.js'
+import { AuthContext } from '../../contexts/AuthContext.jsx'
 
 export const NavBar = () => {
     const {isAuthenticated} = useContext(AuthContext)

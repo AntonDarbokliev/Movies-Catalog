@@ -1,6 +1,6 @@
 import { useContext, useState } from "react"
 import { Link, Navigate } from "react-router-dom"
-import { AuthContext } from "../../../contexts/AuthContext.js"
+import { AuthContext } from "../../../contexts/AuthContext.jsx"
 
 export const Logout = () => {
     const [loggedOut,setLoggedOut] = useState(false)
