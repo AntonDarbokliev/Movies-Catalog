@@ -45,9 +45,15 @@ function App() {
     }
   };
 
+  const onLogoutSubmit = async () => {
+    // await authService.logout();
+    setAuth({})
+  };
+
   const contextValues = {
     onRegisterSubmit,
     onLoginSubmit,
+    onLogoutSubmit,
     userId: auth._id,
     token: auth.token,
     isAuthenticated: !!auth.token,
@@ -74,7 +80,7 @@ function App() {
               path="*"
               element={<h1 style={{ color: "white" }}>Page not found (404)</h1>}
             ></Route>
-          </Routes> 
+          </Routes>
         </div>
         <Footer />
       </AuthContext.Provider>

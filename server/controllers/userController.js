@@ -16,7 +16,6 @@ const userController = require('express').Router()
         try{
             const {token , user} = await login(req.body)
             const userObj = user.toObject()
-            res.cookie('auth',token,{httpOnly : true})
             return res.json({...userObj,token})
         }catch(err){
             throw err
@@ -24,8 +23,7 @@ const userController = require('express').Router()
     })
 
     userController.get('/logout',async (req,res) => {
-        res.clearCookie('auth')
-        return res.json()
+        return res.json({message : 'Successfully logged out!'})
     })
 
 
