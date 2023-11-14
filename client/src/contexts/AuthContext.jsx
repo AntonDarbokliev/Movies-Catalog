@@ -1,13 +1,14 @@
 import { createContext, useState, } from "react";
 import { useNavigate } from "react-router-dom";
 import {authServiceFactory } from '../services/authService.js'
+import { useLocalStorage } from "../hooks/useLocalStorage.js";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({
     children
 }) => {
-  const [auth, setAuth] = useState({});
+  const [auth, setAuth] = useLocalStorage('auth',{});
   const authService = authServiceFactory();
 
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ export const AuthProvider = ({
 
     try {
       const result = await authService.register(registerData);
+      // const token = result.token
 
       setAuth(result);
 
@@ -32,6 +34,8 @@ export const AuthProvider = ({
   const onLoginSubmit = async (data) => {
     try {
       const result = await authService.login(data);
+      // const token = result.token
+
       setAuth(result);
       navigate("/");
     } catch (err) {
