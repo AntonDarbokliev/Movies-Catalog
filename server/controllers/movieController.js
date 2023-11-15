@@ -5,10 +5,11 @@ const movieController = require('express').Router()
 
 movieController.post("/", async (req,res) => {
     try{
-        await movieService.create(req.body,{})
-        res.end()
+        const createdMovie = await movieService.create(req.body,{})
+        res.status(201).json(createdMovie)
     }catch(err){
-        console.log(err);
+        console.error(err);
+        res.status(500).json({ error: "Internal Server Error" });
     }
 })
 
