@@ -14,17 +14,20 @@ const request = async (method, url, data) => {
 
   const response = await fetch(url, options);
 
-  if (response.status === 204) {
-    return {};
-  }
-
-  const result = await response.json();
-
   if (!response.ok) {
-    throw result;
+    throw new Error(response.statusText);
+  }
+  
+  if (response.status === 204) {
+  return {};
   }
 
-  return result;
+  try {
+    return await response.json();
+  } catch (error) {
+    throw new Error(response.statusText);
+  }
+
 };
 
 export const requestFactory = () => {
