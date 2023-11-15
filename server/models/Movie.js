@@ -38,9 +38,15 @@ const movieSchema = new Schema({
     },
   },
   movieImages: {
-    type: [String],
+    type: [
+      {
+      movieImage :{
+        type : String
+      }
+    }
+  ],
     required: [true, "Movie images are required"],
-    //TODO: Add validtaion making sure there atleast a certain amount of images
+    // minLength : [1,'At least one image is required (three are recommended)']
   },
   description: {
     type: String,
@@ -50,6 +56,7 @@ const movieSchema = new Schema({
   genres: {
     type: [String],
     required: [true, "Movie's genres are required"],
+    minLength: [1,'At least one genre must be listed']
     //TODO: Add validtaion making sure there atleast a certain amount of genres
   },
   upvotes: [
