@@ -10,26 +10,37 @@ import { Catalog } from "./components/Catalog/Catalog.jsx";
 import { About } from "./components/About/About.jsx";
 import { AuthProvider } from "./contexts/AuthContext.jsx";
 import { Create } from "./components/Create/Create.jsx";
+import { MovieProvider } from "./contexts/MovieContext.jsx";
 
 function App() {
   return (
     <>
       <AuthProvider>
-        <NavBar />
-        <div className="main">
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/about" element={<About />}></Route>
-            <Route path="movie/:movieId/details" element={<MovieDetails />}></Route>
-            <Route path="movie/create" element={<Create />}></Route>
-            <Route path="user/:id/ratings" element={<UserRatings />}></Route>
-            <Route path="user/register" element={<Register />}></Route>
-            <Route path="user/login" element={<Login />}></Route>
-            <Route path="movie/catalog" element={<Catalog />}></Route>
-            <Route path="*" element={<h1 style={{ color: "white" }}>Page not found (404)</h1>}></Route>
-          </Routes>
-        </div>
-        <Footer />
+        <MovieProvider>
+          <NavBar />
+          <div className="main">
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/about" element={<About />}></Route>
+              <Route
+                path="movie/:movieId/details"
+                element={<MovieDetails />}
+              ></Route>
+              <Route path="movie/create" element={<Create />}></Route>
+              <Route path="user/:id/ratings" element={<UserRatings />}></Route>
+              <Route path="user/register" element={<Register />}></Route>
+              <Route path="user/login" element={<Login />}></Route>
+              <Route path="movie/catalog" element={<Catalog />}></Route>
+              <Route
+                path="*"
+                element={
+                  <h1 style={{ color: "white" }}>Page not found (404)</h1>
+                }
+              ></Route>
+            </Routes>
+          </div>
+          <Footer />
+        </MovieProvider>
       </AuthProvider>
     </>
   );

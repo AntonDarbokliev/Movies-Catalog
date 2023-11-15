@@ -1,18 +1,9 @@
 import './Home.css'
 import { MovieCard } from '../Shared/MovieCard/MovieCard.jsx'
-import { useEffect, useState } from 'react'
-import { requestFactory } from '../../services/requester.js'
+import { useMovieContext } from '../../contexts/MovieContext.jsx'
 
 export const Home = () => {
-    const [movies,setMovies] = useState([])
-    const baseUrl = 'http://localhost:3000/movie'
-    const request = requestFactory()
-
-    useEffect(() => {
-        request.get(baseUrl)
-            .then( data => setMovies(data))
-            .catch(err => console.log(err))
-   },[])
+    const {movies} = useMovieContext()
 
     return (
         <>
