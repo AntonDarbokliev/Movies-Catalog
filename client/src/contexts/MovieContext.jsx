@@ -1,25 +1,15 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { requestFactory } from "../services/requester.js";
+import { movieFactory } from "../services/movieService.js";
 
 export const MovieContext = createContext();
 
 export const MovieProvider = ({ children }) => {
   const [movies, setMovies] = useState([]);
-  const baseUrl = "http://localhost:3000/movie";
-  const request = requestFactory();
-
-  //   const getAllMovies = async () => {
-  //     try {
-  //       const data = await request.get(baseUrl);
-  //       setMovies(data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
+  const movieService = movieFactory()
 
   useEffect(() => {
-    request
-      .get(baseUrl)
+    movieService
+      .get()
       .then((data) => setMovies(data))
       .catch((err) => console.log(err));
   }, [movies]);
