@@ -1,6 +1,6 @@
 const express = require('express')
 const cors = require('../middlewares/cors.js')
-const cookieParser = require('cookie-parser')
+// const cookieParser = require('cookie-parser')
 
 
 module.exports = (app) => {
@@ -9,5 +9,5 @@ module.exports = (app) => {
         credentials : true,
         origin : 'http://localhost:3000',
     }))
-    app.use(cookieParser())
+    // app.use(cookieParser())
 }

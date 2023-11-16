@@ -15,10 +15,21 @@ movieController.post("/", async (req,res) => {
 
 movieController.get('/', async (req,res) => {
     try {
-        const movies = await movieService.getAll()
-        res.status(200).json(movies)
-    } catch (error) {
-        console.log(error);
+
+        const movieName = req.query.name;
+        const movieGenres = (req.query.genres)?.split('-'); // Assuming this is an array(may have to adjust later)
+
+        if(movieName || movieGenres){
+            const movies = await movieService.movieSearch(movieName,movieGenres)
+            res.status(200).json(movies)
+        }else{
+            const movies = await movieService.getAll()
+            res.status(200).json(movies)
+        }
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Internal Server Error" });
     }
 })
 

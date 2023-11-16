@@ -5,7 +5,6 @@ const userController = require('../controllers/userController.js')
 
 module.exports = (app) => {
     app.use(express.json());
-    // app.use('/',homeController)
     app.use('/user',userController)
     app.use('/movie', movieController)
 }
