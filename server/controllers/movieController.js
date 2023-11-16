@@ -18,8 +18,7 @@ movieController.get('/', async (req,res) => {
 
         const movieName = req.query.name;
         const movieGenres = (req.query.genres)?.split('-');
-        // console.log(req); 
-
+        
         if(movieName || movieGenres){
             const movies = await movieService.movieSearch(movieName,movieGenres)
             res.status(200).json(movies)

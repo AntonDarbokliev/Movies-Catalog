@@ -27,9 +27,8 @@ async function getAll() {
 async function movieSearch(movieName, movieGenres) {
 
   if (!!movieName && movieGenres[0]!=='') {
-    console.log(movieName);
     const movies = await Movie.find({
-      name: movieName,
+      name: {$regex : new RegExp(movieName,'i')},
       genres: { $in: movieGenres },
     });
     if (!movies) {
@@ -37,7 +36,7 @@ async function movieSearch(movieName, movieGenres) {
     }
     return movies;
   } else if (!!movieName) {
-    const movies = await Movie.find({ name: movieName });
+    const movies = await Movie.find({ name: {$regex : new RegExp(movieName,'i')} });
     if (!movies) {
       throw new Error("No movies were found");
     }

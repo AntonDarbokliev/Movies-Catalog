@@ -14,7 +14,7 @@ export const MovieProvider = ({ children }) => {
     movieService
       .get()
       .then((data) => setMovies(data))
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   }, []);
 
   const onMovieCreateSubmit = async (movieData) => {
@@ -42,20 +42,20 @@ export const MovieProvider = ({ children }) => {
     }
   };
 
-  const onSearchCatalogSubmit = async (formValues) => {
+  const searchMovie = async (formValues) => {
     const {genres, title} = formValues
 
-     const movie = await movieService.get(`?name=${title}&genres=${genres}`)
+     const movies = await movieService.get(`?name=${title}&genres=${genres}`)
+
+     return movies
 
      //?genres=${genres}&name=${title}
-
-      console.log(movie); //TODO: implement search after adjusting server side
   }
 
   const contextValues = {
     movies,
     onMovieCreateSubmit,
-    onSearchCatalogSubmit
+    searchMovie
   };
 
   return (
