@@ -42,8 +42,14 @@ export const MovieProvider = ({ children }) => {
     }
   };
 
-  const onSearchCatalogSubmit = (formValues) => {
-      console.log(formValues); //TODO: implement search after adjusting server side
+  const onSearchCatalogSubmit = async (formValues) => {
+    const {genres, title} = formValues
+
+     const movie = await movieService.get(`?name=${title}&genres=${genres}`)
+
+     //?genres=${genres}&name=${title}
+
+      console.log(movie); //TODO: implement search after adjusting server side
   }
 
   const contextValues = {

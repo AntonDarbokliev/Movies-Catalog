@@ -5,7 +5,7 @@ export const movieFactory = () => {
     const baseUrl = "http://localhost:3000/movie";
 
     return {
-        get: () => request.get(baseUrl),
+        get: (additionToPath) => request.get(additionToPath ? baseUrl + additionToPath : baseUrl),
         post: (movieData) => request.post(baseUrl,movieData),
         delete: (movieId) => request.delete(`${baseUrl}/${movieId}`)
     }

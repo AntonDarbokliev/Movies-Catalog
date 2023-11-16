@@ -25,7 +25,9 @@ async function getAll() {
 }
 
 async function movieSearch(movieName, movieGenres) {
-  if (movieName && movieGenres) {
+
+  if (!!movieName && movieGenres[0]!=='') {
+    console.log(movieName);
     const movies = await Movie.find({
       name: movieName,
       genres: { $in: movieGenres },
@@ -34,26 +36,27 @@ async function movieSearch(movieName, movieGenres) {
       throw new Error("No movies were found");
     }
     return movies;
-  } else if (movieName) {
+  } else if (!!movieName) {
     const movies = await Movie.find({ name: movieName });
     if (!movies) {
       throw new Error("No movies were found");
     }
     return movies;
-  } else if (movieGenres) {
+  } else if (movieGenres[0]!=='') {
     const movies = await Movie.find({ genres: { $in: movieGenres } });
     if (!movies) {
       throw new Error("No movies were found");
     }
 
-    return movies
-  }else{
-    throw new Error('No search parameters were specified')
+    return movies;
+  } else {
+    throw new Error("No search parameters were specified"); //Should be impossible to get here (i just did it anyway)
   }
+
 }
 
 module.exports = {
   create,
   getAll,
-  movieSearch
+  movieSearch,
 };
