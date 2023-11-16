@@ -4,6 +4,8 @@
     margin-top: 20px;
     background-color: var(--main-accent-color);
     border: none;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
 #submitButton:hover{

@@ -2,6 +2,8 @@ import { useMovieContext } from "../../contexts/MovieContext.jsx";
 import { useForm } from "../../hooks/useForm.js";
 import { FormField } from "../Shared/FormField/FormField.jsx";
 import { SubmitButton } from "../Shared/SubmitButton/SubmitButton.jsx";
+import './Create.css' 
+
 
 export const Create = () => {
 
@@ -24,7 +26,8 @@ export const Create = () => {
   );
   return (
     <>
-      <form method="POST" onSubmit={onSubmit}>
+      <form id="createForm" method="POST" onSubmit={onSubmit}>
+        <div id="createFormFields">
         <FormField
           type={"text"}
           name={"name"}
@@ -95,7 +98,9 @@ export const Create = () => {
           onChange={onChangeHandler}
           value={formValues.genres}
         />
+
         <SubmitButton text={'Submit'}/>
+        </div>
       </form>
     </>
   );

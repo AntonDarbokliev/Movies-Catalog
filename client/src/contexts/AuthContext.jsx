@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import {authServiceFactory } from '../services/authService.js'
 import { useLocalStorage } from "../hooks/useLocalStorage.js";
 
+
 export const AuthContext = createContext();
 
 export const AuthProvider = ({
@@ -44,6 +45,7 @@ export const AuthProvider = ({
   const onLogoutSubmit = async () => {
     await authService.logout();
     setAuth({});
+    navigate('/')
   };
 
   const contextValues = {

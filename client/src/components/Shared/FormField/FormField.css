@@ -1,8 +1,12 @@
-.formField{
+.formField {
     display: block;
     margin-bottom: 20px;
     width: 200px;
     height: 30px;
     text-align: center;
     margin-left: 30px;
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 16px;
 }

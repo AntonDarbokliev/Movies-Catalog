@@ -20,12 +20,14 @@ export const Login = () => {
       <FormField
         name="email"
         type="text"
+        placeholder={'Email'}
         value={formValues.email}
         onChange={onChangeHandler}
       />
       <FormField
         name="password"
         type="password"
+        placeholder={'Password'}
         value={formValues.password}
         onChange={onChangeHandler}
       />

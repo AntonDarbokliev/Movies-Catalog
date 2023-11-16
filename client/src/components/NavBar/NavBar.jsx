@@ -13,13 +13,16 @@ export const NavBar = () => {
             <img src={logo} alt="logo" className='logo'/>
             <Link to="/" className='link'>Home</Link>
             <Link to="/movie/catalog" className='link'>Catalog</Link>
+            {isAuthenticated && 
+            <>
             <Link to="/movie/create" className='link'>Create</Link>
             <Link to="/about" className='link'>About</Link>
-            {isAuthenticated && 
             <Dropdown/>
+            </>
             }
             {!isAuthenticated &&
             <>
+            <Link to="/about" className='link'>About</Link>
             <Link to="/user/register" className='link'>Register</Link>
             <Link to="/user/login" className='link'>Login</Link>
             </>

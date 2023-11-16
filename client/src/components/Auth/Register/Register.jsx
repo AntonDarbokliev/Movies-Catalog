@@ -21,24 +21,28 @@ export const Register = () => {
       <FormField
         name="username"
         type="text"
+        placeholder={'Username'}
         value={formValues.username}
         onChange={onChangeHandler}
       />
       <FormField
         name="email"
         type="text"
+        placeholder={'Email'}
         value={formValues.email}
         onChange={onChangeHandler}
       />
       <FormField
         name="password"
         type="password"
+        placeholder={'Password'}
         value={formValues.password}
         onChange={onChangeHandler}
       />
       <FormField
         name="repeatPassword"
         type="password"
+        placeholder={'Repeat Password'}
         value={formValues.repeatPassword}
         onChange={onChangeHandler}
       />

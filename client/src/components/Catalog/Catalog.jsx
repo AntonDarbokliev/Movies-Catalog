@@ -2,39 +2,39 @@ import { useState } from "react";
 import { SubmitButton } from "../Shared/SubmitButton/SubmitButton.jsx";
 import "./Catalog.css";
 import { MovieCard } from "../Shared/MovieCard/MovieCard.jsx";
+import { useForm } from "../../hooks/useForm.js";
+import { useMovieContext } from "../../contexts/MovieContext.jsx";
+import { FormField } from "../Shared/FormField/FormField.jsx";
 
 export const Catalog = () => {
-  const onSearchHandler = () => {};
-
-  const [formValue, setFormValue] = useState({
+  const { onSearchCatalogSubmit }  = useMovieContext()
+  
+  const {formValues,onSubmit,onChangeHandler} = useForm({
     title: "",
-    genre: "",
-  });
+    genres: "",
+  },onSearchCatalogSubmit);
 
-  const handleInputChange = (e) => {
-    const { title, genre } = e.target;
-    setFormValue(...formValue, title, genre);
-  };
+  
 
   return (
     <>
       <div id="searchContainer">
-        <h1 id="a">Search a Movie</h1>
+        <h1 >Search a Movie</h1>
         <div id="searchField">
-          <form onSubmit={onSearchHandler}>
-            <input
-              className="searchInput"
-              type="text"
-              placeholder="Movie Title"
-              value={formValue.title}
-              onChange={handleInputChange}
+          <form onSubmit={onSubmit}>
+            <FormField
+            type={'text'}
+            placeholder={'Movie Title'}
+            value={formValues.title}
+            onChange={onChangeHandler}
+            name={'title'}
             />
-            <input
-              className="searchInput"
-              type="text"
-              placeholder="Movie Genre"
-              value={formValue.genre}
-              onChange={handleInputChange}
+            <FormField
+            type={'text'}
+            placeholder={'Movie Genre/s'}
+            value={formValues.genre}
+            onChange={onChangeHandler}
+            name={'genres'}
             />
             <SubmitButton text="Search" />
           </form>
