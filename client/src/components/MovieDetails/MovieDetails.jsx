@@ -19,6 +19,17 @@ export const MovieDetails = () => {
     .catch(err => console.error(err))
 
   }, [movieId]);
+
+  const extractYouTubeVideoId = (link) => {
+    const regex = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+
+    const match = link.match(regex);
+
+    // If there is a match, return the video ID, otherwise return null or handle as needed
+    return match ? match[1] : null;
+  };
+
+
   return (
     <>
     
@@ -36,7 +47,7 @@ export const MovieDetails = () => {
           <iframe
             width="580"
             height="400"
-            src="https://www.youtube.com/embed/0VH9WCFV6XQ"
+            src={"https://www.youtube.com/embed/" +  (details.movieTrailer ? extractYouTubeVideoId(details.movieTrailer) : '')}
             frameBorder="0"
             allowFullScreen
           ></iframe>

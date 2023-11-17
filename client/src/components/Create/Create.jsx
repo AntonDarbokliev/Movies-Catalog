@@ -19,6 +19,7 @@ export const Create = () => {
       movieImagesOne: "",
       movieImagesTwo: "",
       movieImagesThree: "",
+      movieTrailer : "",
       description: "",
       genres: "",
     },
@@ -83,6 +84,13 @@ export const Create = () => {
           onChange={onChangeHandler}
           placeholder={'Movie Image Url 3'}
           value={formValues.movieImagesThree}
+        />
+        <FormField
+          type={"text"}
+          name={"movieTrailer"}
+          placeholder={'YouTube trailer link'}
+          onChange={onChangeHandler}
+          value={formValues.movieTrailer}
         />
         <FormField
           type={"text"}

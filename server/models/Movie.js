@@ -48,6 +48,17 @@ const movieSchema = new Schema({
     required: [true, "Movie images are required"],
     // minLength : [1,'At least one image is required (three are recommended)']
   },
+  movieTrailer: {
+    type: String,
+    validate: {
+      validator: function (value) {
+        const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+
+        return youtubeRegex.test(value);
+      },
+      message: (props) => `${props.value} is not a valid YouTube link!`,
+    },
+  },
   description: {
     type: String,
     required: [true, "Movie's description is required"],
