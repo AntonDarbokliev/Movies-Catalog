@@ -1,6 +1,6 @@
 const Movie = require("../models/Movie.js");
 
-async function create(movieData, userId) {
+async function create(movieData) {
   const movie = {
     name: movieData.name,
     director: movieData.director,
@@ -13,7 +13,7 @@ async function create(movieData, userId) {
     movieTrailer: movieData.movieTrailer,
     upvotes: [], //TODO: Make upvotes/downvotes work
     downvotes: [],
-    // owner : userId
+    owner : movieData.owner,
   };
 
   const result = await Movie.create(movie);

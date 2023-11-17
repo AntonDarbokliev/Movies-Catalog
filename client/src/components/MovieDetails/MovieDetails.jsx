@@ -14,7 +14,6 @@ export const MovieDetails = () => {
     movieService.get(`/${movieId}`)
     .then(movie => {
       setDetails(movie)
-      console.log(movie);
     } )
     .catch(err => console.error(err))
 
@@ -63,6 +62,9 @@ export const MovieDetails = () => {
             </li>
             <li id="topCast">
               <span> Top Cast:</span>  {details.topCast?.join(', ')}
+            </li>
+            <li id="publisher">
+              <span> Publisher:</span>  {details.owner?.username}
             </li>
           </ul>
         </div>

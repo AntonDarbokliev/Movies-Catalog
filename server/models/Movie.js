@@ -71,16 +71,25 @@ const movieSchema = new Schema({
   upvotes: [
     {
       type: Types.ObjectId,
-      // ref: "User",
+      ref: "User",
     },
   ],
   downvotes: [
     {
       type: Types.ObjectId,
-      // ref: "User",
+      ref: "User",
     },
   ],
-  // owner : { type: Types.ObjectId, ref: "User"}
+  owner: {
+    id: {
+      type: Types.ObjectId,
+      ref: 'User',
+    },
+    username: {
+      type: String,
+      required: true,
+    },
+  },
 });
 
 

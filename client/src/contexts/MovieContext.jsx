@@ -30,7 +30,14 @@ export const MovieProvider = ({ children }) => {
 
     const topCastArr = topCast.split(', ')
 
-    const result = {...rest, movieImages : combinedImages, year : Number(year), genres : genresArr, topCast : topCastArr }
+    const {username, _id} = JSON.parse(localStorage.getItem('auth'))
+
+    const owner = {
+      id : _id,
+      username,
+    }
+
+    const result = {...rest, movieImages : combinedImages, year : Number(year), genres : genresArr, topCast : topCastArr, owner }
 
     try {
       await movieService.post(result)
@@ -48,8 +55,6 @@ export const MovieProvider = ({ children }) => {
      const movies = await movieService.get(`?name=${title}&genres=${genres}`)
 
      return movies
-
-     //?genres=${genres}&name=${title}
   }
 
   const contextValues = {

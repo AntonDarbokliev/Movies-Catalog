@@ -5,7 +5,7 @@ const movieController = require('express').Router()
 
 movieController.post("/", async (req,res) => {
     try{
-        const createdMovie = await movieService.create(req.body,{})
+        const createdMovie = await movieService.create(req.body)
         res.status(201).json(createdMovie)
     }catch(err){
         console.error(err);
