@@ -33,4 +33,14 @@ movieController.get('/', async (req,res) => {
     }
 })
 
+movieController.get('/:id',async (req,res) => {
+    const movieId = req.params.id
+    try {
+        const movie = await movieService.getOne(movieId)
+        res.status(200).json(movie)
+    } catch (error) {
+        res.status(404).json({error: 'Movie was not found'})
+    }
+})
+
 module.exports = movieController

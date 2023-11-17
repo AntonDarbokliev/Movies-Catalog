@@ -24,6 +24,10 @@ async function getAll() {
   return Movie.find({}).lean().populate("upvotes").populate("downvotes");
 }
 
+async function getOne(id) {
+  return Movie.findById(id)
+}
+
 async function movieSearch(movieName, movieGenres) {
 
   if (!!movieName && movieGenres[0]!=='') {
@@ -58,4 +62,5 @@ module.exports = {
   create,
   getAll,
   movieSearch,
+  getOne
 };
