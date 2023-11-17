@@ -4,6 +4,7 @@ import { useMovieContext } from '../../contexts/MovieContext.jsx'
 
 export const Home = () => {
     const {movies} = useMovieContext()
+    const lastThree = movies.slice(-3)
 
     return (
         <>
@@ -11,7 +12,7 @@ export const Home = () => {
         <h1 id='header'>Latest releases</h1>
         </div>
         <div className='homeMovies'>
-            {movies.map( movie => <MovieCard imageUrl={movie.moviePoster} movieId={movie._id} key={movie._id}/>)}                         
+            {lastThree.map( movie => <MovieCard imageUrl={movie.moviePoster} movieId={movie._id} key={movie._id}/>)}                         
         </div>
         </>
     )

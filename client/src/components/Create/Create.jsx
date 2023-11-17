@@ -53,7 +53,7 @@ export const Create = () => {
         <FormField
           type={"text"}
           name={"topCast"}
-          placeholder={'Top Cast 1'}
+          placeholder={'Top Cast'}
           onChange={onChangeHandler}
           value={formValues.topCast}
         />

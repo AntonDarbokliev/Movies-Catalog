@@ -67,8 +67,6 @@ const movieSchema = new Schema({
   genres: {
     type: [String],
     required: [true, "Movie's genres are required"],
-    minLength: [1,'At least one genre must be listed']
-    //TODO: Add validtaion making sure there atleast a certain amount of genres
   },
   upvotes: [
     {
