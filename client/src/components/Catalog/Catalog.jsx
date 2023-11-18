@@ -9,9 +9,17 @@ import { FormField } from "../Shared/FormField/FormField.jsx";
 export const Catalog = () => {
   const { searchMovie, movies } = useMovieContext();
   const [searchResult, setSearchResult] = useState([]);
+  const [filterValue, setFilterValue] = useState("");
+  useEffect(() => {
+    const filteredMovies = sortMovies([...searchResult],filterValue)
+    setSearchResult(filteredMovies)
+  }, [filterValue]);
+
   useEffect(() => {
     setSearchResult(movies);
-  }, []);
+  }, [movies]);  
+
+
 
   const onSearchSubmit = async () => {
     try {
@@ -21,7 +29,7 @@ export const Catalog = () => {
       console.error(err);
     }
   };
-  
+
   const { formValues, onSubmit, onChangeHandler } = useForm(
     {
       title: "",
@@ -29,6 +37,26 @@ export const Catalog = () => {
     },
     onSearchSubmit
   );
+
+  const sortMovies = (movies, sortBy) => {
+    switch (sortBy) {
+      case "yearNewest":
+        return movies.sort((a,b) => b.year - a.year)
+      case "yearOldest":
+        return  movies.sort((a,b) => a.year - b.year)
+      case "a-z":
+        return  movies.sort((a,b) => (a.name).localeCompare(b.name))
+      case "z-a":
+        return  movies.sort((a,b) => (b.name).localeCompare(a.name))
+      default:
+        return movies
+    }
+  };
+
+  const onSortChange = (e) => {
+    console.log("Registered change at:", e.target.value);
+    setFilterValue(e.target.value)
+  };
 
   return (
     <>
@@ -53,6 +81,17 @@ export const Catalog = () => {
             <SubmitButton text="Search" />
           </form>
         </div>
+      </div>
+
+      <div id="filterDropdown">
+        <label htmlFor="sort">Sort By: </label>
+        <select name="sort" id="sort" onChange={onSortChange} value={filterValue}>
+          <option value="" disabled hidden>Select Sorting Option</option>
+          <option value="yearNewest">Year - Newest to Oldest</option>
+          <option value="yearOldest">Year - Oldest to Newest</option>
+          <option value="a-z">Alphabetically - A-Z</option>
+          <option value="z-a">Alphabetically - Z-A</option>
+        </select>
       </div>
 
       <div id="catalogContainer">
