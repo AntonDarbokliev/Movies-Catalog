@@ -29,7 +29,6 @@ export const MovieDetails = () => {
   };
 
   const vote = async (voteType) =>  {
-    //movie reference here
     try {
       const movie = await movieService.get(`/${movieId}`)  
   
@@ -43,6 +42,10 @@ export const MovieDetails = () => {
             await movieService.put(movie._id,{upvotes : upvotesWithCurrentUser})
           break;
         }
+
+        const updatedMovie = await movieService.get(`/${movieId}`)
+        setDetails(updatedMovie)  
+
       
     } catch (err) {
       console.error(err)

@@ -47,9 +47,8 @@ movieController.get('/:id',async (req,res) => {
 movieController.put('/:id',async (req,res) => {
     const movieId = req.params.id
     try {
-        // const movie = await movieService.getOne(movieId)
-        await movieService.update(movieId,req.body)
-        res.status(202).json({update:"Success" })
+        const result = await movieService.update(movieId,req.body)
+        res.status(202).json(result)
     } catch (error) {
         console.error(error);
         res.status(404).json(error)

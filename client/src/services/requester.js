@@ -13,7 +13,7 @@ const request = async (method, url, data) => {
   }
 
   const response = await fetch(url, options);
-
+  
   if (!response.ok) {
     throw new Error(response.statusText);
   }
