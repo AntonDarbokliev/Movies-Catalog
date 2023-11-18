@@ -28,6 +28,27 @@ export const MovieDetails = () => {
     return match ? match[1] : null;
   };
 
+  const vote = async (voteType) =>  {
+    //movie reference here
+    try {
+      const movie = await movieService.get(`/${movieId}`)  
+  
+        switch (voteType) {
+          case 'downvote':
+            const downvotesWithCurrentUser = [...movie.downvotes,(JSON.parse(localStorage.getItem('auth')))._id]
+            await movieService.put(movie._id,{downvotes : downvotesWithCurrentUser})
+          break;
+          case 'upvote':
+            const upvotesWithCurrentUser = [...movie.upvotes,(JSON.parse(localStorage.getItem('auth')))._id]
+            await movieService.put(movie._id,{upvotes : upvotesWithCurrentUser})
+          break;
+        }
+      
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
 
   return (
     <>
@@ -82,13 +103,13 @@ export const MovieDetails = () => {
       <div className="genreRating">
         <p className="genres"> {details.genres?.join(', ')}</p>
         <div className="ratingDiv">
-          <button id="upvote">
+          <button id="upvote" onClick={()=> vote('upvote')}>
             <img id="likeButton" src={likeIcon} alt="" />
           </button>
-          <button id="downvote">
+          <button id="downvote"onClick={()=> vote('downvote')}>
             <img id="dislikeButton" src={disklikeIcon} alt=""></img>
           </button>
-          <p id="rating">User rating: 15.9k </p>
+          <p id="rating">User rating: {(details.upvotes?.length) - (details.downvotes?.length)} </p>
         </div>
       </div>
 

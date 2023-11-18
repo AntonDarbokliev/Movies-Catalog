@@ -29,6 +29,10 @@ async function getOne(id) {
   return Movie.findById(id)
 }
 
+async function update (id,data) {
+  return Movie.findByIdAndUpdate(id,data)
+}
+
 async function movieSearch(movieName, movieGenres) {
 
   if (!!movieName && movieGenres[0]!=='') {
@@ -63,5 +67,6 @@ module.exports = {
   create,
   getAll,
   movieSearch,
-  getOne
+  getOne,
+  update
 };
