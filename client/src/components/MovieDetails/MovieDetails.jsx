@@ -7,6 +7,7 @@ import { movieFactory } from "../../services/movieService.js";
 export const MovieDetails = () => {
   const { movieId } = useParams();
   const [ details, setDetails ] = useState({});
+  const userId = JSON.parse(localStorage.getItem('auth'))._id
 
   const movieService = movieFactory()
 
@@ -18,6 +19,7 @@ export const MovieDetails = () => {
     .catch(err => console.error(err))
 
   }, [movieId]);
+
 
   const extractYouTubeVideoId = (link) => {
     const regex = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
@@ -34,11 +36,11 @@ export const MovieDetails = () => {
   
         switch (voteType) {
           case 'downvote':
-            const downvotesWithCurrentUser = [...movie.downvotes,(JSON.parse(localStorage.getItem('auth')))._id]
+            const downvotesWithCurrentUser = [...movie.downvotes,userId]
             await movieService.put(movie._id,{downvotes : downvotesWithCurrentUser})
           break;
           case 'upvote':
-            const upvotesWithCurrentUser = [...movie.upvotes,(JSON.parse(localStorage.getItem('auth')))._id]
+            const upvotesWithCurrentUser = [...movie.upvotes,userId]
             await movieService.put(movie._id,{upvotes : upvotesWithCurrentUser})
           break;
         }
@@ -55,7 +57,6 @@ export const MovieDetails = () => {
 
   return (
     <>
-    
       <h1 id="title">{details.name}</h1>
       <div className="container">
         <div className="imageDiv">
@@ -106,12 +107,16 @@ export const MovieDetails = () => {
       <div className="genreRating">
         <p className="genres"> {details.genres?.join(', ')}</p>
         <div className="ratingDiv">
+          {!details.downvotes?.includes(userId) && !details.upvotes?.includes(userId) &&
+          <>
           <button id="upvote" onClick={()=> vote('upvote')}>
             <img id="likeButton" src={likeIcon} alt="" />
           </button>
           <button id="downvote"onClick={()=> vote('downvote')}>
             <img id="dislikeButton" src={disklikeIcon} alt=""></img>
           </button>
+          </>
+          }
           <p id="rating">User rating: {(details.upvotes?.length) - (details.downvotes?.length)} </p>
         </div>
       </div>
