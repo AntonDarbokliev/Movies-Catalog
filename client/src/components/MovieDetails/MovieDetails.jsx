@@ -1,12 +1,16 @@
 import "./MovieDetails.css";
 import likeIcon from "../../assets/images/like.png";
 import disklikeIcon from "../../assets/images/dislike.png";
-import { useParams } from "react-router-dom";
+import editIcon from "../../assets/images/editIcon.png";
+
+
+import { Link, Route, Routes, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { movieFactory } from "../../services/movieService.js";
 import { commentFactory } from "../../services/commentService.js";
 import { CommentCard } from "../Comment/CommentCard/CommentCard.jsx";
 import { CommentForm } from "../Comment/CommentForm/CommentForm.jsx";
+import { Edit } from "../Edit/Edit.jsx";
 export const MovieDetails = () => {
   const { movieId } = useParams();
   const [ details, setDetails ] = useState({});
@@ -74,7 +78,15 @@ export const MovieDetails = () => {
 
   return (
     <>
+      <span id="titleButtonsWrap">
       <h1 id="title">{details.name}</h1>
+      <Link to={`/movie/${movieId}/edit`} >
+      <img 
+      src={editIcon}
+      id="editIcon"
+      ></img>
+      </Link>
+      </span>
       <div className="container">
         <div className="imageDiv">
           <img

@@ -11,6 +11,7 @@ import { About } from "./components/About/About.jsx";
 import { AuthProvider } from "./contexts/AuthContext.jsx";
 import { Create } from "./components/Create/Create.jsx";
 import { MovieProvider } from "./contexts/MovieContext.jsx";
+import { Edit } from "./components/Edit/Edit.jsx";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
               ></Route>
               <Route path="movie/create" element={<Create />}></Route>
               <Route path="user/:id/ratings" element={<UserRatings />}></Route>
+              <Route path="/movie/:id/edit" element={<Edit/>}></Route>
               <Route path="user/register" element={<Register />}></Route>
               <Route path="user/login" element={<Login />}></Route>
               <Route path="movie/catalog" element={<Catalog />}></Route>

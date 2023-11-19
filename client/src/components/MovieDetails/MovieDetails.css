@@ -95,6 +95,8 @@
     color : var(--main-accent-color);
     font-weight: bold;
     font-family: var(--main-font-family);
+    padding-left: 500px;
+    padding-right: 500px;
     
 }
 
@@ -140,4 +142,19 @@
 
 #comments{
     list-style: none;
+}
+
+#editIcon{
+    width: 46px;
+}
+
+#titleButtonsWrap{
+    display: flex;
+    align-items: center;
+}
+
+#editButton{
+    /* border: none; */
+    /* width: 60px; */
+
 }
