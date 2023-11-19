@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { movieFactory } from "../../services/movieService.js";
 import { commentFactory } from "../../services/commentService.js";
+import { CommentCard } from "../Comment/CommentCard/CommentCard.jsx";
+import { CommentForm } from "../Comment/CommentForm/CommentForm.jsx";
 export const MovieDetails = () => {
   const { movieId } = useParams();
   const [ details, setDetails ] = useState({});
@@ -89,7 +91,7 @@ export const MovieDetails = () => {
         </div>
 
         <div className="movieInfo">
-          <ul>
+          <ul id="movieInfoList" >
             <li id="director">
               <span>Director:</span> {details.director}
             </li>
@@ -128,15 +130,19 @@ export const MovieDetails = () => {
           </button>
           </>
           }
-          <p id="rating">User rating: {(details.upvotes?.length) - (details.downvotes?.length)} </p>
+          <p id="rating">User rating: {(details.upvotes?.length) - (details.downvotes?.length)}K</p>
         </div>
       </div>
 
       <p className="description">
         {details.description}
       </p>
-
-      {comments?.map(x => <p key={x._id} > {x.text}</p>)}
+      <CommentForm/>
+      <ul id="comments" >
+      {comments?.map(x => <CommentCard key={x._id} title={x.title} text={x.text} owner={x.owner} />)}
+      </ul>
     </>
   );
 };
+
+

@@ -1,0 +1,18 @@
+#commentCard {
+    border: 3px var(--main-accent-color) solid ;
+    background-color: var(--main-background-color);
+    border-radius: 10px;
+    width: 700px;
+}
+
+#commentTitle {
+    color : var(--main-accent-color);
+}
+
+#commentText {
+    color : white
+}
+
+#commentUsername{
+    color: #136cb2;
+}

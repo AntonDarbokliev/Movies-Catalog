@@ -5,7 +5,7 @@ const commentSchema = new Schema({
     type : Types.ObjectId,
     ref : 'Movie' 
   },
-  ownerId : {
+  owner : {
     type : Types.ObjectId,
     ref : 'User'
   },

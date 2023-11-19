@@ -107,7 +107,7 @@
     right: 90px;
 }
 
-ul li{
+#movieInfoList li{
     color: var(--main-accent-color);
 }
 
@@ -118,4 +118,9 @@ ul li{
 
 .movieImage{
     width: 300px;
+}
+
+
+#comments{
+    list-style: none;
 }

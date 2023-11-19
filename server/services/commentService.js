@@ -3,7 +3,7 @@ const Comment = require("../models/Comment.js");
 
 async function create(commentData) {
     const comment = {
-        ownerId: commentData.ownerId,
+        owner: commentData.owner,
         movieId: commentData.movieId,
         text: commentData.text,
         title: commentData.title,
@@ -16,7 +16,7 @@ async function create(commentData) {
 
 
 async function getAll() {
-    return Comment.find({}).lean().populate('ownerId')
+    return Comment.find({}).lean().populate('owner')
 }
 
 module.exports = {
