@@ -137,7 +137,7 @@ export const MovieDetails = () => {
       <p className="description">
         {details.description}
       </p>
-      <CommentForm/>
+      <CommentForm comments={comments} setComments={setComments}/>
       <ul id="comments" >
       {comments?.map(x => <CommentCard key={x._id} title={x.title} text={x.text} owner={x.owner} />)}
       </ul>
