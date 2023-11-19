@@ -107,7 +107,7 @@ export const MovieDetails = () => {
       <div className="genreRating">
         <p className="genres"> {details.genres?.join(', ')}</p>
         <div className="ratingDiv">
-          {!details.downvotes?.includes(userId) && !details.upvotes?.includes(userId) &&
+          {!details.downvotes?.includes(userId) && !details.upvotes?.includes(userId) && userId &&
           <>
           <button id="upvote" onClick={()=> vote('upvote')}>
             <img id="likeButton" src={likeIcon} alt="" />

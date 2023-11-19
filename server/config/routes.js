@@ -1,4 +1,3 @@
-// const homeController = require('../controllers/homeController.js')
 const movieController = require('../controllers/movieController.js')
 const express = require('express')
 const userController = require('../controllers/userController.js')
