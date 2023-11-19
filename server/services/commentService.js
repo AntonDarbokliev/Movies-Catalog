@@ -9,7 +9,7 @@ async function create(commentData) {
         title: commentData.title,
     };
 
-    const result = await Comment.create(comment);
+    const result = (await Comment.create(comment)).populate('owner');
 
     return result;
 }

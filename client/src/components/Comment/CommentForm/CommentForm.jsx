@@ -21,8 +21,8 @@ export const CommentForm = ({
         title: commentData.commentTitle,
         owner
     }
-    await commentService.post(comment);
-    setComments(state => [...state,comment])
+    const result = await commentService.post(comment);
+    setComments(state => [...state,result])
   };
 
   const { formValues, onChangeHandler, onSubmit } = useForm(
