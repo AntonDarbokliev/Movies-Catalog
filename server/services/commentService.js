@@ -1,5 +1,5 @@
 const Comment = require("../models/Comment.js");
-const Movie = require("../models/Movie.js");
+// const Movie = require("../models/Movie.js");
 
 async function create(commentData) {
     const comment = {
@@ -16,7 +16,7 @@ async function create(commentData) {
 
 
 async function getAll() {
-    return Movie.find({}).lean().populate('ownerId')
+    return Comment.find({}).lean().populate('ownerId')
 }
 
 module.exports = {

@@ -1,3 +1,4 @@
+const commentService = require('../services/commentService.js')
 const movieService = require('../services/movieService.js')
 const movieController = require('express').Router()
 
@@ -33,6 +34,28 @@ movieController.get('/', async (req,res) => {
     }
 })
 
+movieController.post('/comment', async (req,res) => {
+    try {
+        const comment = await commentService.create(req.body);
+        res.status(201).json(comment)
+    } catch (error) {
+        console.error(error);
+        res.json(error)
+    }
+
+})
+
+movieController.get('/comment', async (req,res) => {
+    try {
+        const comments = await commentService.getAll();
+        res.status(201).json(comments)
+    } catch (error) {
+        console.error(error);
+        res.json(error)
+    }
+
+})
+
 movieController.get('/:id',async (req,res) => {
     const movieId = req.params.id
     try {
@@ -54,5 +77,7 @@ movieController.put('/:id',async (req,res) => {
         res.status(404).json(error)
     }
 })
+
+
 
 module.exports = movieController

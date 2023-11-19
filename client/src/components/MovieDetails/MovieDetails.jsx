@@ -4,21 +4,31 @@ import disklikeIcon from "../../assets/images/dislike.png";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { movieFactory } from "../../services/movieService.js";
+import { commentFactory } from "../../services/commentService.js";
 export const MovieDetails = () => {
   const { movieId } = useParams();
   const [ details, setDetails ] = useState({});
+  const [comments, setComments] = useState([])
   const userId = JSON.parse(localStorage.getItem('auth'))._id
 
   const movieService = movieFactory()
+  const commentService = commentFactory()
 
   useEffect(() => {
     movieService.get(`/${movieId}`)
-    .then(movie => {
-      setDetails(movie)
-    } )
+    .then(movie => setDetails(movie))
     .catch(err => console.error(err))
 
   }, [movieId]);
+
+  useEffect(()=> {
+      commentService.get()
+        .then(data => {
+          const movieComments = data.filter(x => x.movieId === movieId)
+          setComments(movieComments)
+        })
+        .catch(err => console.error(err))
+  },[details])
 
 
   const extractYouTubeVideoId = (link) => {
@@ -124,6 +134,8 @@ export const MovieDetails = () => {
       <p className="description">
         {details.description}
       </p>
+
+      {comments?.map(x => <p key={x._id} > {x.text}</p>)}
     </>
   );
 };
