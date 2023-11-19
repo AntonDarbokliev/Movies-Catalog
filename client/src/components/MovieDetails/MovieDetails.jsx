@@ -10,7 +10,8 @@ import { CommentForm } from "../Comment/CommentForm/CommentForm.jsx";
 export const MovieDetails = () => {
   const { movieId } = useParams();
   const [ details, setDetails ] = useState({});
-  const [comments, setComments] = useState([])
+  const [comments, setComments] = useState([]);
+  const [showAddComment ,setShowAddComment] = useState(false)
   const userId = JSON.parse(localStorage.getItem('auth'))._id
 
   const movieService = movieFactory()
@@ -64,6 +65,10 @@ export const MovieDetails = () => {
     } catch (err) {
       console.error(err)
     }
+  }
+
+  const onShowAddComment = () => {
+      setShowAddComment(true)
   }
 
 
@@ -137,7 +142,9 @@ export const MovieDetails = () => {
       <p className="description">
         {details.description}
       </p>
-      <CommentForm comments={comments} setComments={setComments}/>
+      
+      {showAddComment && <CommentForm comments={comments} setComments={setComments}  setShowAddComment={setShowAddComment}/>}
+      {!showAddComment && <button id="addComment" onClick={onShowAddComment}>Add Comment</button>}
       <ul id="comments" >
       {comments?.map(x => <CommentCard key={x._id} title={x.title} text={x.text} owner={x.owner} />)}
       </ul>

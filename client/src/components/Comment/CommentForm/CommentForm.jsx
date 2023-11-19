@@ -7,7 +7,7 @@ import { SubmitButton } from "../../Shared/SubmitButton/SubmitButton.jsx";
 import './CommentForm.css'
 
 export const CommentForm = ({
-    comments,
+    setShowAddComment,
     setComments
 }) => {
   const commentService = commentFactory();
@@ -37,6 +37,7 @@ export const CommentForm = ({
     <div id="commentFormContainer">
     <form id="commentForm" method="POST" onSubmit={onSubmit}>
         <h2>Add a comment</h2>
+        <button id="closeCommentForm" onClick={() => setShowAddComment(false)}>X</button>
       <FormField
         type="text"
         name="commentTitle"

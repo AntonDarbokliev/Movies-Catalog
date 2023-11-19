@@ -73,6 +73,23 @@
     display: flex;
 }
 
+#addComment{
+        width: 150px;
+        height: 50px;
+        margin-top: 20px;
+        background-color: var(--main-accent-color);
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+
+
+}
+
+#addComment:hover{
+    background-color: var(--accent-color-hover);
+    /* color: var(--main-text-color); */
+}
+
 
 #title {
     color : var(--main-accent-color);

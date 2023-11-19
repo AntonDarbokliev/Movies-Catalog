@@ -22,3 +22,21 @@
 #commentForm button{
     margin-bottom: 20px;
 }
+
+#closeCommentForm {
+
+        width: 40px;
+        height: 40px;
+        margin-top: 20px;
+        background-color: var(--main-accent-color);
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+
+}
+
+#closeCommentForm:hover{
+    background-color: var(--accent-color-hover);
+    /* color: var(--main-text-color); */
+}
+
