@@ -76,6 +76,7 @@ export const MovieDetails = () => {
             id="poster"
           />
         </div>
+        <script src="https://www.youtube.com/iframe_api" crossOrigin="anonymous"></script>
 
         <div className="videoPlayer">
           <iframe
