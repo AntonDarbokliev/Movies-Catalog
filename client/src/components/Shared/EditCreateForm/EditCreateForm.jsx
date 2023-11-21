@@ -1,13 +1,17 @@
 import { FormField } from "../FormField/FormField.jsx"
 import { SubmitButton } from "../SubmitButton/SubmitButton.jsx"
 
+import './EditCreateForm.css'
+
 export const EditCreateForm = ({
     onSubmit,
     onChangeHandler,
-    formValues
+    formValues,
+    text
 }) => {
     return (
         <form id="createForm" method="POST" onSubmit={onSubmit}>
+            <h2 id="createEdit">{text}:</h2>
         <div id="createFormFields">
         <FormField
           type={"text"}
@@ -87,7 +91,7 @@ export const EditCreateForm = ({
           value={formValues.genres}
         />
 
-        <SubmitButton text={'Submit'}/>
+        <SubmitButton text={text}/>
         </div>
       </form>
     )

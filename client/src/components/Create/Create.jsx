@@ -29,7 +29,7 @@ export const Create = () => {
   
   return (
     <>
-      <EditCreateForm onSubmit={onSubmit} onChangeHandler={onChangeHandler} formValues={formValues} />
+      <EditCreateForm onSubmit={onSubmit} onChangeHandler={onChangeHandler} formValues={formValues} text={'Create'} />
     </>
   );
 };
