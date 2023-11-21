@@ -1,7 +1,7 @@
 const request = async (method, url, data) => {
   const options = {};
 
-  if (method !== "GET" && method !== "DELETE") {
+  if (method !== "GET") {
     options.method = method;
 
     if (data) {

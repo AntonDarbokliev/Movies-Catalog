@@ -2,44 +2,47 @@ import "./MovieDetails.css";
 import likeIcon from "../../assets/images/like.png";
 import disklikeIcon from "../../assets/images/dislike.png";
 import editIcon from "../../assets/images/editIcon.png";
+import binIcon from "../../assets/images/bin.png";
 
-
-import { Link, Route, Routes, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { movieFactory } from "../../services/movieService.js";
 import { commentFactory } from "../../services/commentService.js";
 import { CommentCard } from "../Comment/CommentCard/CommentCard.jsx";
 import { CommentForm } from "../Comment/CommentForm/CommentForm.jsx";
-import { Edit } from "../Edit/Edit.jsx";
+import { useMovieContext } from "../../contexts/MovieContext.jsx";
+
 export const MovieDetails = () => {
   const { movieId } = useParams();
-  const [ details, setDetails ] = useState({});
+  const [details, setDetails] = useState({});
   const [comments, setComments] = useState([]);
-  const [showAddComment ,setShowAddComment] = useState(false)
-  const userId = JSON.parse(localStorage.getItem('auth'))._id
+  const [showAddComment, setShowAddComment] = useState(false);
+  const userId = JSON.parse(localStorage.getItem("auth"))._id;
+  const {onDelete} = useMovieContext()
 
-  const movieService = movieFactory()
-  const commentService = commentFactory()
+  const movieService = movieFactory();
+  const commentService = commentFactory();
 
   useEffect(() => {
-    movieService.get(`/${movieId}`)
-    .then(movie => setDetails(movie))
-    .catch(err => console.error(err))
-
+    movieService
+      .get(`/${movieId}`)
+      .then((movie) => setDetails(movie))
+      .catch((err) => console.error(err));
   }, [movieId]);
 
-  useEffect(()=> {
-      commentService.get()
-        .then(data => {
-          const movieComments = data.filter(x => x.movieId === movieId)
-          setComments(movieComments)
-        })
-        .catch(err => console.error(err))
-  },[details])
-
+  useEffect(() => {
+    commentService
+      .get()
+      .then((data) => {
+        const movieComments = data.filter((x) => x.movieId === movieId);
+        setComments(movieComments);
+      })
+      .catch((err) => console.error(err));
+  }, [details]);
 
   const extractYouTubeVideoId = (link) => {
-    const regex = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+    const regex =
+      /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
 
     const match = link.match(regex);
 
@@ -47,68 +50,79 @@ export const MovieDetails = () => {
     return match ? match[1] : null;
   };
 
-  const vote = async (voteType) =>  {
+
+
+  const vote = async (voteType) => {
     try {
-      const movie = await movieService.get(`/${movieId}`)  
-  
-        switch (voteType) {
-          case 'downvote':
-            const downvotesWithCurrentUser = [...movie.downvotes,userId]
-            await movieService.put(movie._id,{downvotes : downvotesWithCurrentUser})
-          break;
-          case 'upvote':
-            const upvotesWithCurrentUser = [...movie.upvotes,userId]
-            await movieService.put(movie._id,{upvotes : upvotesWithCurrentUser})
-          break;
-        }
+      const movie = await movieService.get(`/${movieId}`);
 
-        const updatedMovie = await movieService.get(`/${movieId}`)
-        setDetails(updatedMovie)  
+      switch (voteType) {
+        case "downvote":
+          const downvotesWithCurrentUser = [...movie.downvotes, userId];
+          await movieService.put(movie._id, {
+            downvotes: downvotesWithCurrentUser,
+          });
+          break;
+        case "upvote":
+          const upvotesWithCurrentUser = [...movie.upvotes, userId];
+          await movieService.put(movie._id, {
+            upvotes: upvotesWithCurrentUser,
+          });
+          break;
+      }
 
-      
+      const updatedMovie = await movieService.get(`/${movieId}`);
+      setDetails(updatedMovie);
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
-  }
+  };
 
   const onShowAddComment = () => {
-      setShowAddComment(true)
-  }
-
+    setShowAddComment(true);
+  };
 
   return (
     <>
       <span id="titleButtonsWrap">
-      <h1 id="title">{details.name}</h1>
-      <Link to={`/movie/${movieId}/edit`} >
-      <img 
-      src={editIcon}
-      id="editIcon"
-      ></img>
-      </Link>
+        <h1 id="title">{details.name}</h1>
+        {details.owner?.id === userId && (
+          <div id="buttonsWrap">
+            <Link to={`/movie/${movieId}/edit`}>
+              <img src={editIcon} id="editIcon"></img>
+            </Link>
+            <button id="deleteButton" onClick={() => onDelete(movieId)}>
+            <img src={binIcon} id="editIcon"></img>
+            </button>
+          </div>
+        )} 
       </span>
       <div className="container">
         <div className="imageDiv">
-          <img
-            className="movieImage"
-            src={details.moviePoster}
-            id="poster"
-          />
+          <img className="movieImage" src={details.moviePoster} id="poster" />
         </div>
-        <script src="https://www.youtube.com/iframe_api" crossOrigin="anonymous"></script>
+        <script
+          src="https://www.youtube.com/iframe_api"
+          crossOrigin="anonymous"
+        ></script>
 
         <div className="videoPlayer">
           <iframe
             width="580"
             height="400"
-            src={"https://www.youtube.com/embed/" +  (details.movieTrailer ? extractYouTubeVideoId(details.movieTrailer) : '')}
+            src={
+              "https://www.youtube.com/embed/" +
+              (details.movieTrailer
+                ? extractYouTubeVideoId(details.movieTrailer)
+                : "")
+            }
             frameBorder="0"
             allowFullScreen
           ></iframe>
         </div>
 
         <div className="movieInfo">
-          <ul id="movieInfoList" >
+          <ul id="movieInfoList">
             <li id="director">
               <span>Director:</span> {details.director}
             </li>
@@ -116,10 +130,10 @@ export const MovieDetails = () => {
               <span>Year:</span> {details.year}
             </li>
             <li id="topCast">
-              <span> Top Cast:</span>  {details.topCast?.join(', ')}
+              <span> Top Cast:</span> {details.topCast?.join(", ")}
             </li>
             <li id="publisher">
-              <span> Publisher:</span>  {details.owner?.username}
+              <span> Publisher:</span> {details.owner?.username}
             </li>
           </ul>
         </div>
@@ -127,41 +141,62 @@ export const MovieDetails = () => {
 
       <div className="movieImages">
         <ul>
-          {details.movieImages?.map(x => <img key={x._id} className="movieImage"
+          {details.movieImages?.map((x) => (
+            <img
+              key={x._id}
+              className="movieImage"
               src={x.movieImage}
               alt={x._id}
-            />)}
+            />
+          ))}
         </ul>
       </div>
 
       <div className="genreRating">
-        <p className="genres"> {details.genres?.join(', ')}</p>
+        <p className="genres"> {details.genres?.join(", ")}</p>
         <div className="ratingDiv">
-          {!details.downvotes?.includes(userId) && !details.upvotes?.includes(userId) && userId &&
-          <>
-          <button id="upvote" onClick={()=> vote('upvote')}>
-            <img id="likeButton" src={likeIcon} alt="" />
-          </button>
-          <button id="downvote"onClick={()=> vote('downvote')}>
-            <img id="dislikeButton" src={disklikeIcon} alt=""></img>
-          </button>
-          </>
-          }
-          <p id="rating">User rating: {(details.upvotes?.length) - (details.downvotes?.length)}K</p>
+          {!details.downvotes?.includes(userId) &&
+            !details.upvotes?.includes(userId) &&
+            userId && (
+              <>
+                <button id="upvote" onClick={() => vote("upvote")}>
+                  <img id="likeButton" src={likeIcon} alt="" />
+                </button>
+                <button id="downvote" onClick={() => vote("downvote")}>
+                  <img id="dislikeButton" src={disklikeIcon} alt=""></img>
+                </button>
+              </>
+            )}
+          <p id="rating">
+            User rating: {details.upvotes?.length - details.downvotes?.length}K
+          </p>
         </div>
       </div>
 
-      <p className="description">
-        {details.description}
-      </p>
-      
-      {showAddComment && <CommentForm comments={comments} setComments={setComments}  setShowAddComment={setShowAddComment}/>}
-      {!showAddComment && <button id="addComment" onClick={onShowAddComment}>Add Comment</button>}
-      <ul id="comments" >
-      {comments?.map(x => <CommentCard key={x._id} title={x.title} text={x.text} owner={x.owner} />)}
+      <p className="description">{details.description}</p>
+
+      {showAddComment && (
+        <CommentForm
+          comments={comments}
+          setComments={setComments}
+          setShowAddComment={setShowAddComment}
+        />
+      )}
+      {!showAddComment && (
+        <button id="addComment" onClick={onShowAddComment}>
+          Add Comment
+        </button>
+      )}
+      <ul id="comments">
+        {comments?.map((x) => (
+          <CommentCard
+            key={x._id}
+            title={x.title}
+            text={x.text}
+            owner={x.owner}
+          />
+        ))}
       </ul>
     </>
   );
 };
-
-

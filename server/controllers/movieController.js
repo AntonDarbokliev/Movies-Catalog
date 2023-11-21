@@ -78,6 +78,18 @@ movieController.put('/:id',async (req,res) => {
     }
 })
 
+movieController.delete('/:id',async (req,res) => {
+    const movieId = req.params.id
+    try {
+        const result = await movieService.del(movieId)
+        res.status(200).json(result)
+    } catch (error) {
+        console.error(error);
+        res.status(404).json(error)
+    }
+})
+
+
 
 
 module.exports = movieController

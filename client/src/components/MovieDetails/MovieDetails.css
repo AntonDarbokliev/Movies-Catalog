@@ -96,7 +96,7 @@
     font-weight: bold;
     font-family: var(--main-font-family);
     padding-left: 500px;
-    padding-right: 500px;
+    padding-right: 464px;
     
 }
 
@@ -151,6 +151,7 @@
 #titleButtonsWrap{
     display: flex;
     align-items: center;
+    
 }
 
 #editButton{
@@ -158,3 +159,19 @@
     /* width: 60px; */
 
 }
+
+#deleteButton{
+    border: none;
+    background: none;
+    
+    margin-left: 10px;
+
+ }
+
+#deleteButton:hover{
+    cursor: pointer;
+}
+
+/* #buttonsWrap {
+    margin-left: auto;
+} */

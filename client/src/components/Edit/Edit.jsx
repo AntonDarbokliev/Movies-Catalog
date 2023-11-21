@@ -11,8 +11,11 @@ export const Edit = () => {
     const movieService = movieFactory()
 
     const onEditSubmit = async (values) => {
-        await movieService.put(id,values)
-        navigate(`/movie/${id}/details`)
+        const result = confirm('Are you sure want to edit this movie : ' + values.name)
+        if(result){
+            await movieService.put(id,values)
+            navigate(`/movie/${id}/details`)
+        }
     } 
     
     const {formValues , onChangeHandler,onSubmit, changeValues} = useForm({

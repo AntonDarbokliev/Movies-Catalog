@@ -33,6 +33,10 @@ async function update (id,data) {
   return Movie.findByIdAndUpdate(id,data)
 }
 
+async function del (id) {
+  return Movie.deleteOne({_id : id})
+}
+
 async function movieSearch(movieName, movieGenres) {
 
   if (!!movieName && movieGenres[0]!=='') {
@@ -68,5 +72,6 @@ module.exports = {
   getAll,
   movieSearch,
   getOne,
-  update
+  update,
+  del
 };
