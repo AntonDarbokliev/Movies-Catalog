@@ -18,7 +18,7 @@ export const MovieDetails = () => {
   const [comments, setComments] = useState([]);
   const [showAddComment, setShowAddComment] = useState(false);
   const userId = JSON.parse(localStorage.getItem("auth"))._id;
-  const {onDelete} = useMovieContext()
+  const {onDelete , vote, extractYouTubeVideoId} = useMovieContext()
 
   const movieService = movieFactory();
   const commentService = commentFactory();
@@ -40,47 +40,14 @@ export const MovieDetails = () => {
       .catch((err) => console.error(err));
   }, [details]);
 
-  const extractYouTubeVideoId = (link) => {
-    const regex =
-      /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
-
-    const match = link.match(regex);
-
-    // If there is a match, return the video ID, otherwise return null or handle as needed
-    return match ? match[1] : null;
-  };
-
-
-
-  const vote = async (voteType) => {
-    try {
-      const movie = await movieService.get(`/${movieId}`);
-
-      switch (voteType) {
-        case "downvote":
-          const downvotesWithCurrentUser = [...movie.downvotes, userId];
-          await movieService.put(movie._id, {
-            downvotes: downvotesWithCurrentUser,
-          });
-          break;
-        case "upvote":
-          const upvotesWithCurrentUser = [...movie.upvotes, userId];
-          await movieService.put(movie._id, {
-            upvotes: upvotesWithCurrentUser,
-          });
-          break;
-      }
-
-      const updatedMovie = await movieService.get(`/${movieId}`);
-      setDetails(updatedMovie);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
   const onShowAddComment = () => {
     setShowAddComment(true);
   };
+
+  const onVoteSubmit = async (voteType,movieId,userId) => {
+      const updatedMovie =  await vote(voteType,movieId,userId)
+      setDetails(updatedMovie)
+  }
 
   return (
     <>
@@ -159,10 +126,10 @@ export const MovieDetails = () => {
             !details.upvotes?.includes(userId) &&
             userId && (
               <>
-                <button id="upvote" onClick={() => vote("upvote")}>
+                <button id="upvote" onClick={() => onVoteSubmit("upvote",movieId,userId)}>
                   <img id="likeButton" src={likeIcon} alt="" />
                 </button>
-                <button id="downvote" onClick={() => vote("downvote")}>
+                <button id="downvote" onClick={() => onVoteSubmit("downvote",movieId,userId)}>
                   <img id="dislikeButton" src={disklikeIcon} alt=""></img>
                 </button>
               </>

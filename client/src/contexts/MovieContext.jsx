@@ -27,6 +27,35 @@ export const MovieProvider = ({ children }) => {
     }
   }
 
+  const vote = async (voteType, movieId, userId) => {
+    try {
+      const movie = await movieService.get(`/${movieId}`);
+
+      switch (voteType) {
+        case "downvote":
+          const downvotesWithCurrentUser = [...movie.downvotes, userId];
+          await movieService.put(movie._id, {
+            downvotes: downvotesWithCurrentUser,
+          });
+          break;
+        case "upvote":
+          const upvotesWithCurrentUser = [...movie.upvotes, userId];
+          await movieService.put(movie._id, {
+            upvotes: upvotesWithCurrentUser,
+          });
+          break;
+      }
+
+      const updatedMovie = await movieService.get(`/${movieId}`);
+      
+      setMovies(state => state.map(x => (x._id === movieId) ? updatedMovie : x));
+
+      return updatedMovie
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const onMovieCreateSubmit = async (movieData) => {
     const { movieImagesOne, movieImagesTwo, movieImagesThree, year, genres, topCast, ...rest } = movieData;
 
@@ -67,11 +96,23 @@ export const MovieProvider = ({ children }) => {
      return movies
   }
 
+  const extractYouTubeVideoId = (link) => {
+    const regex =
+      /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+
+    const match = link.match(regex);
+
+    // If there is a match, return the video ID, otherwise return null or handle as needed
+    return match ? match[1] : null;
+  };
+
   const contextValues = {
     movies,
     onMovieCreateSubmit,
     searchMovie,
-    onDelete
+    onDelete,
+    vote,
+    extractYouTubeVideoId
   };
 
   return (
