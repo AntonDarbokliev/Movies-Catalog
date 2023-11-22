@@ -5,6 +5,7 @@ import { FormField } from "../../Shared/FormField/FormField.jsx";
 import { SubmitButton } from "../../Shared/SubmitButton/SubmitButton.jsx";
 
 import './CommentForm.css'
+import { useAuthContext } from "../../../contexts/AuthContext.jsx";
 
 export const CommentForm = ({
     setShowAddComment,
@@ -12,7 +13,8 @@ export const CommentForm = ({
 }) => {
   const commentService = commentFactory();
   const { movieId } = useParams()
-  const owner = JSON.parse(localStorage.getItem('auth'))._id
+  const {userId} = useAuthContext()
+  const owner = userId
   
   const onCommentSubmit = async (commentData) => {
     const comment = {

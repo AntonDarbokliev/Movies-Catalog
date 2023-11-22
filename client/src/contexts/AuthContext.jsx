@@ -1,4 +1,4 @@
-import { createContext, } from "react";
+import { createContext, useContext, } from "react";
 import { useNavigate } from "react-router-dom";
 import {authServiceFactory } from '../services/authService.js'
 import { useLocalStorage } from "../hooks/useLocalStorage.js";
@@ -65,4 +65,9 @@ return (
     </AuthContext.Provider>
 )
 
+};
+
+
+export const useAuthContext = () => {
+  return useContext(AuthContext);
 };

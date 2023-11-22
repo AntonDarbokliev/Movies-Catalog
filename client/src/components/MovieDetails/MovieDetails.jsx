@@ -11,13 +11,14 @@ import { commentFactory } from "../../services/commentService.js";
 import { CommentCard } from "../Comment/CommentCard/CommentCard.jsx";
 import { CommentForm } from "../Comment/CommentForm/CommentForm.jsx";
 import { useMovieContext } from "../../contexts/MovieContext.jsx";
+import { useAuthContext } from "../../contexts/AuthContext.jsx";
 
 export const MovieDetails = () => {
   const { movieId } = useParams();
   const [details, setDetails] = useState({});
   const [comments, setComments] = useState([]);
   const [showAddComment, setShowAddComment] = useState(false);
-  const userId = JSON.parse(localStorage.getItem("auth"))._id;
+  const {userId} = useAuthContext();
   const {onDelete , vote, extractYouTubeVideoId} = useMovieContext()
 
   const movieService = movieFactory();
