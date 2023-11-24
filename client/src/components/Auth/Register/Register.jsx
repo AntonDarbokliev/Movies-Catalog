@@ -4,8 +4,9 @@ import { SubmitButton } from "../../Shared/SubmitButton/SubmitButton.jsx";
 import { FormField } from "../../Shared/FormField/FormField.jsx";
 import { Link } from "react-router-dom";
 import { useForm } from "../../../hooks/useForm.js";
-import { AuthContext, useAuthContext } from "../../../contexts/AuthContext.jsx";
+import { useAuthContext } from "../../../contexts/AuthContext.jsx";
 import { useFormValidation } from "../../../hooks/useFormValidation.js";
+import { ErrorField } from "../../ErrorField/ErrorField.jsx";
 
 export const Register = () => {
   const { onRegisterSubmit } = useAuthContext()
@@ -32,6 +33,7 @@ export const Register = () => {
   return (
     <form id="registerForm" onSubmit={onSubmit}>
       <h1 id="header">Register</h1>
+      <div className="registerField">
       <FormField
         name="username"
         type="text"
@@ -41,7 +43,9 @@ export const Register = () => {
         onBlur={() => onBlurHandler('username')}
         onFocus={() => onFocusHandler('username')}
       />
-      {isUsernameInvalid && formValues.username != '' && <p>Username should be at least 3 characters long</p> }
+      {isUsernameInvalid && formValues.username != '' && <ErrorField message={'Username should be at least 3 characters long'}/>}
+      </div>
+      <div className="registerField">
       <FormField
         name="email"
         type="text"
@@ -51,8 +55,10 @@ export const Register = () => {
         onBlur={() => onBlurHandler('email')}
         onFocus={() => onFocusHandler('email')}
       />
-      {isEmailInvalid && formValues.email != '' && <p>Invalid email</p> }
+      {isEmailInvalid && formValues.email != '' && <ErrorField message={'Invalid email'}/>}
+      </div>
 
+      <div className="registerField">
       <FormField
         name="password"
         type="password"
@@ -62,7 +68,10 @@ export const Register = () => {
         onBlur={() => onBlurHandler('password')}
         onFocus={() => onFocusHandler('password')}
       />
-      {isPasswordInvalid && formValues.password != '' && <p>Password should be at least 3 characters long</p> }
+      {isPasswordInvalid && formValues.password != '' && <ErrorField message={"Password should be at least 3 characters long"}/>}
+      </div>
+
+      <div className="registerField">
       <FormField
         name="repeatPassword"
         type="password"
@@ -72,9 +81,14 @@ export const Register = () => {
         onBlur={() => onBlurHandler('repeatPassword')}
         onFocus={() => onFocusHandler('repeatPassword')}
       />
-      {isRepeatPasswordInvalid && formValues.repeatPassword != '' && <p>Passwords are not matching</p> }
+      {isRepeatPasswordInvalid && formValues.repeatPassword != '' && <ErrorField message={'Passwords are not matching'} />}
+      </div>
 
-      <SubmitButton text={"Register"} />
+      <SubmitButton text={"Register"} disabled={
+        isUsernameInvalid ||
+        isEmailInvalid || 
+        isPasswordInvalid || 
+        isRepeatPasswordInvalid ? true : false }/>
 
       <p id="loginLink">
         Already have an account? Login <Link to="/user/login">here</Link>!

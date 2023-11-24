@@ -1,3 +1,12 @@
 #registerLink {
     color: var(--main-accent-color);
 }
+
+.loginField{
+    display: flex;
+}
+
+.loginField div {
+    position: absolute;
+    left: 1100px;
+}

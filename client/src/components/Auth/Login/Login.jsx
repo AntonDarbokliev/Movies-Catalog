@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "../../../hooks/useForm.js";
 import { AuthContext } from "../../../contexts/AuthContext.jsx";
 import { useFormValidation } from "../../../hooks/useFormValidation.js";
+import { ErrorField } from "../../ErrorField/ErrorField.jsx";
 
 
 export const Login = () => {
@@ -26,6 +27,7 @@ export const Login = () => {
   return (
     <form id="registerForm" onSubmit={onSubmit}>
       <h1 id='header'>Login</h1>
+      <div className="loginField" >
       <FormField
         name="email"
         type="text"
@@ -35,7 +37,9 @@ export const Login = () => {
         onBlur={() => onBlurHandler('email')}
         onFocus={() => onFocusHandler('email')}
       />
-      {isEmailInvalid && formValues.email != '' &&  <p>Invalid email</p>}
+      {isEmailInvalid && formValues.email != '' && <ErrorField message={"Invalid email"}/>}
+      </div>
+      <div className="loginField" >
       <FormField
         name="password"
         type="password"
@@ -44,9 +48,13 @@ export const Login = () => {
         onChange={onChangeHandler}
         onBlur={() => onBlurHandler('password')}
         onFocus={() => onFocusHandler('password')}
-      />
-      {isPasswordInvalid && formValues.password !== '' &&  <p>Password can't be less than 3 characters long</p>}
-      <SubmitButton text={"Login"} />
+        />
+      {isPasswordInvalid && formValues.password !== '' &&  <ErrorField message={"Password can't be less than 3 characters long"} />}
+      </div>
+      <SubmitButton text={"Login"} disabled={
+        isEmailInvalid ||
+        isPasswordInvalid ? true : false
+      }/>
 
     <p id="registerLink">Don't have an account? Register <Link to='/user/register'>here</Link>!</p>
     </form>

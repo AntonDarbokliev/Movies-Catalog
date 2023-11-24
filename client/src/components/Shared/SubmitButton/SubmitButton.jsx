@@ -1,9 +1,10 @@
 import './SubmitButton.css'
 
 export const SubmitButton = ({
-    text
+    text,
+    disabled
 }) => {
         return (
-            <button id="submitButton">{text}</button>
+            <button id="submitButton" disabled={disabled} >{text}</button>
         )
 }
