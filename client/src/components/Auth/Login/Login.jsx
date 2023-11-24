@@ -1,10 +1,11 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import "./Login.css";
 import { SubmitButton } from "../../Shared/SubmitButton/SubmitButton.jsx";
 import { FormField } from "../../Shared/FormField/FormField.jsx";
 import { Link } from "react-router-dom";
 import { useForm } from "../../../hooks/useForm.js";
 import { AuthContext } from "../../../contexts/AuthContext.jsx";
+import { useFormValidation } from "../../../hooks/useFormValidation.js";
 
 
 export const Login = () => {
@@ -13,6 +14,14 @@ export const Login = () => {
     email : '',
     password : ''
   },onLoginSubmit)
+
+  const { onBlurHandler,onFocusHandler,validationValues} = useFormValidation({
+    email : false,
+    password : false
+  })
+
+  const isEmailInvalid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formValues.email) == false && validationValues.email == true
+  const isPasswordInvalid = formValues.password.length < 3 && validationValues.password == true
 
   return (
     <form id="registerForm" onSubmit={onSubmit}>
@@ -23,14 +32,20 @@ export const Login = () => {
         placeholder={'Email'}
         value={formValues.email}
         onChange={onChangeHandler}
+        onBlur={() => onBlurHandler('email')}
+        onFocus={() => onFocusHandler('email')}
       />
+      {isEmailInvalid && formValues.email != '' &&  <p>Invalid email</p>}
       <FormField
         name="password"
         type="password"
         placeholder={'Password'}
         value={formValues.password}
         onChange={onChangeHandler}
+        onBlur={() => onBlurHandler('password')}
+        onFocus={() => onFocusHandler('password')}
       />
+      {isPasswordInvalid && formValues.password !== '' &&  <p>Password can't be less than 3 characters long</p>}
       <SubmitButton text={"Login"} />
 
     <p id="registerLink">Don't have an account? Register <Link to='/user/register'>here</Link>!</p>
