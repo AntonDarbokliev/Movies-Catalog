@@ -5,7 +5,9 @@ export const FormField = ({
     name,
     value,
     onChange,
-    placeholder
+    placeholder,
+    onBlur,
+    onFocus
 }) => {
     return (
         <input 
@@ -15,6 +17,8 @@ export const FormField = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        onBlur={onBlur}
+        onFocus={onFocus}
       />
     )
 }
