@@ -36,7 +36,11 @@ async function getOne(id) {
 }
 
 async function update (id,data) {
-  return Movie.findByIdAndUpdate(id,data)
+  try{
+    return Movie.findByIdAndUpdate(id,data,{runValidators : true})
+  }catch(err){
+    throw err
+  }
 }
 
 async function del (id) {

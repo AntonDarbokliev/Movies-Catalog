@@ -74,7 +74,7 @@ movieController.put('/:id',async (req,res) => {
         
         const result = await movieService.update(movieId,req.body)
         res.status(202).json(result)
-    } catch (error) {
+    } catch (err) {
         const errObj = errorHandler(err)
         res.status(404).json(errObj)
     }

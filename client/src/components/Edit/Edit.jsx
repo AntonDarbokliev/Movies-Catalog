@@ -10,7 +10,7 @@ export const Edit = () => {
     const navigate = useNavigate()
     const {id} = useParams()
     const movieService = movieFactory()
-    const {setErrors} = useErrorContext
+    const {setErrors} = useErrorContext()
 
     const onEditSubmit = async (values) => {
         const result = confirm('Are you sure want to edit this movie : ' + values.name)
