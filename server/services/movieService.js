@@ -1,4 +1,5 @@
 const Movie = require("../models/Movie.js");
+const errorHandler = require("../utils/errorHandler.js");
 
 async function create(movieData) {
   const movie = {
@@ -16,9 +17,20 @@ async function create(movieData) {
     owner : movieData.owner,
   };
 
-  const result = await Movie.create(movie);
+  try{
+    const result = await Movie.create(movie);
+    
+    return result;
+  }catch(err) {
+    console.log(errorHandler(err));
+    // throw new Error(err)
+    // for(let currentError in err.errors){
+    //   console.log(err.errors[currentError].message);
+    // }
+    // console.log(err.errors['description'].message);
+  }
 
-  return result;
+
 }
 
 async function getAll() {

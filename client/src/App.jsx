@@ -41,9 +41,9 @@ function App() {
               ></Route>
             </Routes>
           </div>
-          <Footer />
         </MovieProvider>
       </AuthProvider>
+          <Footer />
     </>
   );
 }

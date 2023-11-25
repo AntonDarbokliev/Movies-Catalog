@@ -10,7 +10,7 @@ movieController.post("/", async (req,res) => {
         res.status(201).json(createdMovie)
     }catch(err){
         console.error(err);
-        res.status(500).json({ error: "Internal Server Error" });
+        res.status(500).json({ error: "Could not create a movie" });
     }
 })
 
