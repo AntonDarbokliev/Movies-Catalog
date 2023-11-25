@@ -7,7 +7,7 @@ export const movieFactory = () => {
     return {
         get: (additionToPath) => request.get(additionToPath ? baseUrl + additionToPath : baseUrl),
         post: (movieData) => request.post(baseUrl,movieData),
-        delete: (movieId) => request.delete(`${baseUrl}/${movieId}`),
+        delete: (movieId,userId) => request.delete(`${baseUrl}/${movieId}`,{userId}),
         put : (movieId,movieData,userId) => request.put(`${baseUrl}/${movieId}`,{movieData,userId})
     }
 } 

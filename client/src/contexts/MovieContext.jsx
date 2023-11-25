@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { movieFactory } from "../services/movieService.js";
 import { useNavigate } from "react-router-dom";
 import { useErrorContext } from "./ErrorContext.jsx";
+import { useAuthContext } from "./AuthContext.jsx";
 
 
 export const MovieContext = createContext();
@@ -11,6 +12,7 @@ export const MovieProvider = ({ children }) => {
   const movieService = movieFactory();
   const navigate = useNavigate()
   const { setErrors } = useErrorContext()
+  const {userId} = useAuthContext()
 
   useEffect(() => {
     movieService
@@ -23,7 +25,7 @@ export const MovieProvider = ({ children }) => {
     const movie = movies.find(x => x._id === id)
     const result = confirm(`Are you sure you want to delete "${movie.name}"`)
     if(result){
-      await movieService.delete(id)
+      await movieService.delete(id,userId)
       setMovies(state => state.filter(x => x._id !== id))
       navigate('/movie/catalog')
     }

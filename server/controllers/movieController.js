@@ -84,12 +84,15 @@ movieController.put('/:id',async (req,res) => {
 
 movieController.delete('/:id',async (req,res) => {
     const movieId = req.params.id
+    const userId = req.body.userId
     try {
+        const movie = await movieService.getOne(movieId)
+        if(userId !== (movie.owner.id).toString()) throw new Error('You are not the owner of this movie')
         const result = await movieService.del(movieId)
         res.status(200).json(result)
-    } catch (error) {
-        console.error(error);
-        res.status(404).json(error)
+    } catch (err) {
+        const errObj = errorHandler(err)
+        res.status(404).json(errObj)
     }
 })
 
