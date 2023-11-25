@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { movieFactory } from "../services/movieService.js";
 import { useNavigate } from "react-router-dom";
+import { useErrorContext } from "./ErrorContext.jsx";
 
 
 export const MovieContext = createContext();
@@ -9,6 +10,7 @@ export const MovieProvider = ({ children }) => {
   const [movies, setMovies] = useState([]);
   const movieService = movieFactory();
   const navigate = useNavigate()
+  const { setErrors } = useErrorContext()
 
   useEffect(() => {
     movieService
@@ -79,11 +81,11 @@ export const MovieProvider = ({ children }) => {
     const result = {...rest, movieImages : combinedImages, year : Number(year), genres : genresArr, topCast : topCastArr, owner }
 
     try {
-      await movieService.post(result)
-      const updatedMovies =  await movieService.get()
-      setMovies(updatedMovies)
+      const movie = await movieService.post(result)
+      setMovies(state => [...state,movie])
       navigate('/')
     } catch (err) {
+      setErrors(err)
       console.log(err);
     }
   };
