@@ -1,5 +1,6 @@
 const commentService = require('../services/commentService.js')
 const movieService = require('../services/movieService.js')
+const errorHandler = require('../utils/errorHandler.js')
 const movieController = require('express').Router()
 
 
@@ -9,8 +10,8 @@ movieController.post("/", async (req,res) => {
         const createdMovie = await movieService.create(req.body)
         res.status(201).json(createdMovie)
     }catch(err){
-        console.error(err);
-        res.status(500).json({ error: "Could not create a movie" });
+        const errObj = errorHandler(err)
+        res.status(500).json(errObj);
     }
 })
 

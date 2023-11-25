@@ -63,7 +63,7 @@ const movieSchema = new Schema({
 
         return youtubeRegex.test(value);
       },
-      message: (props) => `Invalid YouTube link`,
+      message:  `Invalid YouTube link`,
     },
   },
   description: {
@@ -98,7 +98,6 @@ const movieSchema = new Schema({
     },
     username: {
       type: String,
-      required: [true,'Owner username is required'],
     },
   },
 });

@@ -1,5 +1,4 @@
 const Movie = require("../models/Movie.js");
-const errorHandler = require("../utils/errorHandler.js");
 
 async function create(movieData) {
   const movie = {
@@ -22,7 +21,7 @@ async function create(movieData) {
     
     return result;
   }catch(err) {
-    console.log(errorHandler(err));
+    throw err
   }
 
 
