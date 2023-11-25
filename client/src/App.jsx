@@ -13,6 +13,7 @@ import { Create } from "./components/Create/Create.jsx";
 import { MovieProvider } from "./contexts/MovieContext.jsx";
 import { Edit } from "./components/Edit/Edit.jsx";
 import { ErrorProvider } from "./contexts/ErrorContext.jsx";
+import { ErrorNotification } from "./components/ErrorNotification/ErrorNotification.jsx";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <AuthProvider>
           <MovieProvider>
             <NavBar />
+            <ErrorNotification/>
             <div className="main">
               <Routes>
                 <Route path="/" element={<Home />}></Route>

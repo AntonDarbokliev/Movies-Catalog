@@ -86,7 +86,6 @@ export const MovieProvider = ({ children }) => {
       navigate('/')
     } catch (err) {
       setErrors(err)
-      console.log(err);
     }
   };
 
