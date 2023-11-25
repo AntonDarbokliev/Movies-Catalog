@@ -3,27 +3,31 @@ const { Schema, Types, model, default: mongoose } = require("mongoose");
 const movieSchema = new Schema({
   name: {
     type: String,
-    requried: [true, "Movie's name is required"],
+    required: [true, "Movie's name is required"],
     minLength: [1, "Movie's name should be at least one character long"],
   },
   director: {
     type: String,
-    requried: [true, "Director's name is required"],
+    required: [true, "Director's name is required"],
     minLength: [3, "Director's name should be at least one character long"],
   },
   year: {
     type: Number,
-    requried: [true, "Movie's year is required"],
+    required: [true, "Movie's year is required"],
     validate: {
-      validator: (value) => {
-        return !isNaN(value);
-      },
-      message: "Year field must be a number.",
+      validator: (value) => !!value,
+
+      message: "Year field is required",
     },
+    
   },
   topCast: {
     type: [String],
-    requried: [true, "Movie's top cast is required"],
+    required: [true, "Movie's top cast is required"],
+    validate : {
+      validator : (value) => value && value.length > 0 && value.some(item => !!item),
+      message : "Movie's top cast is required"
+    }
   },
   moviePoster: {
     type: String,
@@ -45,8 +49,11 @@ const movieSchema = new Schema({
       }
     }
   ],
-    required: [true, "Movie images are required"],
-    // minLength : [1,'At least one image is required (three are recommended)']
+  required: [true, "Movie images are required"],
+  validate : {
+    validator : (value) => value && value.length > 0 && value.some(item => !!item.movieImage),
+    message : "Movie images are required"
+  }
   },
   movieTrailer: {
     type: String,
@@ -56,7 +63,7 @@ const movieSchema = new Schema({
 
         return youtubeRegex.test(value);
       },
-      message: (props) => `${props.value} is not a valid YouTube link!`,
+      message: (props) => `Invalid YouTube link`,
     },
   },
   description: {
@@ -67,6 +74,10 @@ const movieSchema = new Schema({
   genres: {
     type: [String],
     required: [true, "Movie's genres are required"],
+    validate : {
+      validator : (value) => value && value.length > 0 && value.some(item => !!item),
+      message : "Movie's genres are required"
+    }
   },
   upvotes: [
     {
@@ -87,7 +98,7 @@ const movieSchema = new Schema({
     },
     username: {
       type: String,
-      required: true,
+      required: [true,'Owner username is required'],
     },
   },
 });

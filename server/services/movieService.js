@@ -23,11 +23,6 @@ async function create(movieData) {
     return result;
   }catch(err) {
     console.log(errorHandler(err));
-    // throw new Error(err)
-    // for(let currentError in err.errors){
-    //   console.log(err.errors[currentError].message);
-    // }
-    // console.log(err.errors['description'].message);
   }
 
 
