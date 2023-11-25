@@ -5,6 +5,10 @@ const errorHandler = (err) => {
             errors[currentError] = err.errors[currentError].message
           }
         return errors  
+    }else if(err.name == 'Error'){
+        const error = {message : err.message}
+        
+        return error 
     }else {
         return {}
     }

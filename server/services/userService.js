@@ -10,11 +10,15 @@ async function register(userData) {
   } else if (existingUsername) {
     throw new Error("A user with this username already exists");
   }
+  try {
+    const createdUser = await User.create(userData);
+    const token = await createToken(createdUser);
 
-  const createdUser = await User.create(userData);
-  const token = await createToken(createdUser);
+    return { token, createdUser };
 
-  return {token,createdUser};
+  } catch (err) {
+    throw err
+  }
 }
 
 async function login(userData) {
@@ -30,12 +34,17 @@ async function login(userData) {
     throw new Error("Wrong email or password");
   }
 
-  const token = await createToken(user);
-
-  return {token,user};
+  try {
+    const token = await createToken(user);
+  
+    return { token, user };
+    
+  } catch (err) {
+    throw err
+  }
 }
 
 module.exports = {
   register,
-  login
+  login,
 };

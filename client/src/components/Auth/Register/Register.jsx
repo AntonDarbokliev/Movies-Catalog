@@ -84,11 +84,13 @@ export const Register = () => {
       {isRepeatPasswordInvalid && formValues.repeatPassword != '' && <ErrorField message={'Passwords are not matching'} />}
       </div>
 
-      <SubmitButton text={"Register"} disabled={
+      <SubmitButton text={"Register"} 
+      disabled={
         isUsernameInvalid ||
         isEmailInvalid || 
         isPasswordInvalid || 
-        isRepeatPasswordInvalid ? true : false }/>
+        isRepeatPasswordInvalid ? true : false }
+        />
 
       <p id="loginLink">
         Already have an account? Login <Link to="/user/login">here</Link>!

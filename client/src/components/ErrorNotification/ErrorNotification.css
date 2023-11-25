@@ -14,6 +14,6 @@
 
 #notificationsContainer{
     position: absolute;
-    right: 200px;
+    left: 200px;
     top: 200px;
 }

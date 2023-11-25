@@ -1,4 +1,5 @@
 const { register, login } = require('../services/userService.js')
+const errorHandler = require('../utils/errorHandler.js')
 
 const userController = require('express').Router()
 
@@ -8,7 +9,8 @@ const userController = require('express').Router()
             const userObj = createdUser.toObject()
             return res.json({...userObj,token})
         } catch (err) {
-            throw err
+            const errObj = errorHandler(err)
+            res.status(500).json(errObj);
         }
     })
 
@@ -18,7 +20,8 @@ const userController = require('express').Router()
             const userObj = user.toObject()
             return res.json({...userObj,token})
         }catch(err){
-            throw err
+            const errObj = errorHandler(err)
+            res.status(500).json(errObj);
         }
     })
 

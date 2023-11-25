@@ -2,6 +2,7 @@ import { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authServiceFactory } from "../services/authService.js";
 import { useLocalStorage } from "../hooks/useLocalStorage.js";
+import { useErrorContext } from "./ErrorContext.jsx";
 
 export const AuthContext = createContext();
 
@@ -9,6 +10,7 @@ export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useLocalStorage("auth", {});
   const authService = authServiceFactory();
   const navigate = useNavigate();
+  const {setErrors} = useErrorContext()
 
   const onRegisterSubmit = async (data) => {
 
@@ -22,8 +24,7 @@ export const AuthProvider = ({ children }) => {
 
       navigate("/");
     } catch (err) {
-      console.error(typeof err);
-      // throw new Error(err);
+      setErrors(err)
     }
   };
 
@@ -34,7 +35,7 @@ export const AuthProvider = ({ children }) => {
       setAuth(result);
       navigate("/");
     } catch (err) {
-      throw new Error(err);
+      setErrors(err)
     }
   };
 
