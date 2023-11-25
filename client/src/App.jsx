@@ -14,6 +14,7 @@ import { MovieProvider } from "./contexts/MovieContext.jsx";
 import { Edit } from "./components/Edit/Edit.jsx";
 import { ErrorProvider } from "./contexts/ErrorContext.jsx";
 import { ErrorNotification } from "./components/ErrorNotification/ErrorNotification.jsx";
+import { RouteGuard } from "./components/Shared/RouteGuard/RouteGuard.jsx";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
         <AuthProvider>
           <MovieProvider>
             <NavBar />
-            <ErrorNotification/>
+            <ErrorNotification />
             <div className="main">
               <Routes>
                 <Route path="/" element={<Home />}></Route>
@@ -31,12 +32,16 @@ function App() {
                   path="movie/:movieId/details"
                   element={<MovieDetails />}
                 ></Route>
-                <Route path="movie/create" element={<Create />}></Route>
-                <Route
-                  path="user/:id/ratings"
-                  element={<UserRatings />}
-                ></Route>
-                <Route path="/movie/:id/edit" element={<Edit />}></Route>
+
+                <Route element={<RouteGuard />}>
+                    <Route path="/movie/create" element={<Create />}></Route>
+                    <Route
+                      path="user/:id/ratings"
+                      element={<UserRatings />}
+                    ></Route>
+                    <Route path="/movie/:id/edit" element={<Edit />}></Route>
+                </Route>
+
                 <Route path="user/register" element={<Register />}></Route>
                 <Route path="user/login" element={<Login />}></Route>
                 <Route path="movie/catalog" element={<Catalog />}></Route>
