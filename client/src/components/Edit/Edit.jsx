@@ -4,6 +4,8 @@ import { movieFactory } from "../../services/movieService.js"
 import { useForm } from "../../hooks/useForm.js"
 import { EditCreateForm } from "../Shared/EditCreateForm/EditCreateForm.jsx"
 import { useErrorContext } from "../../contexts/ErrorContext.jsx"
+import { useLocalStorage } from "../../hooks/useLocalStorage.js"
+import { useAuthContext } from "../../contexts/AuthContext.jsx"
 
 
 export const Edit = () => {
@@ -11,12 +13,13 @@ export const Edit = () => {
     const {id} = useParams()
     const movieService = movieFactory()
     const {setErrors} = useErrorContext()
+    const {userId} = useAuthContext()
 
     const onEditSubmit = async (values) => {
         const result = confirm('Are you sure want to edit this movie : ' + values.name)
         if(result){
             try {
-                await movieService.put(id,values)
+                await movieService.put(id,values,userId)
                 navigate(`/movie/${id}/details`)
             } catch (err) {
                 setErrors(err)

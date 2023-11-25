@@ -71,8 +71,10 @@ movieController.get('/:id',async (req,res) => {
 movieController.put('/:id',async (req,res) => {
     const movieId = req.params.id
     try {
-        
-        const result = await movieService.update(movieId,req.body)
+        const movie = await movieService.getOne(movieId)
+        if((movie.owner.id).toString() !== req.body.userId) throw new Error('You are not the owner of this movie')
+
+        const result = await movieService.update(movieId,req.body.movieData)
         res.status(202).json(result)
     } catch (err) {
         const errObj = errorHandler(err)
