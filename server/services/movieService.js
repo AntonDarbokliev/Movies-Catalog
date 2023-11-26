@@ -25,12 +25,11 @@ async function create(movieData) {
 
 }
 
-async function getAll() {
+async function getAll(skip,pageSize) {
   return Movie
   .find({})
-  .lean()
-  .skip(5)
-  .limit(5);
+  .skip(skip)
+  .limit(pageSize)
 }
 
 async function getOne(id) {

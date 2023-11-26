@@ -5,11 +5,13 @@ import { MovieCard } from "../Shared/MovieCard/MovieCard.jsx";
 import { useForm } from "../../hooks/useForm.js";
 import { useMovieContext } from "../../contexts/MovieContext.jsx";
 import { FormField } from "../Shared/FormField/FormField.jsx";
+import { Pagination } from "../Pagination/Pagination.jsx";
 
 export const Catalog = () => {
-  const { searchMovie, movies } = useMovieContext();
+  const { searchMovie, movies,setCurrentPage,currentPage } = useMovieContext();
   const [searchResult, setSearchResult] = useState([]);
   const [filterValue, setFilterValue] = useState("");
+
   useEffect(() => {
     const filteredMovies = sortMovies([...searchResult],filterValue)
     setSearchResult(filteredMovies)
@@ -58,6 +60,11 @@ export const Catalog = () => {
     setFilterValue(e.target.value)
   };
 
+  const updateUrl = (page) => {
+    // Use the history.push method to update the URL with a query parameter
+    history.push(`/?page=${page}`);
+  };
+
   return (
     <>
       <div id="searchContainer">
@@ -99,6 +106,8 @@ export const Catalog = () => {
           <MovieCard movieId={x._id} key={x._id} imageUrl={x.moviePoster} />
         ))}
       </div>
+      <Pagination/>
+      
     </>
   );
 };

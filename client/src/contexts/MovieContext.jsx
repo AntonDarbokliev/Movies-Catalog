@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { movieFactory } from "../services/movieService.js";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useErrorContext } from "./ErrorContext.jsx";
 import { useAuthContext } from "./AuthContext.jsx";
 import { voteFactory } from "../services/voteService.js";
@@ -13,14 +13,18 @@ export const MovieProvider = ({ children }) => {
   const navigate = useNavigate();
   const { setErrors } = useErrorContext();
   const { userId } = useAuthContext();
+  const [searchParams, setSearchParams] = useSearchParams();
   const voteService = voteFactory();
 
+  const page = searchParams.get("page")
+  const pageSize = searchParams.get("pageSize")
+  
   useEffect(() => {
     movieService
-      .get()
+      .get(`?page=${page}&pageSize=${pageSize}`)
       .then((data) => setMovies(data))
       .catch((err) => console.error(err));
-  }, []);
+  }, [page,pageSize]);
 
   const onDelete = async (id) => {
     const movie = movies.find((x) => x._id === id);
