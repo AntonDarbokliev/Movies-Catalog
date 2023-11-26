@@ -11,8 +11,6 @@ async function create(movieData) {
     description: movieData.description,
     genres: movieData.genres,
     movieTrailer: movieData.movieTrailer,
-    upvotes: [],
-    downvotes: [],
     owner : movieData.owner,
   };
 

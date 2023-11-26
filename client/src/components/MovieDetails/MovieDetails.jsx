@@ -56,6 +56,7 @@ export const MovieDetails = () => {
   };
 
   const onVoteSubmit = async (voteType,movieId,ownerId) => {
+      //TODO: Check if a user with this ownerId exists in the database before voting
        const newVote = await vote(voteType,movieId,ownerId)
        setVotes(state => [...state,newVote])
   }

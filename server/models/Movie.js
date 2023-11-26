@@ -19,15 +19,15 @@ const movieSchema = new Schema({
 
       message: "Year field is required",
     },
-    
   },
   topCast: {
     type: [String],
     required: [true, "Movie's top cast is required"],
-    validate : {
-      validator : (value) => value && value.length > 0 && value.some(item => !!item),
-      message : "Movie's top cast is required"
-    }
+    validate: {
+      validator: (value) =>
+        value && value.length > 0 && value.some((item) => !!item),
+      message: "Movie's top cast is required",
+    },
   },
   moviePoster: {
     type: String,
@@ -44,26 +44,28 @@ const movieSchema = new Schema({
   movieImages: {
     type: [
       {
-      movieImage :{
-        type : String
-      }
-    }
-  ],
-  required: [true, "Movie images are required"],
-  validate : {
-    validator : (value) => value && value.length > 0 && value.some(item => !!item.movieImage),
-    message : "Movie images are required"
-  }
+        movieImage: {
+          type: String,
+        },
+      },
+    ],
+    required: [true, "Movie images are required"],
+    validate: {
+      validator: (value) =>
+        value && value.length > 0 && value.some((item) => !!item.movieImage),
+      message: "Movie images are required",
+    },
   },
   movieTrailer: {
     type: String,
     validate: {
       validator: function (value) {
-        const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+        const youtubeRegex =
+          /^(https?:\/\/)?(www\.)?(youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
 
         return youtubeRegex.test(value);
       },
-      message:  `Invalid YouTube link`,
+      message: `Invalid YouTube link`,
     },
   },
   description: {
@@ -74,27 +76,16 @@ const movieSchema = new Schema({
   genres: {
     type: [String],
     required: [true, "Movie's genres are required"],
-    validate : {
-      validator : (value) => value && value.length > 0 && value.some(item => !!item),
-      message : "Movie's genres are required"
-    }
+    validate: {
+      validator: (value) =>
+        value && value.length > 0 && value.some((item) => !!item),
+      message: "Movie's genres are required",
+    },
   },
-  upvotes: [
-    {
-      type: Types.ObjectId,
-      ref: "User",
-    },
-  ],
-  downvotes: [
-    {
-      type: Types.ObjectId,
-      ref: "User",
-    },
-  ],
   owner: {
     id: {
       type: Types.ObjectId,
-      ref: 'User',
+      ref: "User",
     },
     username: {
       type: String,
@@ -102,6 +93,5 @@ const movieSchema = new Schema({
   },
 });
 
-
-const Movie = model('Movie', movieSchema)
-module.exports = Movie
+const Movie = model("Movie", movieSchema);
+module.exports = Movie;
