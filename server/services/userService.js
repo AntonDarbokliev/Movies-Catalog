@@ -28,7 +28,8 @@ async function login(userData) {
     throw new Error("Wrong email or password");
   }
 
-  const isPasswordCorrect = bcrypt.compare(userData.password, user.password);
+  const isPasswordCorrect = await bcrypt.compare(userData.password, user.password);
+  console.log(userData);
 
   if (!isPasswordCorrect) {
     throw new Error("Wrong email or password");
