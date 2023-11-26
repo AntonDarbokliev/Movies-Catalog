@@ -56,7 +56,8 @@ export const MovieDetails = () => {
   };
 
   const onVoteSubmit = async (voteType,movieId,ownerId) => {
-       const newVote =  await vote(voteType,movieId,ownerId)
+       const newVote = await vote(voteType,movieId,ownerId)
+       setVotes(state => [...state,newVote])
   }
 
   return (
@@ -132,9 +133,7 @@ export const MovieDetails = () => {
       <div className="genreRating">
         <p className="genres"> {details.genres?.join(", ")}</p>
         <div className="ratingDiv">
-          {!details.downvotes?.includes(userId) &&
-            !details.upvotes?.includes(userId) &&
-            userId && (
+          { userId && !votes.some(x => x.ownerId == userId) && (
               <>
                 <button id="upvote" onClick={() => onVoteSubmit("upvote",movieId,userId)}>
                   <img id="likeButton" src={likeIcon} alt="" />
