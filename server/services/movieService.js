@@ -26,7 +26,11 @@ async function create(movieData) {
 }
 
 async function getAll() {
-  return Movie.find({}).lean().populate("upvotes").populate("downvotes");
+  return Movie
+  .find({})
+  .lean()
+  .skip(5)
+  .limit(5);
 }
 
 async function getOne(id) {

@@ -9,6 +9,7 @@ export const EditCreateForm = ({
     formValues,
     text
 }) => {
+
     return (
         <form id="createForm" method="POST" onSubmit={onSubmit}>
             <h2 id="createEdit">{text}:</h2>
@@ -34,6 +35,7 @@ export const EditCreateForm = ({
           onChange={onChangeHandler}
           value={formValues.year}
         />
+        <div style={{display:'flex'}}>
         <FormField
           type={"text"}
           name={"topCast"}
@@ -41,6 +43,9 @@ export const EditCreateForm = ({
           onChange={onChangeHandler}
           value={formValues.topCast}
         />
+        {/* <p className="formNote">Note: Top cast actors must be seperated by a coma, followed by an empty space</p> */}
+        <p className="formNote">Note: Top cast actors must be seperated by ", "</p>
+        </div>
         <FormField
           type={"text"}
           name={"moviePoster"}
@@ -83,6 +88,7 @@ export const EditCreateForm = ({
           onChange={onChangeHandler}
           value={formValues.description}
         />
+        <div style={{display:'flex'}}>
         <FormField
           type={"text"}
           name={"genres"}
@@ -90,6 +96,9 @@ export const EditCreateForm = ({
           onChange={onChangeHandler}
           value={formValues.genres}
         />
+        <p className="formNote">Note: Genres must be seperated by " "</p>
+        {/* <p className="formNote">Note: Genres must be seperated by an empty space</p> */}
+        </div>
 
         <SubmitButton text={text}/>
         </div>

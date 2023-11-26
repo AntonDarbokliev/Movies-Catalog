@@ -1,3 +1,15 @@
 #createEdit{
     color: var(--main-accent-color);
 }
+
+.formNote {
+    color: var(--main-accent-color);
+    position: absolute;
+    /* right: 100px; */
+    /* text-align: ; */
+    margin-left: 260px;
+}
+
+#createFormFields{
+    /* position: absolute; */
+}

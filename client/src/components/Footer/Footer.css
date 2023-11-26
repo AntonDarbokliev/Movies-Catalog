@@ -7,14 +7,9 @@
   padding: 20px;
 }
 
-#footer div {
-  max-width: 100%; 
-}
-
 .text {
   text-align: center;
   line-height: 40px;
-  font-family: var(--main-font-family);
 }
 
 .socialLinks a img {
@@ -22,11 +17,11 @@
 }
 
 
-.socialLinks a{
+/* .socialLinks a{
   position: relative;
   bottom: 25px;
   left: 50px;
-}
+} */
 
 /* .socialLinks a {
   bottom: 50px;

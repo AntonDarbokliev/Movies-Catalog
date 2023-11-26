@@ -21,6 +21,8 @@ movieController.get('/', async (req,res) => {
 
         const movieName = req.query.name;
         const movieGenres = (req.query.genres)?.split('-');
+        const page = Number(req.query.page) || 1;
+        const pageSize = Number(req.query.pageSize) || 10;
         
         if(movieName || movieGenres){
             const movies = await movieService.movieSearch(movieName,movieGenres)
