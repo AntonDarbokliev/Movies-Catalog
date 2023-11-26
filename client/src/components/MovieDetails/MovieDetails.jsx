@@ -12,6 +12,7 @@ import { CommentCard } from "../Comment/CommentCard/CommentCard.jsx";
 import { CommentForm } from "../Comment/CommentForm/CommentForm.jsx";
 import { useMovieContext } from "../../contexts/MovieContext.jsx";
 import { useAuthContext } from "../../contexts/AuthContext.jsx";
+import { voteFactory } from "../../services/voteService.js";
 
 export const MovieDetails = () => {
   const { movieId } = useParams();
@@ -20,9 +21,12 @@ export const MovieDetails = () => {
   const [showAddComment, setShowAddComment] = useState(false);
   const {userId} = useAuthContext();
   const {onDelete , vote, extractYouTubeVideoId} = useMovieContext()
+  const [votes,setVotes] = useState([])
+  
 
   const movieService = movieFactory();
   const commentService = commentFactory();
+  const voteService = voteFactory();
 
   useEffect(() => {
     movieService
@@ -41,14 +45,18 @@ export const MovieDetails = () => {
       .catch((err) => console.error(err));
   }, [details]);
 
+  useEffect(() => {
+     voteService.get(movieId)
+      .then(data => setVotes(data))
+      .catch((err) => console.error(err))
+  },[movieId])
+
   const onShowAddComment = () => {
     setShowAddComment(true);
   };
 
   const onVoteSubmit = async (voteType,movieId,ownerId) => {
        const newVote =  await vote(voteType,movieId,ownerId)
-      //  console.log(newVote);
-      // setDetails(updatedMovie)
   }
 
   return (
@@ -137,7 +145,8 @@ export const MovieDetails = () => {
               </>
             )}
           <p id="rating">
-            User rating: {details.upvotes?.length - details.downvotes?.length}K
+            User rating: {(votes?.filter(x => x.vote == 'upvote')).length - (votes?.filter(x => x.vote == 'downvote')).length }K
+            {/* User rating: {details.upvotes?.length - details.downvotes?.length}K //OLD VOTES */}
           </p>
         </div>
       </div>

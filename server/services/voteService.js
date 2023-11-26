@@ -6,7 +6,6 @@ async function getVotesForMovie(givenMovieId){
 }
 
 async function vote(voteData){
-    console.log(voteData);
     return await Vote.create(voteData)
 }
 

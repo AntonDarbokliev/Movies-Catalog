@@ -5,7 +5,7 @@ export const voteFactory = () => {
     const baseUrl = 'http://localhost:3000/movie/vote'
     return {
         getAll: () => request.get(baseUrl),
-        get : (movieId) => request.get(baseUrl + `/${movieId}`),
+        get : (movieId) => request.get(baseUrl + `/${movieId}`,{movieId}),
         post : (movieId,ownerId,vote) => request.post(baseUrl,{movieId,ownerId,vote})
     }
 }
