@@ -45,9 +45,10 @@ export const MovieDetails = () => {
     setShowAddComment(true);
   };
 
-  const onVoteSubmit = async (voteType,movieId,userId) => {
-      const updatedMovie =  await vote(voteType,movieId,userId)
-      setDetails(updatedMovie)
+  const onVoteSubmit = async (voteType,movieId,ownerId) => {
+       const newVote =  await vote(voteType,movieId,ownerId)
+      //  console.log(newVote);
+      // setDetails(updatedMovie)
   }
 
   return (

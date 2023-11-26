@@ -1,5 +1,6 @@
 const commentService = require('../services/commentService.js')
 const movieService = require('../services/movieService.js')
+const { vote } = require('../services/voteService.js')
 const errorHandler = require('../utils/errorHandler.js')
 const movieController = require('express').Router()
 
@@ -96,6 +97,17 @@ movieController.delete('/:id',async (req,res) => {
     }
 })
 
+movieController.post('/vote',async (req,res) => {
+    try {
+        const currentVote = await vote(req.body)
+        res.json(currentVote)
+    } catch (err) {
+        console.log('Vote error: ', err);
+        const errObj = errorHandler(err)
+        res.status(500).json(errObj);
+
+    }
+})
 
 
 
