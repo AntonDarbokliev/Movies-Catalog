@@ -28,7 +28,7 @@ export const MovieProvider = ({ children }) => {
       .get(`?page=${page}&pageSize=${pageSize}&name=${name}&genres=${genres}`)
       .then((data) => setMovies(data))
       .catch((err) => console.error(err));
-  }, [page,pageSize]);
+  }, [page,pageSize,name,genres]);
 
   const onDelete = async (id) => {
     const movie = movies.find((x) => x._id === id);

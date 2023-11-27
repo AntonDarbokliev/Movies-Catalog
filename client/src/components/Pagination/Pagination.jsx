@@ -9,13 +9,11 @@ export const Pagination = () => {
 
   const goToNextPage = () => {
     const nextPage = currentPage + 1;
-    setCurrentPage(nextPage);
     updateUrl(nextPage);
   };
 
   const goToPreviousPage = () => {
     const previousPage = currentPage - 1;
-    setCurrentPage(previousPage);
     updateUrl(previousPage);
   };
 
