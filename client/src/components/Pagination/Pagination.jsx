@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useQueryContext } from '../../contexts/QueryContext.jsx';
 
 export const Pagination = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(8); // Set a default page size
+   const {currentPage,setCurrentPage,currentPageSize,movieName,movieGenres} =  useQueryContext()
+
   const navigate = useNavigate();
 
   const goToNextPage = () => {
@@ -19,13 +20,13 @@ export const Pagination = () => {
   };
 
   const updateUrl = (page) => {
-    navigate(`?page=${page}&pageSize=${pageSize}`);
+    navigate(`?name=${movieName}&genres=${movieGenres}&page=${page}&pageSize=${currentPageSize}`);
   };
 
   return (
     <div>
       <p>Current Page: {currentPage}</p>
-      <p>Page Size: {pageSize}</p>
+      <p>Page Size: {currentPageSize}</p>
       <button onClick={goToPreviousPage} disabled={currentPage === 1}>
         Previous Page
       </button>

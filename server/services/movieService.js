@@ -48,32 +48,41 @@ async function del (id) {
   return Movie.deleteOne({_id : id})
 }
 
-async function movieSearch(movieName, movieGenres) {
+async function movieSearch(movieName, movieGenres,skip,pageSize) {
 
   if (!!movieName && movieGenres[0]!=='') {
     const movies = await Movie.find({
       name: {$regex : new RegExp(movieName,'i')},
       genres: { $in: movieGenres },
-    });
+    })
+    .skip(skip)
+    .limit(pageSize);
     if (!movies) {
       throw new Error("No movies were found");
     }
     return movies;
   } else if (!!movieName) {
-    const movies = await Movie.find({ name: {$regex : new RegExp(movieName,'i')} });
+    const movies = await Movie.find({ name: {$regex : new RegExp(movieName,'i')} })
+    .skip(skip)
+    .limit(pageSize);
     if (!movies) {
       throw new Error("No movies were found");
     }
     return movies;
   } else if (movieGenres[0]!=='') {
-    const movies = await Movie.find({ genres: { $in: movieGenres } });
+    const movies = await Movie.find({ genres: { $in: movieGenres } })
+    .skip(skip)
+    .limit(pageSize);
     if (!movies) {
       throw new Error("No movies were found");
     }
 
     return movies;
   } else {
-    throw new Error("No search parameters were specified"); //Should be impossible to get here (i just did it anyway)
+    const movies = await Movie.find({})
+    .skip(skip)
+    .limit(pageSize)
+    return movies
   }
 
 }

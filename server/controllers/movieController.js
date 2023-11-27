@@ -19,17 +19,18 @@ movieController.post("/", async (req,res) => {
 movieController.get('/', async (req,res) => {
     try {
 
-        // const movieName = req.query.name;
-        // const movieGenres = (req.query.genres)?.split('-');
+        const movieName = req.query.name;
+        const movieGenres = (req.query.genres)?.split('-');
         const page = Number(req.query.page) || 1;
-        const pageSize = Number(req.query.pageSize) || 10;
+        const pageSize = Number(req.query.pageSize) || 8;
         const skip = (page - 1) * pageSize
         
         // if(movieName || movieGenres){
         //     const movies = await movieService.movieSearch(movieName,movieGenres)
         //     res.status(200).json(movies)
         // }else{
-            const movies = await movieService.getAll(skip,pageSize)
+            const movies = await movieService.movieSearch(movieName,movieGenres,skip,pageSize)
+            // const movies = await movieService.getAll(skip,pageSize)
             res.status(200).json(movies)
         // }
 
