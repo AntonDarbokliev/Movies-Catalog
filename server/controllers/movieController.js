@@ -47,6 +47,10 @@ movieController.get('/latest',async (req,res) => {
 
 movieController.post("/comment", async (req, res) => {
   try {
+    console.log(req.body);
+    if(!req.body._id){
+      throw new Error('You should be logged in to comment')
+    }
     const comment = await commentService.create(req.body);
     res.status(201).json(comment);
   } catch (err) {
@@ -110,7 +114,6 @@ movieController.post("/vote", async (req, res) => {
     const currentVote = await vote(req.body);
     res.json(currentVote);
   } catch (err) {
-    console.log("Vote error: ", err);
     const errObj = errorHandler(err);
     res.status(500).json(errObj);
   }
@@ -121,7 +124,6 @@ movieController.get("/vote/:id", async (req, res) => {
     const currentVotes = await getVotesForMovie(req.params.id);
     res.json(currentVotes);
   } catch (err) {
-    console.log("Vote error: ", err);
     const errObj = errorHandler(err);
     res.status(500).json(errObj);
   }

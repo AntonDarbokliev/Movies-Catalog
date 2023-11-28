@@ -30,7 +30,6 @@ export const CommentForm = ({
       const result = await commentService.post(comment);
       setComments(state => [...state,result])
     } catch (err) {
-      console.log(err);
       setErrors(err)
     }
   };
