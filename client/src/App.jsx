@@ -15,7 +15,6 @@ import { Edit } from "./components/Edit/Edit.jsx";
 import { ErrorProvider } from "./contexts/ErrorContext.jsx";
 import { ErrorNotification } from "./components/ErrorNotification/ErrorNotification.jsx";
 import { RouteGuard } from "./components/Shared/RouteGuard/RouteGuard.jsx";
-import { QueryProvider } from "./contexts/QueryContext.jsx";
 
 function App() {
   return (

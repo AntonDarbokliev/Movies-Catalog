@@ -49,19 +49,19 @@ movieController.post("/comment", async (req, res) => {
   try {
     const comment = await commentService.create(req.body);
     res.status(201).json(comment);
-  } catch (error) {
-    console.error(error);
-    res.json(error);
+  } catch (err) {
+    const errObj = errorHandler(err);
+    res.status(500).json(errObj);
   }
 });
 
-movieController.get("/comment", async (req, res) => {
+movieController.get("/comment", async (req, res) => { 
   try {
     const comments = await commentService.getAll();
     res.status(201).json(comments);
-  } catch (error) {
-    console.error(error);
-    res.json(error);
+  } catch (err) {
+    const errObj = errorHandler(err);
+    res.status(500).json(errObj);
   }
 });
 

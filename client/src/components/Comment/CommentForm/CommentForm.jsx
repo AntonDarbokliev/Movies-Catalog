@@ -5,12 +5,15 @@ import { FormField } from "../../Shared/FormField/FormField.jsx";
 import { SubmitButton } from "../../Shared/SubmitButton/SubmitButton.jsx";
 
 import './CommentForm.css'
+
 import { useAuthContext } from "../../../contexts/AuthContext.jsx";
+import { useErrorContext } from "../../../contexts/ErrorContext.jsx";
 
 export const CommentForm = ({
     setShowAddComment,
     setComments
 }) => {
+  const {setErrors} = useErrorContext()
   const commentService = commentFactory();
   const { movieId } = useParams()
   const {userId} = useAuthContext()
@@ -23,8 +26,13 @@ export const CommentForm = ({
         title: commentData.commentTitle,
         owner
     }
-    const result = await commentService.post(comment);
-    setComments(state => [...state,result])
+    try {
+      const result = await commentService.post(comment);
+      setComments(state => [...state,result])
+    } catch (err) {
+      console.log(err);
+      setErrors(err)
+    }
   };
 
   const { formValues, onChangeHandler, onSubmit } = useForm(

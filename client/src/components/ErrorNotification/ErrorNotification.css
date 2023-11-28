@@ -13,7 +13,7 @@
 }
 
 #notificationsContainer{
-    position: absolute;
+    position: fixed;
     left: 200px;
     top: 200px;
 }

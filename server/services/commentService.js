@@ -1,5 +1,4 @@
 const Comment = require("../models/Comment.js");
-// const Movie = require("../models/Movie.js");
 
 async function create(commentData) {
     const comment = {
