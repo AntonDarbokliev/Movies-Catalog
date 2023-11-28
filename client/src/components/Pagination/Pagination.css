@@ -1,0 +1,8 @@
+.paginationText{
+    color: var(--main-accent-color);
+}
+
+#paginationButtons > *{
+    margin-left: 100px;
+    margin-right: 100px;
+}

@@ -47,7 +47,6 @@ movieController.get('/latest',async (req,res) => {
 
 movieController.post("/comment", async (req, res) => {
   try {
-    console.log(req.body);
     if(!req.body._id){
       throw new Error('You should be logged in to comment')
     }

@@ -1,9 +1,13 @@
 import React from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useMovieContext } from '../../contexts/MovieContext.jsx';
+
+import './Pagination.css'
+import { SubmitButton } from '../Shared/SubmitButton/SubmitButton.jsx';
 
 export const Pagination = () => {
    
-
+  const {movies} = useMovieContext()
   const navigate = useNavigate();
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -30,15 +34,12 @@ export const Pagination = () => {
 
   return (
     <div>
-      <p>Current Page: {currentPage}</p>
-      <p>Page Size: {currentPageSize}</p>
-      <button onClick={goToPreviousPage} disabled={currentPage === 1}>
-        Previous Page
-      </button>
-      <button onClick={goToNextPage} /* Add a condition to disable if it's the last page */>
-        Next Page
-      </button>
-      {/* Render the content for the current page */}
+      <p className='paginationText'>Current Page: {currentPage}</p>
+      <p className='paginationText'>Page Size: {currentPageSize}</p>
+      <div id='paginationButtons'>
+      <SubmitButton text={'Previous Page'} disabled={currentPage === 1} onClick={goToPreviousPage}/>
+      <SubmitButton text={'Next Page'} disabled={movies.length < currentPageSize} onClick={goToNextPage}/>
+      </div>
     </div>
   );
 };
