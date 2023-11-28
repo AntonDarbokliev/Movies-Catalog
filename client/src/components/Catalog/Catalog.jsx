@@ -21,7 +21,7 @@ export const Catalog = () => {
     if(filterValue !== ''){
       const filteredMovies = sortMovies([...searchResult],filterValue)
       setSearchResult(filteredMovies)
-    }else{
+    }else if(movies.length > 0){
       setSearchResult(movies);
       const page = Number (searchParams.get('page'))
       const pageSize = Number(searchParams.get('pageSize'))

@@ -32,13 +32,18 @@ export const MovieProvider = ({ children }) => {
 
   const onDelete = async (id) => {
     const movie = movies.find((x) => x._id === id);
-    const result = confirm(`Are you sure you want to delete "${movie.name}"`);
+    const result = confirm(`Are you sure you want to delete "${movie?.name}"`);
     if (result) {
       await movieService.delete(id, userId);
       setMovies((state) => state.filter((x) => x._id !== id));
       navigate("/movie/catalog");
     }
   };
+
+  const  getLastThree = async () => {
+    const lastMovies = await movieService.get('/latest')
+    return lastMovies
+  } 
 
   const vote = async (vote, movieId, ownerId) => {
     try {
@@ -123,7 +128,9 @@ export const MovieProvider = ({ children }) => {
     searchMovie,
     onDelete,
     vote,
-    extractYouTubeVideoId,
+    extractYouTubeVideoId, 
+    getLastThree,
+    setMovies
   };
 
   return (

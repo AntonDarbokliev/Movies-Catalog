@@ -32,6 +32,10 @@ async function getAll(skip,pageSize) {
   .limit(pageSize)
 }
 
+async function getLatest(){
+  return Movie.find().sort({ _id: -1 }).limit(3)
+}
+
 async function getOne(id) {
   return Movie.findById(id)
 }
@@ -93,5 +97,6 @@ module.exports = {
   movieSearch,
   getOne,
   update,
-  del
+  del,
+  getLatest
 };
