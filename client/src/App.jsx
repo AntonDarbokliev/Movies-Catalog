@@ -22,7 +22,6 @@ function App() {
     <>
       <ErrorProvider>
         <AuthProvider>
-          <QueryProvider>
           <MovieProvider>
             <NavBar />
             <ErrorNotification />
@@ -56,7 +55,6 @@ function App() {
               </Routes>
             </div>
           </MovieProvider>
-          </QueryProvider>
         </AuthProvider>
       </ErrorProvider>
       <Footer />

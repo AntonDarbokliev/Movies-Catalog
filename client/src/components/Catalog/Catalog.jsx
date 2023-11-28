@@ -6,15 +6,11 @@ import { useForm } from "../../hooks/useForm.js";
 import { useMovieContext } from "../../contexts/MovieContext.jsx";
 import { FormField } from "../Shared/FormField/FormField.jsx";
 import { Pagination } from "../Pagination/Pagination.jsx";
-import { useQueryContext } from "../../contexts/QueryContext.jsx";
-import { useSearchParams } from "react-router-dom";
 
 export const Catalog = () => {
   const { searchMovie, movies} = useMovieContext();
   const [searchResult, setSearchResult] = useState([]);
   const [filterValue, setFilterValue] = useState("");
-  const {setCurrentPage,setCurrentPageSize} = useQueryContext()
-  const [searchParams,setSearchParams] = useSearchParams()
 
   useEffect(() => {
 
@@ -23,10 +19,6 @@ export const Catalog = () => {
       setSearchResult(filteredMovies)
     }else if(movies.length > 0){
       setSearchResult(movies);
-      const page = Number (searchParams.get('page'))
-      const pageSize = Number(searchParams.get('pageSize'))
-      setCurrentPage(page)
-      setCurrentPageSize(pageSize)
     }
 
   }, [movies,filterValue]);
@@ -69,11 +61,6 @@ export const Catalog = () => {
   const onSortChange = (e) => {
     console.log("Registered change at:", e.target.value);
     setFilterValue(e.target.value)
-  };
-
-  const updateUrl = (page) => {
-    // Use the history.push method to update the URL with a query parameter
-    history.push(`/?page=${page}`);
   };
 
   return (

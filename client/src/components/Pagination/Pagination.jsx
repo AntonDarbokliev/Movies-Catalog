@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useQueryContext } from '../../contexts/QueryContext.jsx';
+import React from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 export const Pagination = () => {
-   const {currentPage,setCurrentPage,currentPageSize,movieName,movieGenres} =  useQueryContext()
+   
 
   const navigate = useNavigate();
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const currentPage = Number(searchParams.get('page')) || 1;
+  const currentPageSize = Number(searchParams.get('pageSize')) || 8;
+  const movieName = searchParams.get('name') || '';
+  const movieGenres = searchParams.get('genres') || '';
 
   const goToNextPage = () => {
     const nextPage = currentPage + 1;
@@ -18,6 +24,7 @@ export const Pagination = () => {
   };
 
   const updateUrl = (page) => {
+    setSearchParams({...searchParams,page})
     navigate(`?name=${movieName}&genres=${movieGenres}&page=${page}&pageSize=${currentPageSize}`);
   };
 

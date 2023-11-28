@@ -4,7 +4,6 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useErrorContext } from "./ErrorContext.jsx";
 import { useAuthContext } from "./AuthContext.jsx";
 import { voteFactory } from "../services/voteService.js";
-import {useQueryContext } from "./QueryContext.jsx";
 
 export const MovieContext = createContext();
 
@@ -16,7 +15,6 @@ export const MovieProvider = ({ children }) => {
   const { userId } = useAuthContext();
   const [searchParams, setSearchParams] = useSearchParams();
   const voteService = voteFactory();
-  const {currentPage,currentPageSize,setMovieName,setMovieGenres} = useQueryContext()
 
   const page = searchParams.get("page")
   const pageSize = searchParams.get("pageSize")
@@ -103,10 +101,9 @@ export const MovieProvider = ({ children }) => {
   const searchMovie = async (formValues) => {
     const { genres, title } = formValues;
 
-    const movies = await movieService.get(`?name=${title}&genres=${genres}&page=${currentPage}&pageSize=${currentPageSize}`);
-    setMovieName(title)
-    setMovieGenres(genres)
-    navigate(`?name=${title}&genres=${genres}&page=${currentPage}&pageSize=${currentPageSize}`)
+    const movies = await movieService.get(`?name=${title}&genres=${genres}&page=${page}&pageSize=${pageSize}`);
+    setSearchParams({...searchParams,genres,title})
+    navigate(`?name=${title}&genres=${genres}&page=${page}&pageSize=${pageSize}`)
     
 
     return movies;

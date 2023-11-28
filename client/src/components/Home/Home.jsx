@@ -1,11 +1,11 @@
 import './Home.css'
 import { MovieCard } from '../Shared/MovieCard/MovieCard.jsx'
 import { useMovieContext } from '../../contexts/MovieContext.jsx'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export const Home = () => {
-    const {movies, getLastThree,setMovies} = useMovieContext()
-    
+    const {getLastThree,} = useMovieContext()
+    const [movies,setMovies] = useState([])
 
     useEffect(() => {
         getLastThree()
