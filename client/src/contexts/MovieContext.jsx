@@ -30,7 +30,7 @@ export const MovieProvider = ({ children }) => {
 
   const onDelete = async (id) => {
     const movie = movies.find((x) => x._id === id);
-    const result = confirm(`Are you sure you want to delete "${movie?.name}"`);
+    const result = confirm(`Are you sure you want to delete this movie?`);
     if (result) {
       await movieService.delete(id, userId);
       setMovies((state) => state.filter((x) => x._id !== id));

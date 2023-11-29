@@ -73,7 +73,7 @@ async function movieSearch(movieName, movieGenres,skip,pageSize) {
       throw new Error("No movies were found");
     }
     return movies;
-  } else if (movieGenres[0]!=='') {
+  } else if (movieGenres[0]!=='' && movieGenres[0]!== undefined) {
     const movies = await Movie.find({ genres: { $in: movieGenres } })
     .skip(skip)
     .limit(pageSize);
@@ -83,6 +83,7 @@ async function movieSearch(movieName, movieGenres,skip,pageSize) {
 
     return movies;
   } else {
+    console.log('else case');
     const movies = await Movie.find({})
     .skip(skip)
     .limit(pageSize)

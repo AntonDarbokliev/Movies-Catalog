@@ -10,7 +10,7 @@ export const Dropdown = () => {
     <div className="dropdown" >
       <button className="dropbtn"><img id='userIcon' src={userIcon} alt="userIcon"/></button>
       <div className="dropdown-content">
-        <Link to="user/1/ratings">Ratings</Link>
+        {/* <Link to="user/1/ratings">Ratings</Link> */}
         <Logout/>
       </div>
     </div>

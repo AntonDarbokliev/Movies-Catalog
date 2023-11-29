@@ -6,16 +6,27 @@ import { useForm } from "../../hooks/useForm.js";
 import { useMovieContext } from "../../contexts/MovieContext.jsx";
 import { FormField } from "../Shared/FormField/FormField.jsx";
 import { Pagination } from "../Pagination/Pagination.jsx";
+import { movieFactory } from "../../services/movieService.js";
 
 export const Catalog = () => {
   const { searchMovie, movies} = useMovieContext();
   const [searchResult, setSearchResult] = useState([]);
   const [filterValue, setFilterValue] = useState("");
+  const movieService = movieFactory()
 
   useEffect(() => {
 
     if(filterValue !== ''){
+      //GET all movies here and put them in the sort movies
+      let allMovies;
+       movieService.get()
+       .then(data => {
+        allMovies = data
+        console.log(data);
+       })
+       .catch(err => console.log(err))
       const filteredMovies = sortMovies([...searchResult],filterValue)
+      // const filteredMovies = sortMovies(allMovies,filterValue)
       setSearchResult(filteredMovies)
     }else if(movies.length > 0){
       setSearchResult(movies);
@@ -59,7 +70,6 @@ export const Catalog = () => {
   };
 
   const onSortChange = (e) => {
-    console.log("Registered change at:", e.target.value);
     setFilterValue(e.target.value)
   };
 

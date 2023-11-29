@@ -16,8 +16,8 @@ movieController.post("/", async (req, res) => {
 
 movieController.get("/", async (req, res) => {
   try {
-    const movieName = req.query.name;
-    const movieGenres = req.query.genres?.split("-");
+    const movieName = req.query.name || '';
+    const movieGenres = req.query.genres?.split("-") || [];
     const page = Number(req.query.page) || 1;
     const pageSize = Number(req.query.pageSize) || 8;
     const skip = (page - 1) * pageSize;
@@ -35,6 +35,10 @@ movieController.get("/", async (req, res) => {
   }
 });
 
+movieController.get("/all", async (req, res) => {
+  
+})
+
 movieController.get('/latest',async (req,res) => {
     try {
         const movies = await movieService.getLatest()
@@ -47,7 +51,7 @@ movieController.get('/latest',async (req,res) => {
 
 movieController.post("/comment", async (req, res) => {
   try {
-    if(!req.body._id){
+    if(req.body.owner == undefined){
       throw new Error('You should be logged in to comment')
     }
     const comment = await commentService.create(req.body);

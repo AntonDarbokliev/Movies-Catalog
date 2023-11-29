@@ -14,7 +14,7 @@ export const Create = () => {
     {
       name: "",
       director: "",
-      year: 0,
+      year: '',
       topCast: "",
       moviePoster: "",
       movieImagesOne: "",
