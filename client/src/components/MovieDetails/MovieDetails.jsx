@@ -13,6 +13,7 @@ import { CommentForm } from "../Comment/CommentForm/CommentForm.jsx";
 import { useMovieContext } from "../../contexts/MovieContext.jsx";
 import { useAuthContext } from "../../contexts/AuthContext.jsx";
 import { voteFactory } from "../../services/voteService.js";
+import { Modal } from "../Shared/Modal/Modal.jsx";
 
 export const MovieDetails = () => {
   const { movieId } = useParams();
@@ -22,6 +23,7 @@ export const MovieDetails = () => {
   const {userId} = useAuthContext();
   const {onDelete , vote, extractYouTubeVideoId} = useMovieContext()
   const [votes,setVotes] = useState([])
+  const [openModal,setOpenModal] = useState(false)
   
 
   const movieService = movieFactory();
@@ -62,8 +64,24 @@ export const MovieDetails = () => {
        setVotes(state => [...state,newVote])
   }
 
+  const handleCloseModal = () => {
+    setOpenModal(false)
+  }
+
+  const handleSubmitModal = async () => {
+    setOpenModal(false)
+    await onDelete(movieId)
+  }
+
   return (
     <>
+    {openModal && 
+      <Modal 
+      text={`Are you sure you want to delete ${details.name}?`} 
+      title={'Delete movie'} 
+      onClose={handleCloseModal} 
+      onSubmit={handleSubmitModal}/>
+    }
       <span id="titleButtonsWrap">
         <h1 id="title">{details.name}</h1>
         {details.owner?.id === userId && (
@@ -71,7 +89,9 @@ export const MovieDetails = () => {
             <Link to={`/movie/${movieId}/edit`}>
               <img src={editIcon} id="editIcon"></img>
             </Link>
-            <button id="deleteButton" onClick={() => onDelete(movieId)}>
+            <button id="deleteButton" 
+            // onClick={() => onDelete(movieId)}
+            >
             <img src={binIcon} id="editIcon"></img>
             </button>
           </div>

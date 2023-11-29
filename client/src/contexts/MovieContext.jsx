@@ -29,7 +29,6 @@ export const MovieProvider = ({ children }) => {
   }, [page,pageSize,name,genres]);
 
   const onDelete = async (id) => {
-    const movie = movies.find((x) => x._id === id);
     const result = confirm(`Are you sure you want to delete this movie?`);
     if (result) {
       await movieService.delete(id, userId);
