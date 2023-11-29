@@ -3,10 +3,13 @@
 }
 
 #commentFormContainer {
+    animation: fadeIn 0.2s ease-in-out;
     border: 3px var(--main-accent-color) solid;
     background-color: var(--main-background-color);
     border-radius: 6px;
 }
+
+
 
 
 #addCommentText {
