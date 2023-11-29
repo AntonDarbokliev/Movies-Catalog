@@ -28,8 +28,6 @@ async function create(movieData) {
 async function getAll(skip,pageSize) {
   return Movie
   .find({})
-  .skip(skip)
-  .limit(pageSize)
 }
 
 async function getLatest(){

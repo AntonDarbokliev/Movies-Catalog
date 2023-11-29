@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SubmitButton } from "../Shared/SubmitButton/SubmitButton.jsx";
 import "./Catalog.css";
 import { MovieCard } from "../Shared/MovieCard/MovieCard.jsx";
@@ -13,21 +13,21 @@ export const Catalog = () => {
   const [searchResult, setSearchResult] = useState([]);
   const [filterValue, setFilterValue] = useState("");
   const movieService = movieFactory()
+  const allMovies = useRef([])
 
   useEffect(() => {
 
     if(filterValue !== ''){
       //GET all movies here and put them in the sort movies
-      let allMovies;
-       movieService.get()
-       .then(data => {
-        allMovies = data
-        console.log(data);
-       })
-       .catch(err => console.log(err))
-      const filteredMovies = sortMovies([...searchResult],filterValue)
-      // const filteredMovies = sortMovies(allMovies,filterValue)
-      setSearchResult(filteredMovies)
+      movieService.get('/all')
+      .then(data => {
+       allMovies.current = data
+      })
+      .then(() => {
+        const filteredMovies = sortMovies(allMovies.current,filterValue)
+        setSearchResult(filteredMovies)
+      })
+      .catch(err => console.log(err))
     }else if(movies.length > 0){
       setSearchResult(movies);
     }

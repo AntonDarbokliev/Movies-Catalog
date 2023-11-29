@@ -36,8 +36,14 @@ movieController.get("/", async (req, res) => {
 });
 
 movieController.get("/all", async (req, res) => {
-  
-})
+  try {
+    const movies = await movieService.getAll();
+    res.status(200).json(movies);
+  } catch (err) {
+    const errObj = errorHandler(err);
+    res.status(500).json(errObj);
+  }
+});
 
 movieController.get('/latest',async (req,res) => {
     try {
