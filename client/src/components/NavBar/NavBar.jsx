@@ -12,7 +12,7 @@ export const NavBar = () => {
         <div className="navBar">
             <img src={logo} alt="logo" className='logo'/>
             <Link to="/" className='link'>Home</Link>
-            <Link to="/movie/catalog?page=1&pageSize=8&name=&genres=" className='link'>Catalog</Link>
+            <Link to="/movie/catalog" className='link'>Catalog</Link>
             {isAuthenticated && 
             <>
             <Link to="/movie/create" className='link'>Create</Link>

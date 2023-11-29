@@ -2,7 +2,17 @@
     color: var(--main-accent-color);
 }
 
+#paginationSelect{
+    width: 50px;
+    height: 30px;
+    border-radius: 5px;
+}
+
 #paginationButtons > *{
     margin-left: 100px;
     margin-right: 100px;
 }
+
+/* #paginationSelect option{
+   color: ;
+} */

@@ -7,11 +7,13 @@ export const ErrorNotification = () => {
   const { errors, setErrors } = useErrorContext();
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      setErrors({});
-    }, 5000);
-
-    return () => clearTimeout(timeout);
+    if(Object.keys(errors).length != 0){
+      const timeout = setTimeout(() => {
+        setErrors({});
+      }, 5000);
+  
+      return () => clearTimeout(timeout);
+    }
   }, [errors])
 
   return (

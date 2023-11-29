@@ -29,6 +29,7 @@ export const MovieDetails = () => {
   const voteService = voteFactory();
 
   useEffect(() => {
+  window.scrollTo(0, 0)
     movieService
       .get(`/${movieId}`)
       .then((movie) => setDetails(movie))

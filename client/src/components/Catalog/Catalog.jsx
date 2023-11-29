@@ -7,6 +7,7 @@ import { useMovieContext } from "../../contexts/MovieContext.jsx";
 import { FormField } from "../Shared/FormField/FormField.jsx";
 import { Pagination } from "../Pagination/Pagination.jsx";
 import { movieFactory } from "../../services/movieService.js";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 export const Catalog = () => {
   const { searchMovie, movies} = useMovieContext();
@@ -14,9 +15,15 @@ export const Catalog = () => {
   const [filterValue, setFilterValue] = useState("");
   const movieService = movieFactory()
   const allMovies = useRef([])
+  const navigate = useNavigate()
+  const [searchParams,setSearchParams] = useSearchParams()
 
   useEffect(() => {
-
+    if(!searchParams.get('page')){
+      navigate(
+        `?name=&genres=&page=1&pageSize=8`
+      );
+    }
     if(filterValue !== ''){
       //GET all movies here and put them in the sort movies
       movieService.get('/all')
@@ -41,6 +48,7 @@ export const Catalog = () => {
     try {
       const data = await searchMovie(formValues);
       setSearchResult(data);
+      setFilterValue('')
     } catch (err) {
       console.error(err);
     }
