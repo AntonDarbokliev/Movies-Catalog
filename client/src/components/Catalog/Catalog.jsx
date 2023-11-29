@@ -25,7 +25,6 @@ export const Catalog = () => {
       );
     }
     if(filterValue !== ''){
-      //GET all movies here and put them in the sort movies
       movieService.get('/all')
       .then(data => {
        allMovies.current = data
