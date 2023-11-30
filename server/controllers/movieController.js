@@ -1,6 +1,6 @@
 const commentService = require("../services/commentService.js");
 const movieService = require("../services/movieService.js");
-const { vote, getVotesForMovie } = require("../services/voteService.js");
+const { vote, getVotesForMovie, getVotesForUser } = require("../services/voteService.js");
 const errorHandler = require("../utils/errorHandler.js");
 const movieController = require("express").Router();
 
@@ -132,6 +132,16 @@ movieController.get("/vote/:id", async (req, res) => {
   try {
     const currentVotes = await getVotesForMovie(req.params.id);
     res.json(currentVotes);
+  } catch (err) {
+    const errObj = errorHandler(err);
+    res.status(500).json(errObj);
+  }
+});
+
+movieController.get("/vote/user/:id", async (req, res) => {
+  try {
+    const userVotes = await getVotesForUser(req.params.id);
+    res.json(userVotes);
   } catch (err) {
     const errObj = errorHandler(err);
     res.status(500).json(errObj);
