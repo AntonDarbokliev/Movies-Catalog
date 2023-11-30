@@ -7,29 +7,42 @@ import { useEffect, useState } from "react";
 import { movieFactory } from "../../../services/movieService.js";
 import { useParams } from "react-router-dom";
 import { RatingCard } from "../../RatingCard/RatingCard.jsx";
+import { authServiceFactory } from "../../../services/authService.js";
 
 
 export const UserRatings = () => {
 
   const movieService =  movieFactory()
+  const authService = authServiceFactory()
   const [votes,setVotes]  = useState([])
+  const [user,setUser] = useState({})
   const {id} = useParams()
+
+  useEffect(() => {
+    authService.getUser(id)
+    .then(data => setUser(data))
+    .catch(err => console.log(err))
+  },[id])
 
   useEffect(() => {
     movieService.get(`/vote/user/${id}`)
     .then(data => setVotes(data.reverse()))
+    .catch(err => console.log(err))
   
-  },[])
+  },[id])
   
-  const { username } = useAuthContext()
   
 
   return (
     <div id="userRatingsDiv">
-      <h1 id="header">{username}'s Ratings</h1>
+      <h1 id="header">{user.username}'s Ratings</h1>
       <div id="userRatings">
+        {votes.length == 0 && 
+          <h1 id="noRatings">{user.username} hasn't rated any movies yet</h1>
+        }
         {votes.map(x =>
-            <RatingCard 
+            <RatingCard
+            key={x._id} 
             icon={x.vote == 'upvote' ? likeIcon : dislikeIcon} 
             title={x.movieId.name} 
             year={x.movieId.year} 

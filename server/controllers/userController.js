@@ -1,4 +1,4 @@
-const { register, login } = require('../services/userService.js')
+const { register, login, getUser } = require('../services/userService.js')
 const errorHandler = require('../utils/errorHandler.js')
 
 const userController = require('express').Router()
@@ -27,6 +27,17 @@ const userController = require('express').Router()
 
     userController.get('/logout',async (req,res) => {
         return res.json({message : 'Successfully logged out!'})
+    })
+
+
+    userController.get('/:id',async (req,res) => {
+        try {
+            const user = await getUser(req.params.id)
+            res.json(user)
+        } catch (err) {
+            const errObj = errorHandler(err)
+            res.status(404).json(errObj);            
+        }
     })
 
 

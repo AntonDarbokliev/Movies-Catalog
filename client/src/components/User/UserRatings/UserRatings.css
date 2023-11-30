@@ -2,6 +2,10 @@
     color: var(--main-accent-color);
 }
 
+#noRatings{
+    color: var(--main-accent-color);
+}
+
 #userRatings {
      list-style: none;
 }

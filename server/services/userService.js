@@ -45,7 +45,12 @@ async function login(userData) {
   }
 }
 
+async function getUser(id) {
+  return User.findOne({_id: id})
+}
+
 module.exports = {
   register,
   login,
+  getUser
 };
