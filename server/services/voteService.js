@@ -6,7 +6,7 @@ async function getVotesForMovie(givenMovieId){
 }
 
 async function getVotesForUser(userId){
-    return Vote.find({ownerId: userId})
+    return Vote.find({ownerId: userId}).populate('movieId')
 }
 
 async function vote(voteData){

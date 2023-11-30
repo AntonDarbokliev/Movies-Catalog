@@ -2,28 +2,33 @@ import likeIcon from "../../../assets/images/like.png";
 import dislikeIcon from "../../../assets/images/dislike.png";
 import "./UserRatings.css";
 import { MovieCard } from "../../Shared/MovieCard/MovieCard.jsx";
+import { useAuthContext } from "../../../contexts/AuthContext.jsx";
+import { useEffect, useState } from "react";
+import { movieFactory } from "../../../services/movieService.js";
+import { useParams } from "react-router-dom";
 
 
 export const UserRatings = () => {
+
+  const movieService =  movieFactory()
+  const [votes,setVotes]  = useState([])
+  const {id} = useParams()
+
+  useEffect(() => {
+    movieService.get(`/vote/user/${id}`)
+    .then(data => setVotes(data.reverse()))
+  
+  },[])
+  
+  const { username } = useAuthContext()
+  
+
   return (
     <div id="userRatingsDiv">
-      <h1 id="header">Anton's Ratings</h1>
-      <ul id="userRatings">
-      <li className="ratedMovie">
-          <MovieCard movieId={12} imageUrl={'https://m.media-amazon.com/images/M/MV5BNWI3ZmY4NmItMGQ4My00ODJlLWJlNTktYjk2NzRkODU3YTNlXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_FMjpg_UX1000_.jpg'}/>
-          <div id="movieRating">
-            <p>Five nights at Freddy's</p>
-            <img id="ratingIcon" src={likeIcon} alt="like/dislike icon" />
-          </div>
-        </li>
-        <li className="ratedMovie">
-        <MovieCard movieId={12} imageUrl={'https://m.media-amazon.com/images/M/MV5BNWI3ZmY4NmItMGQ4My00ODJlLWJlNTktYjk2NzRkODU3YTNlXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_FMjpg_UX1000_.jpg'}/>
-          <div id="movieRating">
-            <p>Five nights at Freddy's</p>
-            <img id="ratingIcon" src={dislikeIcon} alt="like/dislike icon" />
-          </div>
-        </li>
-      </ul>
+      <h1 id="header">{username}'s Ratings</h1>
+      <div id="userRatings">
+        {votes.map(x => <MovieCard movieId={x.movieId._id} imageUrl={x.movieId.moviePoster}/>  )}
+      </div>
     </div>
   );
 };

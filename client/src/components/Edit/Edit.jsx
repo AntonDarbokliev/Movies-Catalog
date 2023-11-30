@@ -1,23 +1,16 @@
-import { useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { useEffect } from "react"
+import { useParams } from "react-router-dom"
 import { movieFactory } from "../../services/movieService.js"
 import { useForm } from "../../hooks/useForm.js"
 import { EditCreateForm } from "../Shared/EditCreateForm/EditCreateForm.jsx"
-import { useErrorContext } from "../../contexts/ErrorContext.jsx"
-import { useAuthContext } from "../../contexts/AuthContext.jsx"
 import { useMovieContext } from "../../contexts/MovieContext.jsx"
-import { Modal } from "../Shared/Modal/Modal.jsx"
 
 
 
 export const Edit = () => {
     const {id} = useParams()
 
-    // const navigate = useNavigate()
     const movieService = movieFactory()
-    // const [openModal,setOpenModal] = useState()
-    // const {setErrors} = useErrorContext()
-    // const {userId} = useAuthContext()
     const {edit} = useMovieContext()
 
     const onEditClick = async (values) => {
