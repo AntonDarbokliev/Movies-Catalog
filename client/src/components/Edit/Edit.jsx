@@ -4,28 +4,26 @@ import { movieFactory } from "../../services/movieService.js"
 import { useForm } from "../../hooks/useForm.js"
 import { EditCreateForm } from "../Shared/EditCreateForm/EditCreateForm.jsx"
 import { useErrorContext } from "../../contexts/ErrorContext.jsx"
-import { useLocalStorage } from "../../hooks/useLocalStorage.js"
 import { useAuthContext } from "../../contexts/AuthContext.jsx"
+import { useMovieContext } from "../../contexts/MovieContext.jsx"
+import { Modal } from "../Shared/Modal/Modal.jsx"
+
 
 
 export const Edit = () => {
-    const navigate = useNavigate()
     const {id} = useParams()
-    const movieService = movieFactory()
-    const {setErrors} = useErrorContext()
-    const {userId} = useAuthContext()
 
-    const onEditSubmit = async (values) => {
-        const result = confirm('Are you sure want to edit this movie : ' + values.name)
-        if(result){
-            try {
-                await movieService.put(id,values,userId)
-                navigate(`/movie/${id}/details`)
-            } catch (err) {
-                setErrors(err)
-            }
-        }
+    // const navigate = useNavigate()
+    const movieService = movieFactory()
+    // const [openModal,setOpenModal] = useState()
+    // const {setErrors} = useErrorContext()
+    // const {userId} = useAuthContext()
+    const {edit} = useMovieContext()
+
+    const onEditClick = async (values) => {
+        await edit(values,id)
     } 
+
     
     const {formValues , onChangeHandler,onSubmit, changeValues} = useForm({
         name : '' , 
@@ -39,7 +37,7 @@ export const Edit = () => {
         movieTrailer : '',
         description: '',
         genres: '',
-    },onEditSubmit)
+    },onEditClick)
 
     useEffect(() => {
         movieService.get(`/${id}`)
@@ -51,9 +49,18 @@ export const Edit = () => {
             .catch(err => console.error(err))
     },[id])
 
+   
+    
     return (
         <>
-        <EditCreateForm onSubmit={onSubmit} onChangeHandler={onChangeHandler} formValues={formValues} text={'Edit'} />
+        <EditCreateForm 
+        onSubmit={onSubmit} 
+        onChangeHandler={onChangeHandler} 
+        formValues={formValues} 
+        text={'Edit'} 
+        modalText={`Are you sure you want to edit ${formValues.name}`}
+        modalTitle={'Edit Movie'}
+        />
         </>
     )
 }

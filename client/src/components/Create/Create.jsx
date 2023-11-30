@@ -3,33 +3,38 @@ import { useForm } from "../../hooks/useForm.js";
 import { EditCreateForm } from "../Shared/EditCreateForm/EditCreateForm.jsx";
 import { FormField } from "../Shared/FormField/FormField.jsx";
 import { SubmitButton } from "../Shared/SubmitButton/SubmitButton.jsx";
-import './Create.css' 
-
+import "./Create.css";
 
 export const Create = () => {
-
-  const { onMovieCreateSubmit } = useMovieContext()
+  const { onMovieCreateSubmit } = useMovieContext();
 
   const { formValues, onChangeHandler, onSubmit } = useForm(
     {
       name: "",
       director: "",
-      year: '',
+      year: "",
       topCast: "",
       moviePoster: "",
       movieImagesOne: "",
       movieImagesTwo: "",
       movieImagesThree: "",
-      movieTrailer : "",
+      movieTrailer: "",
       description: "",
       genres: "",
     },
     onMovieCreateSubmit
   );
-  
+
   return (
     <>
-      <EditCreateForm onSubmit={onSubmit} onChangeHandler={onChangeHandler} formValues={formValues} text={'Create'} />
+      <EditCreateForm
+        onSubmit={onSubmit}
+        onChangeHandler={onChangeHandler}
+        formValues={formValues}
+        text={"Create"}
+        modalText={"Are you sure you want to create a movie?"}
+        modalTitle={'Create a Movie'}
+      />
     </>
   );
 };

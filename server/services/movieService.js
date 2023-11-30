@@ -81,7 +81,6 @@ async function movieSearch(movieName, movieGenres,skip,pageSize) {
 
     return movies;
   } else {
-    console.log('else case');
     const movies = await Movie.find({})
     .skip(skip)
     .limit(pageSize)

@@ -70,6 +70,7 @@ export const MovieDetails = () => {
 
   const handleSubmitModal = async () => {
     setOpenModal(false)
+    console.log('yess');
     await onDelete(movieId)
   }
 
@@ -90,9 +91,9 @@ export const MovieDetails = () => {
               <img src={editIcon} id="editIcon"></img>
             </Link>
             <button id="deleteButton" 
-            // onClick={() => onDelete(movieId)}
+            onClick={() => setOpenModal(true)}
             >
-            <img src={binIcon} id="editIcon"></img>
+            <img src={binIcon} id="editIcon" ></img>
             </button>
           </div>
         )} 

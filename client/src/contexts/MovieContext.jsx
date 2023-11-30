@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { movieFactory } from "../services/movieService.js";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useErrorContext } from "./ErrorContext.jsx";
 import { useAuthContext } from "./AuthContext.jsx";
 import { voteFactory } from "../services/voteService.js";
@@ -13,6 +13,7 @@ export const MovieProvider = ({ children }) => {
   const navigate = useNavigate();
   const { setErrors } = useErrorContext();
   const { userId } = useAuthContext();
+  const {id} = useParams()
   const [searchParams, setSearchParams] = useSearchParams();
   const voteService = voteFactory();
 
@@ -29,12 +30,9 @@ export const MovieProvider = ({ children }) => {
   }, [page,pageSize,name,genres]);
 
   const onDelete = async (id) => {
-    const result = confirm(`Are you sure you want to delete this movie?`);
-    if (result) {
       await movieService.delete(id, userId);
       setMovies((state) => state.filter((x) => x._id !== id));
       navigate("/movie/catalog");
-    }
   };
 
   const  getLastThree = async () => {
@@ -50,6 +48,15 @@ export const MovieProvider = ({ children }) => {
       setErrors(err)
     }
   };
+  
+  const edit = async (values,movieId) => {
+    try {
+      await movieService.put(movieId,values,userId)
+      navigate(`/movie/${movieId}/details`)
+  } catch (err) {
+      setErrors(err)
+  }
+  }
 
   const onMovieCreateSubmit = async (movieData) => {
     const {
@@ -126,7 +133,8 @@ export const MovieProvider = ({ children }) => {
     vote,
     extractYouTubeVideoId, 
     getLastThree,
-    setMovies
+    setMovies,
+    edit
   };
 
   return (
