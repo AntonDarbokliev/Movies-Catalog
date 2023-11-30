@@ -1,0 +1,37 @@
+#ratingDiv{
+    display: flex;
+    background-color: var(--main-background-color);
+    margin-bottom: 20px;
+    border: 2px var(--main-accent-color) solid;
+    border-radius: 5px;
+    padding: 30px;
+}
+
+#voteIcon{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    right: 100px;
+    top: 280px;
+}
+
+#movieInfo{
+    color: var(--main-accent-color);
+    position: relative;
+    left: 100px;
+    /* padding: 100px; */
+}
+
+/* #movieTitle{
+    color: var(--main-accent-color);
+}
+
+#movieYear{
+    color: var(--main-accent-color);
+
+}
+
+#movieGenres{
+    color: var(--main-accent-color);
+
+} */
