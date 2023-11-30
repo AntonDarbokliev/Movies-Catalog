@@ -1,15 +1,25 @@
+import { SubmitButton } from '../SubmitButton/SubmitButton.jsx';
 import './Modal.css'
 
 export const Modal = ({title,text,onClose,onSubmit}) => {
+  const modalClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  }
+
   return (
-    <div id="modalContainer">
-      <div id="modalOverlay" onClick={onClose}></div>
-      <div id="modalContent">
+    <>
+      <div id="modalContainer" onClick={onClose}>
+      <div id="modalContent" onClick={modalClick}>
         <h2 id="modalTitle">{title}</h2>
         <p id="modalText">{text}</p>
-        <button onClick={onSubmit}>Yes</button>
-        <button onClick={onClose}>Close</button>
+        <SubmitButton text={'Yes'} onClick={onSubmit}/>
+        <SubmitButton text={'No'} onClick={onClose}/>
+        {/* <button id='closeButton' onClick={onSubmit}>Yes</button>
+        <button id='closeButton' onClick={onClose}>Close</button> */}
       </div>
     </div>
+    </>
   );
 };
