@@ -1,3 +1,4 @@
+import { Fade } from "react-awesome-reveal"
 import { SubmitButton } from "../Shared/SubmitButton/SubmitButton.jsx"
 import './NewsCard.css'
 
@@ -12,6 +13,7 @@ export const NewsCard = ({
 }) => {
     
     return (
+        <Fade>
         <div id="newsCard">
             <h2 id="newsTitle">{title}</h2>
             <p id="newsDate">{publishedAt}</p>
@@ -22,5 +24,6 @@ export const NewsCard = ({
                 <SubmitButton text={'Read More'}/>            
             </a>
         </div>
+        </Fade>
     )
 }

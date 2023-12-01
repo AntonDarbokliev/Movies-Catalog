@@ -9,6 +9,9 @@ import { Pagination } from "../Pagination/Pagination.jsx";
 import { movieFactory } from "../../services/movieService.js";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
+import { Fade } from "react-awesome-reveal";
+
+
 export const Catalog = () => {
   const { searchMovie, movies} = useMovieContext();
   const [searchResult, setSearchResult] = useState([]);

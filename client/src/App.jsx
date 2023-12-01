@@ -29,19 +29,16 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />}></Route>
                 <Route path="/about" element={<About />}></Route>
-                <Route path="/news" element={<News />}></Route> 
-                <Route
-                  path="movie/:movieId/details"
-                  element={<MovieDetails />}
-                ></Route>
+                <Route path="/news" element={<News />}></Route>
+                <Route path="movie/:movieId/details" element={<MovieDetails />}></Route>
 
                 <Route element={<RouteGuard />}>
-                    <Route path="/movie/create" element={<Create />}></Route>
-                    <Route
-                      path="user/:id/ratings"
-                      element={<UserRatings />}
-                    ></Route>
-                    <Route path="/movie/:id/edit" element={<Edit />}></Route>
+                  <Route path="/movie/create" element={<Create />}></Route>
+                  <Route
+                    path="user/:id/ratings"
+                    element={<UserRatings />}
+                  ></Route>
+                  <Route path="/movie/:id/edit" element={<Edit />}></Route>
                 </Route>
 
                 <Route path="user/register" element={<Register />}></Route>

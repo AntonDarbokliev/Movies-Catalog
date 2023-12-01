@@ -10,7 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
     "react": "^18.2.0",
+    "react-awesome-reveal": "^4.2.7",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.17.0"
   },

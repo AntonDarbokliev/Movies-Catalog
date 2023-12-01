@@ -14,6 +14,7 @@ import { useMovieContext } from "../../contexts/MovieContext.jsx";
 import { useAuthContext } from "../../contexts/AuthContext.jsx";
 import { voteFactory } from "../../services/voteService.js";
 import { Modal } from "../Shared/Modal/Modal.jsx";
+import { Bounce } from "react-awesome-reveal";
 
 export const MovieDetails = () => {
   const { movieId } = useParams();
@@ -73,6 +74,7 @@ export const MovieDetails = () => {
     console.log('yess');
     await onDelete(movieId)
   }
+  
 
   return (
     <>
@@ -158,12 +160,14 @@ export const MovieDetails = () => {
         <div className="ratingDiv">
           { userId && details.owner?.id != userId && !votes.some(x => x.ownerId == userId) && (
               <>
+              <Bounce>
                 <button id="upvote" onClick={() => onVoteSubmit("upvote",movieId,userId)}>
                   <img id="likeButton" src={likeIcon} alt="" />
                 </button>
                 <button id="downvote" onClick={() => onVoteSubmit("downvote",movieId,userId)}>
                   <img id="dislikeButton" src={disklikeIcon} alt=""></img>
                 </button>
+            </Bounce>
               </>
             )}
           <p id="rating">

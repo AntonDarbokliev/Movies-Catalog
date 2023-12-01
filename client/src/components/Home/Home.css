@@ -10,7 +10,12 @@
 }
 .homeMovies{
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    /* flex-wrap: wrap; */
+    /* justify-content: space-between; */
     margin-top: 50px;
+    /* padding: 100px; */
+}
+
+.homeMovies > *{
+    margin-left: 30px;
 }
