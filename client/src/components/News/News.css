@@ -1,0 +1,14 @@
+#newsContainer{
+    display: flex;
+    margin: 20px;
+    flex-wrap: wrap;
+}
+
+#newsContainer > *{
+    position: relative;
+    left: 100px;
+}
+
+#newsHeading{
+    color: var(--main-accent-color);
+}

@@ -15,6 +15,7 @@ import { Edit } from "./components/Edit/Edit.jsx";
 import { ErrorProvider } from "./contexts/ErrorContext.jsx";
 import { ErrorNotification } from "./components/ErrorNotification/ErrorNotification.jsx";
 import { RouteGuard } from "./components/Shared/RouteGuard/RouteGuard.jsx";
+import { News } from "./components/News/News.jsx";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />}></Route>
                 <Route path="/about" element={<About />}></Route>
+                <Route path="/news" element={<News />}></Route> 
                 <Route
                   path="movie/:movieId/details"
                   element={<MovieDetails />}
