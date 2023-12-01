@@ -10,9 +10,10 @@ export const NavBar = () => {
 
     return (
         <div className="navBar">
-            <img src={logo} alt="logo" className='logo'/>
+            <Link to="/" className='link'><img src={logo} alt="logo" className='logo'/></Link>
             <Link to="/" className='link'>Home</Link>
             <Link to="/movie/catalog" className='link'>Catalog</Link>
+            <Link to="/news" className='link'>News</Link>
             {isAuthenticated && 
             <>
             <Link to="/movie/create" className='link'>Create</Link>

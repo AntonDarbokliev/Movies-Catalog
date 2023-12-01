@@ -156,7 +156,7 @@ export const MovieDetails = () => {
       <div className="genreRating">
         <p className="genres"> {details.genres?.join(", ")}</p>
         <div className="ratingDiv">
-          { userId && !votes.some(x => x.ownerId == userId) && (
+          { userId && details.owner?.id != userId && !votes.some(x => x.ownerId == userId) && (
               <>
                 <button id="upvote" onClick={() => onVoteSubmit("upvote",movieId,userId)}>
                   <img id="likeButton" src={likeIcon} alt="" />

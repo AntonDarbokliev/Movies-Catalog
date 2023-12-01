@@ -1,0 +1,28 @@
+#newsCard > * {
+    color: white;
+}
+
+#newsCard{
+    width: 500px;
+    margin: 20px;
+}
+
+#newsTitle{
+    color: var(--main-accent-color);
+}
+
+.yellowSpan{
+    color: var(--main-accent-color);
+}
+
+#newsCard img{
+    width: 500px;
+    border: 2px var(--main-accent-color) solid;
+}
+
+#newsCard{
+    background-color: var(--main-background-color);
+    border: 2px var(--main-accent-color) solid;
+    padding: 20px;
+    border-radius: 4px;
+}
