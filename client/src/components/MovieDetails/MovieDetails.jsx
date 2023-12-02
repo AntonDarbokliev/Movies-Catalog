@@ -182,7 +182,11 @@ export const MovieDetails = () => {
             )}
             
           <p id="rating">
-            User rating: {(votes?.filter(x => x.vote == 'upvote')).length - (votes?.filter(x => x.vote == 'downvote')).length }K
+          User rating: {
+          ((votes?.filter(x => x.vote === 'upvote')).length - (votes?.filter(x => x.vote === 'downvote')).length) !== 0
+      ? `${(votes?.filter(x => x.vote === 'upvote')).length - (votes?.filter(x => x.vote === 'downvote')).length}K`
+      : '0'
+  }
           </p>
             <p id="ratingCount" >Total votes: {votes.length}</p>
             <p id="ratingNote">Note: Votes are measured by subracting the downvotes from the upvotes </p>

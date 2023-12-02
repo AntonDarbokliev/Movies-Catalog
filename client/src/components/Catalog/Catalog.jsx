@@ -11,8 +11,6 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { Spinner } from "../Shared/Spinner/Spinner.jsx";
 
-import { Fade } from "react-awesome-reveal";
-
 
 export const Catalog = () => {
   const { searchMovie, movies} = useMovieContext();
@@ -128,9 +126,7 @@ export const Catalog = () => {
 
       <div id="catalogContainer">
         {searchResult.map((x) => (
-        <Fade>
           <MovieCard movieId={x._id} key={x._id} imageUrl={x.moviePoster} />
-          </Fade>
           ))}
       </div>
       <Pagination/>
