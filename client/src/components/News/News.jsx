@@ -14,7 +14,7 @@ export const News = () => {
       }
       
     useEffect(() => {
-        fetch(`https://gnews.io/api/v4/search?q=movie&in=title&lang=en&max=8&apikey=${import.meta.env.VITE_NEWS_API_KEY}`)
+        fetch(`https://gnews.io/api/v4/search?q=movie&in=title&lang=en&max=8&country=us&apikey=${import.meta.env.VITE_NEWS_API_KEY}`)
         .then(res => res.json())
         .then(data => {
             setNews(data.articles)

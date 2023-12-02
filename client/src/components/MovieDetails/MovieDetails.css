@@ -1,185 +1,195 @@
-.imageDiv{
-    margin-right: 150px;
-    padding: 20px;
+.imageDiv {
+  margin-right: 150px;
+  padding: 20px;
 }
 
-#poster{
-    position: relative;
-    left: 30px;
-    /* margin-left: 10px; */
+#poster {
+  position: relative;
+  left: 30px;
+  /* margin-left: 10px; */
 }
 
-.movieImage{
-    border: 3px black solid;
+.movieImage {
+  border: 3px black solid;
 }
 
-.container{
-    display: flex;
-    align-items: center;
+.container {
+  display: flex;
+  align-items: center;
 }
 
 .movieInfo {
-    position: relative;
-    right: 60px;
-    background-color: var(--main-background-color);
-    border: 3px var(--main-accent-color) solid;
-    padding: 10px 20px;
+  position: relative;
+  right: 60px;
+  background-color: var(--main-background-color);
+  border: 3px var(--main-accent-color) solid;
+  padding: 10px 20px;
 }
 .movieInfo ul {
-    list-style: none;
-    font-size: x-large;    
-    text-align: left;
-
+  list-style: none;
+  font-size: x-large;
+  text-align: left;
 }
 
-.genres{
-    color: var(--main-accent-color);
-    font-size:x-large;
+.genres {
+  color: var(--main-accent-color);
+  font-size: x-large;
 }
 
-.genreRating{
-    display: flex;
+.genreRating {
+  display: flex;
 }
 
-.ratingDiv button{
-    margin-right: 20px;
-    background: none;
-    border: none;
+.ratingDiv button {
+  margin-right: 20px;
+  background: none;
+  border: none;
 }
 
-.ratingDiv button:hover{
-    background-color: var(--main-accent-color);
-    cursor: pointer;
+.ratingDiv button:hover {
+  background-color: var(--main-accent-color);
+  cursor: pointer;
 }
 
-.genres{
-    margin-right: 20px;
+.genres {
+  margin-right: 20px;
 }
 
 #rating {
-    font-size: x-large;
-    color: var(--main-accent-color);
-    margin-right: 200px;
+  font-size: x-large;
+  color: var(--main-accent-color);
+  margin-right: 200px;
 }
 
 .ratingDiv {
-    display: flex;
-    position: relative;
-    left: 290px;
+  display: flex;
+  position: relative;
+  left: 290px;
 }
 
-
-.movieInfo ul li span{
-    color: white;
-    display: flex;
+.movieInfo ul li span {
+  color: white;
+  display: flex;
 }
 
-#addComment{
-        width: 150px;
-        height: 50px;
-        margin-top: 20px;
-        background-color: var(--main-accent-color);
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        position: relative;
-        left: 15px;
-        /* display: none; */
+#addComment {
+  width: 150px;
+  height: 50px;
+  margin-top: 20px;
+  background-color: var(--main-accent-color);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  left: 15px;
+  /* display: none; */
 }
 
-#addComment:hover{
-    background-color: var(--accent-color-hover);
-    /* color: var(--main-text-color); */
+#addComment:hover {
+  background-color: var(--accent-color-hover);
+  /* color: var(--main-text-color); */
 }
-
 
 #title {
-    color : var(--main-accent-color);
-    font-weight: bold;
-    font-family: var(--main-font-family);
-    padding-left: 500px;
-    padding-right: 464px;
-    
+  color: var(--main-accent-color);
+  font-weight: bold;
+  font-family: var(--main-font-family);
+  padding-left: 500px;
+  padding-right: 464px;
 }
 
-.movieImages li{
-    margin-right: 10px;
+.movieImages li {
+  margin-right: 10px;
 }
 
 .movieImages ul {
-    display: flex;
-    list-style: none;
-    padding: 0;
+  display: flex;
+  list-style: none;
+  padding: 0;
 }
 
-.description{
-    border: 3px var(--main-accent-color) solid;
-    font-family:var(--main-text-font);
+.description {
+  border: 3px var(--main-accent-color) solid;
+  font-family: var(--main-text-font);
+  font-size: x-large;
+  padding: 40px;
+  padding-left: 80px;
+  padding-right: 80px;
+  background-color: var(--main-background-color);
+  color: white;
+}
+
+.videoPlayer {
+  position: relative;
+  right: 90px;
+}
+
+#movieInfoList li {
+  color: var(--main-accent-color);
+}
+
+.ratingDiv img {
+  border: none;
+  width: 60px;
+}
+
+.movieImage {
+  width: 300px;
+}
+
+#comments {
+  list-style: none;
+}
+
+#editIcon {
+  width: 46px;
+}
+
+#titleButtonsWrap {
+  display: flex;
+  align-items: center;
+}
+
+#editButton {
+  /* border: none; */
+  /* width: 60px; */
+}
+
+#deleteButton {
+  border: none;
+  background: none;
+
+  margin-left: 10px;
+}
+
+#deleteButton:hover {
+  cursor: pointer;
+}
+
+.movieHomeImage:hover {
+  transform: scale(1.1);
+}
+
+.movieHomeImage {
+  transform-origin: center center;
+  transition: transform 0.2s ease-in-out;
+}
+
+
+#ratingCount{
     font-size: x-large;
-    padding: 40px;
-    padding-left: 80px;
-    padding-right: 80px;
-    background-color: var(--main-background-color);
-    color: white;    
-}
-
-.videoPlayer{
-    position: relative;
-    right: 90px;
-}
-
-#movieInfoList li{
     color: var(--main-accent-color);
+    margin-bottom: 40px;
+    position: relative;
+    right: 160px;
 }
 
-.ratingDiv img{
-    border: none;
-    width: 60px;
+#ratingNote{
+    font-size:medium;
+    color: var(--main-accent-color);
+    margin-right: 200px;
+    position: absolute;
+    top: 46px;
+    white-space: nowrap;
+    right: -170px;
 }
-
-.movieImage{
-    width: 300px;
-}
-
-
-#comments{
-    list-style: none;
-}
-
-#editIcon{
-    width: 46px;
-}
-
-#titleButtonsWrap{
-    display: flex;
-    align-items: center;
-    
-}
-
-#editButton{
-    /* border: none; */
-    /* width: 60px; */
-
-}
-
-#deleteButton{
-    border: none;
-    background: none;
-    
-    margin-left: 10px;
-
- }
-
-#deleteButton:hover{
-    cursor: pointer;
-}
-
-.movieHomeImage:hover{
-    transform: scale(1.1)
-}
-
-
-  .movieHomeImage{
-    transform-origin: center center;
-    transition: transform 0.2s ease-in-out;
-  }

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { SubmitButton } from "../Shared/SubmitButton/SubmitButton.jsx";
 import "./Catalog.css";
 import { MovieCard } from "../Shared/MovieCard/MovieCard.jsx";
@@ -11,6 +11,8 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { Spinner } from "../Shared/Spinner/Spinner.jsx";
 
+import { Fade } from "react-awesome-reveal";
+
 
 export const Catalog = () => {
   const { searchMovie, movies} = useMovieContext();
@@ -20,7 +22,7 @@ export const Catalog = () => {
   const allMovies = useRef([])
   const navigate = useNavigate()
   const [searchParams,setSearchParams] = useSearchParams()
-  const [isLoading,setIsLoading] = useState(true)
+  const [isLoading,setIsLoading] = useState()
 
 
   useEffect(() => {
@@ -29,6 +31,7 @@ export const Catalog = () => {
         `?name=&genres=&page=1&pageSize=8`
       );
     }
+    setIsLoading(true)
     if(filterValue !== ''){
       movieService.get('/all')
       .then(data => {
@@ -52,7 +55,7 @@ export const Catalog = () => {
   const onSearchSubmit = async () => {
     try {
       const data = await searchMovie(formValues);
-      setSearchResult(data);
+    setSearchResult(data);
       setFilterValue('')
     } catch (err) {
       console.error(err);
@@ -67,7 +70,7 @@ export const Catalog = () => {
     onSearchSubmit
   );
 
-  const sortMovies = (movies, sortBy) => {
+  const sortMovies = useCallback( (movies, sortBy) => {
     switch (sortBy) {
       case "yearNewest":
         return movies.sort((a,b) => b.year - a.year)
@@ -80,7 +83,7 @@ export const Catalog = () => {
       default:
         return movies
     }
-  };
+  },[])
 
   const onSortChange = (e) => {
     setFilterValue(e.target.value)
@@ -125,8 +128,10 @@ export const Catalog = () => {
 
       <div id="catalogContainer">
         {searchResult.map((x) => (
+        <Fade>
           <MovieCard movieId={x._id} key={x._id} imageUrl={x.moviePoster} />
-        ))}
+          </Fade>
+          ))}
       </div>
       <Pagination/>
       

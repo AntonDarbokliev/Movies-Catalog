@@ -44,6 +44,8 @@ export const MovieDetails = () => {
         setIsLoading(false)
       } )
       .catch((err) => console.error(err));
+
+      
   }, [movieId]);
 
   useEffect(() => {
@@ -178,10 +180,12 @@ export const MovieDetails = () => {
             </Bounce>
               </>
             )}
+            
           <p id="rating">
             User rating: {(votes?.filter(x => x.vote == 'upvote')).length - (votes?.filter(x => x.vote == 'downvote')).length }K
-            {/* User rating: {details.upvotes?.length - details.downvotes?.length}K //OLD VOTES */}
           </p>
+            <p id="ratingCount" >Total votes: {votes.length}</p>
+            <p id="ratingNote">Note: Votes are measured by subracting the downvotes from the upvotes </p>
         </div>
       </div>
 
