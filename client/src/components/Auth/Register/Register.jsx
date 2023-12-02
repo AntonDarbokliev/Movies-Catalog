@@ -92,8 +92,8 @@ export const Register = () => {
         isRepeatPasswordInvalid ? true : false }
         />
 
-      <p id="loginLink">
-        Already have an account? Login <Link to="/user/login">here</Link>!
+      <p id="loginLink" >
+        Already have an account? Login <Link to="/user/login" style={{color:'yellow'}}>here</Link>!
       </p>
     </form>
   );

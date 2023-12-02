@@ -9,7 +9,7 @@ import { Pagination } from "../Pagination/Pagination.jsx";
 import { movieFactory } from "../../services/movieService.js";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
-import { Fade } from "react-awesome-reveal";
+import { Spinner } from "../Shared/Spinner/Spinner.jsx";
 
 
 export const Catalog = () => {
@@ -20,6 +20,8 @@ export const Catalog = () => {
   const allMovies = useRef([])
   const navigate = useNavigate()
   const [searchParams,setSearchParams] = useSearchParams()
+  const [isLoading,setIsLoading] = useState(true)
+
 
   useEffect(() => {
     if(!searchParams.get('page')){
@@ -40,6 +42,7 @@ export const Catalog = () => {
     }else if(movies.length > 0){
       setSearchResult(movies);
     }
+    setIsLoading(false)
 
   }, [movies,filterValue]);
   
@@ -85,6 +88,7 @@ export const Catalog = () => {
 
   return (
     <>
+      {isLoading && <Spinner/>}
       <div id="searchContainer">
         <h1>Search a Movie</h1>
         <div id="searchField">

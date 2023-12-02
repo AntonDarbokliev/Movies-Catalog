@@ -15,6 +15,7 @@ import { useAuthContext } from "../../contexts/AuthContext.jsx";
 import { voteFactory } from "../../services/voteService.js";
 import { Modal } from "../Shared/Modal/Modal.jsx";
 import { Bounce } from "react-awesome-reveal";
+import { Spinner } from "../Shared/Spinner/Spinner.jsx";
 
 export const MovieDetails = () => {
   const { movieId } = useParams();
@@ -25,6 +26,9 @@ export const MovieDetails = () => {
   const {onDelete , vote, extractYouTubeVideoId} = useMovieContext()
   const [votes,setVotes] = useState([])
   const [openModal,setOpenModal] = useState(false)
+  const [isLoading,setIsLoading] = useState(true)
+
+
   
 
   const movieService = movieFactory();
@@ -35,7 +39,10 @@ export const MovieDetails = () => {
   window.scrollTo(0, 0)
     movieService
       .get(`/${movieId}`)
-      .then((movie) => setDetails(movie))
+      .then((movie) => {
+        setDetails(movie)
+        setIsLoading(false)
+      } )
       .catch((err) => console.error(err));
   }, [movieId]);
 
@@ -78,6 +85,7 @@ export const MovieDetails = () => {
 
   return (
     <>
+    {isLoading && <Spinner/>}
     {openModal && 
       <Modal 
       text={`Are you sure you want to delete ${details.name}?`} 

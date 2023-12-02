@@ -8,6 +8,7 @@ import { movieFactory } from "../../../services/movieService.js";
 import { useParams } from "react-router-dom";
 import { RatingCard } from "../../RatingCard/RatingCard.jsx";
 import { authServiceFactory } from "../../../services/authService.js";
+import { Spinner } from "../../Shared/Spinner/Spinner.jsx";
 
 
 export const UserRatings = () => {
@@ -17,10 +18,15 @@ export const UserRatings = () => {
   const [votes,setVotes]  = useState([])
   const [user,setUser] = useState({})
   const {id} = useParams()
+  const [isLoading,setIsLoading] = useState(true)
+
 
   useEffect(() => {
     authService.getUser(id)
-    .then(data => setUser(data))
+    .then(data => {
+      setUser(data)
+      setIsLoading(false)
+    } )
     .catch(err => console.log(err))
   },[id])
 
@@ -35,6 +41,7 @@ export const UserRatings = () => {
 
   return (
     <div id="userRatingsDiv">
+      {isLoading && <Spinner/>}
       <h1 id="header">{user.username}'s Ratings</h1>
       <div id="userRatings">
         {votes.length == 0 && 

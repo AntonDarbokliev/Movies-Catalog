@@ -14,3 +14,7 @@
     margin-left: 300px;
     margin-right: 300px;
 }
+
+.aboutLink{
+    color: var(--main-accent-color);
+}

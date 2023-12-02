@@ -56,7 +56,7 @@ export const Login = () => {
         isPasswordInvalid ? true : false
       }/>
 
-    <p id="registerLink">Don't have an account? Register <Link to='/user/register'>here</Link>!</p>
+    <p id="registerLink">Don't have an account? Register <Link style={{color:'yellow'}} to='/user/register'>here</Link>!</p>
     </form>
   );
 };
