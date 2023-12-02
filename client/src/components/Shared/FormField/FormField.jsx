@@ -7,7 +7,8 @@ export const FormField = ({
     onChange,
     placeholder,
     onBlur,
-    onFocus
+    onFocus,
+    height
 }) => {
     return (
         <input 
@@ -19,6 +20,7 @@ export const FormField = ({
         onChange={onChange}
         onBlur={onBlur}
         onFocus={onFocus}
+        // style={{height:height}}
       />
     )
 }

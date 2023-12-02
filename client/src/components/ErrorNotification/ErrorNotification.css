@@ -15,7 +15,7 @@
     border: 1px solid black;
 }
 
-@keyframes fadeIn {
+/* @keyframes fadeIn {
     from {
       opacity: 0;
       transform: translateY(-10px);
@@ -24,7 +24,7 @@
       opacity: 1;
       transform: translateY(0);
     }
-  }
+  } */
 
 #warningError{
     width: 30px;

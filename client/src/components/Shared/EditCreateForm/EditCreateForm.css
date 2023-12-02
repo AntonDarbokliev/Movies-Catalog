@@ -13,3 +13,16 @@
 #createFormFields{
     /* position: absolute; */
 }
+
+#description{
+    width: 90%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    resize: vertical;
+    position: relative;
+    left: 16px;
+    margin-bottom: 15px;
+}

@@ -99,13 +99,23 @@ export const EditCreateForm = ({
             onChange={onChangeHandler}
             value={formValues.movieTrailer}
           />
-          <FormField
+          {/* <FormField
             type={"text"}
             name={"description"}
             placeholder={"Description"}
             onChange={onChangeHandler}
             value={formValues.description}
-          />
+            // height={'200px'}
+          /> */}
+          <textarea
+          name="description"
+          id="description"
+          cols="23"
+          rows="10"
+          placeholder="Description"
+          value={formValues.description}
+          onChange={onChangeHandler}
+        ></textarea>
           <div style={{ display: "flex" }}>
             <FormField
               type={"text"}

@@ -3,6 +3,7 @@ import { useErrorContext } from "../../contexts/ErrorContext.jsx";
 import warningIcon2 from "../../assets/images/warning2.png";
 
 import "./ErrorNotification.css";
+import { Bounce, Fade } from "react-awesome-reveal";
 
 export const ErrorNotification = () => {
   const { errors, setErrors } = useErrorContext();
