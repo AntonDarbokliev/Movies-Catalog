@@ -11,12 +11,13 @@ export const NewsCard = ({
     url,
     image
 }) => {
+    const publishDate = (new Date(publishedAt)).toLocaleDateString()
     
     return (
         <Fade>
         <div id="newsCard">
             <h2 id="newsTitle">{title}</h2>
-            <p id="newsDate">{publishedAt}</p>
+            <p id="newsDate">{publishDate}</p>
             <img src={image}/>
             <p id="newsDesc">{description}</p>
             <p id="newsSrc"><span className="yellowSpan">Source:</span> <strong>{source}</strong></p>
