@@ -9,10 +9,10 @@ export const Footer = () => {
                     by Anton Darbokliev using React for the Softuni JS Web course 
                  </p>
             <div className='socialLinks'>
-                <a href="https://github.com/AntonDarbokliev">
+                <a target='_blank' href="https://github.com/AntonDarbokliev">
                     <img src={gitHubLogo} alt="Github" />
                 </a>
-                <a href="https://www.linkedin.com/in/anton-darbokliev-778054293/">
+                <a target='_blank' href="https://www.linkedin.com/in/anton-darbokliev-778054293/">
                     <img src={linkedInLogo} alt="LinkedIn" />
                 </a>
             </div> 

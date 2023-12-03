@@ -16,6 +16,15 @@
 
 .socialLinks a img {
   width: 40px;
+  /* margin-left: 20px; */
+}
+
+.socialLinks a{
+  /* margin-left: 20px; */
+  position: relative;
+  margin-left: 10px;
+  bottom: 30px;
+  left: 30px;
 }
 
 
