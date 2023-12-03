@@ -2,7 +2,7 @@ import { requestFactory } from "./requester.js"
 
 export const voteFactory = () => {
     const request =  requestFactory()
-    const baseUrl = 'http://localhost:3000/movie/vote'
+    const baseUrl = `${import.meta.env.VITE_BASE_URL}/movie/vote`
     return {
         getAll: () => request.get(baseUrl),
         get : (movieId) => request.get(baseUrl + `/${movieId}`,{movieId}),

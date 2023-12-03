@@ -2,7 +2,7 @@ import { requestFactory } from "./requester.js"
 
 export const movieFactory = () => {
     const request = requestFactory()
-    const baseUrl = "http://localhost:3000/movie";
+    const baseUrl = `${import.meta.env.VITE_BASE_URL}/movie`;
 
     return {
         get: (additionToPath) => request.get(additionToPath ? baseUrl + additionToPath : baseUrl),

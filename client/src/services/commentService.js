@@ -3,7 +3,7 @@ import {requestFactory} from "./requester.js";
 
 export const commentFactory = () => {
     const request = requestFactory()
-    const baseUrl = "http://localhost:3000/movie/comment";
+    const baseUrl = `${import.meta.env.VITE_BASE_URL}/comment`;
 
     return {
         get : () => request.get(baseUrl),

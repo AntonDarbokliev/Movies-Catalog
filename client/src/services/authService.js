@@ -1,6 +1,6 @@
 import { requestFactory } from "./requester.js";
 
-const baseUrl = 'http://localhost:3000/user'
+const baseUrl = `${import.meta.env.VITE_BASE_URL}/user`
 
 export const authServiceFactory = () => {
     const request = requestFactory()    //TODO: Add token parameter to requestFactory
