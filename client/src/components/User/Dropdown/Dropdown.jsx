@@ -4,7 +4,6 @@ import './Dropdown.css'
 import { Logout } from '../../Auth/Logout/logout.jsx';
 import { useAuthContext } from '../../../contexts/AuthContext.jsx';
 
-
 export const Dropdown = () => {
     const {userId} = useAuthContext()
   return (

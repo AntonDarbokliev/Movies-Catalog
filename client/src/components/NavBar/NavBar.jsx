@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import './NavBar.css'
 import logo from '../../assets/images/logo.png'
-import { Dropdown } from '../User/Dropdown/DropDown.jsx'
+import { Dropdown } from '../User/Dropdown/Dropdown.jsx'
 import { useContext } from 'react'
 import { AuthContext } from '../../contexts/AuthContext.jsx'
 
