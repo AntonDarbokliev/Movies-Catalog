@@ -5,6 +5,7 @@ const connectionString = process.env.DATABASE_CONNECTION_STRING ||  'mongodb://1
 
 module.exports = async () => {
     try{
+        console.log(connectionString);
         await mongoose.connect(connectionString,{
             // useUnifiedTopology : true,
             // useNewUrlParser: true,
