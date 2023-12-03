@@ -13,6 +13,10 @@
   border: 3px black solid;
 }
 
+.movieImages .movieImage {
+  height: 200px;
+}
+
 .container {
   display: flex;
   align-items: center;
