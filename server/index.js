@@ -3,7 +3,7 @@ const expressConfig = require("./config/express.js");
 const routeConfig = require("./config/routes.js");
 const databaseConfig = require('./config/database.js')
 
-const PORT = 3000;
+const PORT = process.env.PORT ||  3000;
 
 async function start() {
   const app = express();
