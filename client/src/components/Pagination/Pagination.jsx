@@ -17,15 +17,15 @@ export const Pagination = () => {
   const movieGenres = searchParams.get("genres") || "";
 
   const goToNextPage = () => {
-    window.scrollTo(0, 0);
     const nextPage = currentPage + 1;
     updateUrl(nextPage);
+    window.scrollTo(0, 0);
   };
 
   const goToPreviousPage = () => {
-    window.scrollTo(0, 0);
     const previousPage = currentPage - 1;
     updateUrl(previousPage);
+    window.scrollTo(0, 0);
   };
 
   const updateUrl = (page) => {

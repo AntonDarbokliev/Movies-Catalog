@@ -34,6 +34,7 @@ export const Catalog = () => {
       movieService.get('/all')
       .then(data => {
        allMovies.current = data
+       setIsLoading(false)
       })
       .then(() => {
         const filteredMovies = sortMovies(allMovies.current,filterValue)
@@ -42,8 +43,9 @@ export const Catalog = () => {
       .catch(err => console.log(err))
     }else if(movies.length > 0){
       setSearchResult(movies);
+      setIsLoading(false)
+
     }
-    setIsLoading(false)
 
   }, [movies,filterValue]);
   
@@ -89,7 +91,7 @@ export const Catalog = () => {
 
   return (
     <>
-      {isLoading && <Spinner/>}
+      {/* {isLoading && <Spinner/>} */}
       <div id="searchContainer">
         <h1>Search a Movie</h1>
         <div id="searchField">
