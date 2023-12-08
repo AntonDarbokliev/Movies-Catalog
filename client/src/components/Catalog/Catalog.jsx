@@ -25,9 +25,8 @@ export const Catalog = () => {
 
   useEffect(() => {
     if(!searchParams.get('page')){
-      navigate(
-        `?name=&genres=&page=1&pageSize=8`
-      );
+      setSearchParams({ name: '', genres: '', page: '1', pageSize: '8' });
+      // navigate();
     }
     setIsLoading(true)
     if(filterValue !== ''){
