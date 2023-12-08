@@ -1,5 +1,3 @@
-import  useMovieStore  from './movieStore.js'
-
 import { useCallback, useEffect, useRef, useState } from "react";
 import { SubmitButton } from "../Shared/SubmitButton/SubmitButton.jsx";
 import "./Catalog.css";
@@ -15,57 +13,41 @@ import { Spinner } from "../Shared/Spinner/Spinner.jsx";
 
 
 export const Catalog = () => {
+  const { searchMovie, movies} = useMovieContext();
+  const [searchResult, setSearchResult] = useState([]);
+  const [filterValue, setFilterValue] = useState("");
   const movieService = movieFactory()
-
-  const {
-    searchResult,
-    filterValue,
-    isLoading,
-    setSearchResult,
-    setFilterValue,
-    setIsLoading,
-    movies,
-    setMovies,
-    searchMovies,
-    loadAllMovies,
-  } = useMovieStore();
-
-
-  // const { searchMovie, movies} = useMovieContext();
-  // const [searchResult, setSearchResult] = useState([]);
-  // const [filterValue, setFilterValue] = useState("");
-  // const movieService = movieFactory()
-  // const allMovies = useRef([])
+  const allMovies = useRef([])
   const navigate = useNavigate()
   const [searchParams,setSearchParams] = useSearchParams()
-  // const [isLoading,setIsLoading] = useState()
+  const [isLoading,setIsLoading] = useState()
 
 
   useEffect(() => {
-    loadAllMovies(movieService)
-    .then(data =>{
-      setMovies(data)
-      
-    } )
-    
-    if (!searchParams.get('page')) {
-      navigate(`?name=&genres=&page=1&pageSize=8`);
+    if(!searchParams.get('page')){
+      navigate(
+        `?name=&genres=&page=1&pageSize=8`
+      );
     }
-    
-    setIsLoading(true);
-    
-    if (filterValue !== '') {
-      loadAllMovies(movieService)
-      .then(() => {
-        const filteredMovies = sortMovies(movies, filterValue);
-        setSearchResult(filteredMovies);
+    setIsLoading(true)
+    if(filterValue !== ''){
+      movieService.get('/all')
+      .then(data => {
+       allMovies.current = data
+       setIsLoading(false)
       })
-      .catch((err) => console.log(err));
-    } else if (movies?.length > 0) {
+      .then(() => {
+        const filteredMovies = sortMovies(allMovies.current,filterValue)
+        setSearchResult(filteredMovies)
+      })
+      .catch(err => console.log(err))
+    }else if(movies.length > 0){
       setSearchResult(movies);
-      setIsLoading(false);
+      setIsLoading(false)
+
     }
-  }, [ filterValue]);
+
+  }, [movies,filterValue]);
   
 
 
