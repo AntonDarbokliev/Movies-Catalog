@@ -7,9 +7,10 @@ import { useMovieContext } from "../../contexts/MovieContext.jsx";
 import { FormField } from "../Shared/FormField/FormField.jsx";
 import { Pagination } from "../Pagination/Pagination.jsx";
 import { movieFactory } from "../../services/movieService.js";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import {  useSearchParams } from "react-router-dom";
 
 import { Spinner } from "../Shared/Spinner/Spinner.jsx";
+import { Dropdown } from "./Dropdown.jsx";
 
 
 export const Catalog = () => {
@@ -18,7 +19,6 @@ export const Catalog = () => {
   const [filterValue, setFilterValue] = useState("");
   const movieService = movieFactory()
   const allMovies = useRef([])
-  const navigate = useNavigate()
   const [searchParams,setSearchParams] = useSearchParams()
   const [isLoading,setIsLoading] = useState()
 
@@ -26,7 +26,6 @@ export const Catalog = () => {
   useEffect(() => {
     if(!searchParams.get('page')){
       setSearchParams({ name: '', genres: '', page: '1', pageSize: '8' });
-      // navigate();
     }
     setIsLoading(true)
     if(filterValue !== ''){
@@ -90,7 +89,7 @@ export const Catalog = () => {
 
   return (
     <>
-      {/* {isLoading && <Spinner/>} */}
+      {isLoading && <Spinner/>}
       <div id="searchContainer">
         <h1>Search a Movie</h1>
         <div id="searchField">
@@ -114,16 +113,7 @@ export const Catalog = () => {
         </div>
       </div>
 
-      <div id="filterDropdown">
-        <label htmlFor="sort">Sort By: </label>
-        <select name="sort" id="sort" onChange={onSortChange} value={filterValue}>
-          <option value="" disabled hidden>Select Sorting Option</option>
-          <option value="yearNewest">Year - Newest to Oldest</option>
-          <option value="yearOldest">Year - Oldest to Newest</option>
-          <option value="a-z">Alphabetically - A-Z</option>
-          <option value="z-a">Alphabetically - Z-A</option>
-        </select>
-      </div>
+      <Dropdown onSortChange={onSortChange} value={filterValue} />
 
       <div id="catalogContainer">
         {searchResult.map((x) => (

@@ -25,6 +25,6 @@ export const NewsCard = ({
                 <SubmitButton text={'Read More'}/>            
             </a>
         </div>
-        </Fade>
+         </Fade>
     )
 }

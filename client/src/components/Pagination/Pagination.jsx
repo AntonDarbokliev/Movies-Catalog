@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useMovieContext } from "../../contexts/MovieContext.jsx";
 
@@ -16,17 +16,17 @@ export const Pagination = () => {
   const movieName = searchParams.get("name") || "";
   const movieGenres = searchParams.get("genres") || "";
 
-  const goToNextPage = () => {
+  const goToNextPage = useCallback(() => {
     const nextPage = currentPage + 1;
     updateUrl(nextPage);
     window.scrollTo(0, 0);
-  };
+  },[currentPage])
 
-  const goToPreviousPage = () => {
+  const goToPreviousPage = useCallback(() => {
     const previousPage = currentPage - 1;
     updateUrl(previousPage);
     window.scrollTo(0, 0);
-  };
+  },[currentPage])
 
   const updateUrl = (page) => {
     setSearchParams({ ...searchParams, page });

@@ -10,6 +10,6 @@ export const MovieCard = ({ imageUrl, movieId }) => {
           <img src={imageUrl} alt="movie poster" />
         </Link>
       </div>
-        </Fade>
+      </Fade> 
   );
 };
