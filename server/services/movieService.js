@@ -55,11 +55,11 @@ async function movieSearch(movieName, movieGenres,skip,pageSize) {
   if (!!movieName && movieGenres[0]!=='') {
     const movies = await Movie.find({
       name: {$regex : new RegExp(movieName,'i')},
-      genres: { $in: movieGenres },
+      genres: { $in: new RegExp(movieGenres,'i') },
     })
     .skip(skip)
     .limit(pageSize);
-    if (!movies) {
+    if (movies.length === 0) {
       throw new Error("No movies were found");
     }
     return movies;
@@ -67,15 +67,15 @@ async function movieSearch(movieName, movieGenres,skip,pageSize) {
     const movies = await Movie.find({ name: {$regex : new RegExp(movieName,'i')} })
     .skip(skip)
     .limit(pageSize);
-    if (!movies) {
+    if (movies.length === 0) {
       throw new Error("No movies were found");
     }
     return movies;
   } else if (movieGenres[0]!=='' && movieGenres[0]!== undefined) {
-    const movies = await Movie.find({ genres: { $in: movieGenres } })
+    const movies = await Movie.find({ genres: { $in: new RegExp(movieGenres,'i') } })
     .skip(skip)
     .limit(pageSize);
-    if (!movies) {
+    if (movies.length === 0) {
       throw new Error("No movies were found");
     }
 
