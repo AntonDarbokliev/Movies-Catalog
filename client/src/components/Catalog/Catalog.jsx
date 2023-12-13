@@ -1,16 +1,15 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { SubmitButton } from "../Shared/SubmitButton/SubmitButton.jsx";
+import { useEffect, useRef, useState } from "react";
 import "./Catalog.css";
 import { MovieCard } from "../Shared/MovieCard/MovieCard.jsx";
 import { useForm } from "../../hooks/useForm.js";
 import { useMovieContext } from "../../contexts/MovieContext.jsx";
-import { FormField } from "../Shared/FormField/FormField.jsx";
 import { Pagination } from "../Pagination/Pagination.jsx";
 import { movieFactory } from "../../services/movieService.js";
 import {  useSearchParams } from "react-router-dom";
 
 import { Spinner } from "../Shared/Spinner/Spinner.jsx";
 import { Dropdown } from "./Dropdown.jsx";
+import { SearchContainer } from "./SearchContainer.jsx";
 
 
 export const Catalog = () => {
@@ -68,7 +67,7 @@ export const Catalog = () => {
     onSearchSubmit
   );
 
-  const sortMovies = useCallback( (movies, sortBy) => {
+  const sortMovies =  (movies, sortBy) => {
     switch (sortBy) {
       case "yearNewest":
         return movies.sort((a,b) => b.year - a.year)
@@ -81,7 +80,7 @@ export const Catalog = () => {
       default:
         return movies
     }
-  },[])
+  }
 
   const onSortChange = (e) => {
     setFilterValue(e.target.value)
@@ -90,28 +89,8 @@ export const Catalog = () => {
   return (
     <>
       {isLoading && <Spinner/>}
-      <div id="searchContainer">
-        <h1>Search a Movie</h1>
-        <div id="searchField">
-          <form onSubmit={onSubmit}>
-            <FormField
-              type={"text"}
-              placeholder={"Movie Title"}
-              value={formValues.title}
-              onChange={onChangeHandler}
-              name={"title"}
-            />
-            <FormField
-              type={"text"}
-              placeholder={"Movie Genre/s"}
-              value={formValues.genre}
-              onChange={onChangeHandler}
-              name={"genres"}
-            />
-            <SubmitButton text="Search" />
-          </form>
-        </div>
-      </div>
+
+      <SearchContainer onSubmit={onSubmit} formValues={formValues} onChangeHandler={onChangeHandler}/>
 
       <Dropdown onSortChange={onSortChange} value={filterValue} />
 

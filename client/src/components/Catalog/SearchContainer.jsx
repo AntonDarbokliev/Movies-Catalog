@@ -1,3 +1,6 @@
+import { FormField } from "../Shared/FormField/FormField.jsx"
+import { SubmitButton } from "../Shared/SubmitButton/SubmitButton.jsx"
+
 export const SearchContainer = ({onSubmit,formValues,onChangeHandler}) => {
     return (
         <div id="searchContainer">
