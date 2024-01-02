@@ -1,9 +1,9 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { movieFactory } from "../services/movieService.js";
+import { movieFactory } from "../services/movieService";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { useErrorContext } from "./ErrorContext.jsx";
-import { useAuthContext } from "./AuthContext.jsx";
-import { voteFactory } from "../services/voteService.js";
+import { useErrorContext } from "./ErrorContext";
+import { useAuthContext } from "./AuthContext";
+import { voteFactory } from "../services/voteService";
 
 export const MovieContext = createContext();
 
@@ -13,7 +13,7 @@ export const MovieProvider = ({ children }) => {
   const navigate = useNavigate();
   const { setErrors } = useErrorContext();
   const { userId } = useAuthContext();
-  const {id} = useParams()
+  // const {id} = useParams()
   const [searchParams, setSearchParams] = useSearchParams();
   const voteService = voteFactory();
 

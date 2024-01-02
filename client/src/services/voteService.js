@@ -1,4 +1,4 @@
-import { requestFactory } from "./requester.js"
+import { requestFactory } from "./requester"
 
 export const voteFactory = () => {
     const request =  requestFactory()
