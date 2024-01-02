@@ -1,3 +1,4 @@
-interface ImportMeta {
-    VITE_BASE_URL: string;
-  }
+// interface ImportMeta {
+//     VITE_BASE_URL: string;
+//   }
+import 'vite/client'
