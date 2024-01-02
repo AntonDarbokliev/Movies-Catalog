@@ -1,7 +1,7 @@
+import { Routes, Route } from "react-router-dom";
 import { NavBar } from "./components/NavBar/NavBar.jsx";
 import { Footer } from "./components/Footer/Footer.jsx";
 import { Home } from "./components/Home/Home.jsx";
-import { Routes, Route } from "react-router-dom";
 import { MovieDetails } from "./components/MovieDetails/MovieDetails.jsx";
 import { UserRatings } from "./components/User/UserRatings/UserRatings.jsx";
 import { Register } from "./components/Auth/Register/Register.jsx";

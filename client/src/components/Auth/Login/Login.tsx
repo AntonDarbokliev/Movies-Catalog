@@ -1,15 +1,16 @@
 import { useContext } from "react";
 import "./Login.css";
-import { SubmitButton } from "../../Shared/SubmitButton/SubmitButton.jsx";
-import { FormField } from "../../Shared/FormField/FormField.jsx";
+import { SubmitButton } from "../../Shared/SubmitButton/SubmitButton";
+import { FormField } from "../../Shared/FormField/FormField";
 import { Link } from "react-router-dom";
-import { useForm } from "../../../hooks/useForm.js";
-import { AuthContext } from "../../../contexts/AuthContext.jsx";
-import { useFormValidation } from "../../../hooks/useFormValidation.js";
-import { ErrorField } from "../../ErrorField/ErrorField.jsx";
+import { useForm } from "../../../hooks/useForm";
+import { AuthContext } from "../../../contexts/AuthContext";
+import { useFormValidation } from "../../../hooks/useFormValidation";
+import { ErrorField } from "../../ErrorField/ErrorField";
 
 
 export const Login = () => {
+
   const { onLoginSubmit } = useContext(AuthContext)
   const { formValues ,onChangeHandler, onSubmit } = useForm({
     email : '',

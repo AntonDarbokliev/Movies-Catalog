@@ -1,12 +1,11 @@
-import { useContext } from "react";
 import "./Register.css";
-import { SubmitButton } from "../../Shared/SubmitButton/SubmitButton.jsx";
-import { FormField } from "../../Shared/FormField/FormField.jsx";
+import { SubmitButton } from "../../Shared/SubmitButton/SubmitButton";
+import { FormField } from "../../Shared/FormField/FormField";
 import { Link } from "react-router-dom";
-import { useForm } from "../../../hooks/useForm.js";
-import { useAuthContext } from "../../../contexts/AuthContext.jsx";
-import { useFormValidation } from "../../../hooks/useFormValidation.js";
-import { ErrorField } from "../../ErrorField/ErrorField.jsx";
+import { useForm } from "../../../hooks/useForm";
+import { useAuthContext } from "../../../contexts/AuthContext";
+import { useFormValidation } from "../../../hooks/useFormValidation";
+import { ErrorField } from "../../ErrorField/ErrorField";
 
 export const Register = () => {
   const { onRegisterSubmit } = useAuthContext()
