@@ -6,16 +6,16 @@ import binIcon from "../../assets/images/bin.png";
 
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { movieFactory } from "../../services/movieService.js";
-import { commentFactory } from "../../services/commentService.js";
-import { CommentCard } from "../Comment/CommentCard/CommentCard.jsx";
-import { CommentForm } from "../Comment/CommentForm/CommentForm.jsx";
-import { useMovieContext } from "../../contexts/MovieContext.jsx";
-import { useAuthContext } from "../../contexts/AuthContext.jsx";
-import { voteFactory } from "../../services/voteService.js";
-import { Modal } from "../Shared/Modal/Modal.jsx";
+import { movieFactory } from "../../services/movieService";
+import { commentFactory } from "../../services/commentService";
+import { CommentCard } from "../Comment/CommentCard/CommentCard";
+import { CommentForm } from "../Comment/CommentForm/CommentForm";
+import { useMovieContext } from "../../contexts/MovieContext";
+import { useAuthContext } from "../../contexts/AuthContext";
+import { voteFactory } from "../../services/voteService";
+import { Modal } from "../Shared/Modal/Modal";
 import { Bounce } from "react-awesome-reveal";
-import { Spinner } from "../Shared/Spinner/Spinner.jsx";
+import { Spinner } from "../Shared/Spinner/Spinner";
 
 export const MovieDetails = () => {
   const { movieId } = useParams();

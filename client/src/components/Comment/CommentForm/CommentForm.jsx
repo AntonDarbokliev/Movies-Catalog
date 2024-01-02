@@ -1,13 +1,13 @@
 import { useParams } from "react-router-dom";
-import { useForm } from "../../../hooks/useForm.js";
-import { commentFactory } from "../../../services/commentService.js";
-import { FormField } from "../../Shared/FormField/FormField.jsx";
-import { SubmitButton } from "../../Shared/SubmitButton/SubmitButton.jsx";
+import { useForm } from "../../../hooks/useForm";
+import { commentFactory } from "../../../services/commentService";
+import { FormField } from "../../Shared/FormField/FormField";
+import { SubmitButton } from "../../Shared/SubmitButton/SubmitButton";
 
 import "./CommentForm.css";
 
-import { useAuthContext } from "../../../contexts/AuthContext.jsx";
-import { useErrorContext } from "../../../contexts/ErrorContext.jsx";
+import { useAuthContext } from "../../../contexts/AuthContext";
+import { useErrorContext } from "../../../contexts/ErrorContext";
 
 export const CommentForm = ({ setShowAddComment, setComments }) => {
   const { setErrors } = useErrorContext();

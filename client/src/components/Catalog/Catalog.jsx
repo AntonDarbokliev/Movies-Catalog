@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import "./Catalog.css";
-import { MovieCard } from "../Shared/MovieCard/MovieCard.jsx";
-import { useForm } from "../../hooks/useForm.js";
-import { useMovieContext } from "../../contexts/MovieContext.jsx";
-import { Pagination } from "../Pagination/Pagination.jsx";
-import { movieFactory } from "../../services/movieService.js";
+import { MovieCard } from "../Shared/MovieCard/MovieCard";
+import { useForm } from "../../hooks/useForm";
+import { useMovieContext } from "../../contexts/MovieContext";
+import { Pagination } from "../Pagination/Pagination";
+import { movieFactory } from "../../services/movieService";
 import {  useSearchParams } from "react-router-dom";
 
-import { Spinner } from "../Shared/Spinner/Spinner.jsx";
-import { Dropdown } from "./Dropdown.jsx";
-import { SearchContainer } from "./SearchContainer.jsx";
+import { Spinner } from "../Shared/Spinner/Spinner";
+import { Dropdown } from "./Dropdown";
+import { SearchContainer } from "./SearchContainer";
 
 
 export const Catalog = () => {
@@ -27,7 +27,7 @@ export const Catalog = () => {
       setSearchParams({ name: '', genres: '', page: '1', pageSize: '8' });
     }
     setIsLoading(true)
-    if(filterValue !== ''){
+    if(filterValue !== ''){      
       movieService.get('/all')
       .then(data => {
        allMovies.current = data

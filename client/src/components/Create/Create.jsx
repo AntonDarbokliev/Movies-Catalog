@@ -1,6 +1,6 @@
-import { useMovieContext } from "../../contexts/MovieContext.jsx";
-import { useForm } from "../../hooks/useForm.js";
-import { EditCreateForm } from "../Shared/EditCreateForm/EditCreateForm.jsx";
+import { useMovieContext } from "../../contexts/MovieContext";
+import { useForm } from "../../hooks/useForm";
+import { EditCreateForm } from "../Shared/EditCreateForm/EditCreateForm";
 import "./Create.css";
 
 export const Create = () => {
