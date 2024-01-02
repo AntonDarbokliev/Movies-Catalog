@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { FormField } from "../FormField/FormField.jsx";
-import { SubmitButton } from "../SubmitButton/SubmitButton.jsx";
+import { FormField } from "../FormField/FormField";
+import { SubmitButton } from "../SubmitButton/SubmitButton";
 
 import "./EditCreateForm.css";
-import { Modal } from "../Modal/Modal.jsx";
+import { Modal } from "../Modal/Modal";
 
 export const EditCreateForm = ({
   onSubmit,

@@ -1,9 +1,9 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { useMovieContext } from "../../contexts/MovieContext.jsx";
+import { useMovieContext } from "../../contexts/MovieContext";
 
 import "./Pagination.css";
-import { SubmitButton } from "../Shared/SubmitButton/SubmitButton.jsx";
+import { SubmitButton } from "../Shared/SubmitButton/SubmitButton";
 
 export const Pagination = () => {
   const { movies } = useMovieContext();

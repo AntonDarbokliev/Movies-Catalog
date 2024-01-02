@@ -1,5 +1,5 @@
 import { Fade } from "react-awesome-reveal"
-import { SubmitButton } from "../Shared/SubmitButton/SubmitButton.jsx"
+import { SubmitButton } from "../Shared/SubmitButton/SubmitButton"
 import './NewsCard.css'
 
 

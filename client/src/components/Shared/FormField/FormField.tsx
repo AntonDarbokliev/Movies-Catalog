@@ -1,6 +1,17 @@
+import React, { ChangeEvent, FocusEventHandler } from 'react'
 import './FormField.css'
 
-export const FormField = ({
+interface FormFieldProps {
+    type: string
+    name:string
+    value : string
+    onChange: (e:ChangeEvent) => void
+    placeholder: string
+    onBlur:FocusEventHandler<HTMLInputElement>
+    onFocus: FocusEventHandler<HTMLInputElement>
+}
+
+export const FormField:React.FC<FormFieldProps> = ({
     type,
     name,
     value,
@@ -8,7 +19,6 @@ export const FormField = ({
     placeholder,
     onBlur,
     onFocus,
-    height
 }) => {
     return (
         <input 
@@ -20,7 +30,6 @@ export const FormField = ({
         onChange={onChange}
         onBlur={onBlur}
         onFocus={onFocus}
-        // style={{height:height}}
       />
     )
 }
