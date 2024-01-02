@@ -1,14 +1,13 @@
 import likeIcon from "../../../assets/images/like.png";
 import dislikeIcon from "../../../assets/images/dislike.png";
 import "./UserRatings.css";
-import { MovieCard } from "../../Shared/MovieCard/MovieCard.jsx";
-import { useAuthContext } from "../../../contexts/AuthContext.jsx";
+import { MovieCard } from "../../Shared/MovieCard/MovieCard";
 import { useEffect, useState } from "react";
-import { movieFactory } from "../../../services/movieService.js";
+import { movieFactory } from "../../../services/movieService";
 import { useParams } from "react-router-dom";
-import { RatingCard } from "../../RatingCard/RatingCard.jsx";
-import { authServiceFactory } from "../../../services/authService.js";
-import { Spinner } from "../../Shared/Spinner/Spinner.jsx";
+import { RatingCard } from "../../RatingCard/RatingCard";
+import { authServiceFactory } from "../../../services/authService";
+import { Spinner } from "../../Shared/Spinner/Spinner";
 
 
 export const UserRatings = () => {

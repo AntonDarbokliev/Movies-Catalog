@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import userIcon from '../../../assets/images/userIcon.png'
 import './Dropdown.css'
-import { Logout } from '../../Auth/Logout/Logout.jsx';
-import { useAuthContext } from '../../../contexts/AuthContext.jsx';
+import { Logout } from '../../Auth/Logout/Logout';
+import { useAuthContext } from '../../../contexts/AuthContext';
 
 export const Dropdown = () => {
     const {userId} = useAuthContext()

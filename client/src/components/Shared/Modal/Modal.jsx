@@ -1,4 +1,4 @@
-import { SubmitButton } from '../SubmitButton/SubmitButton.jsx';
+import { SubmitButton } from '../SubmitButton/SubmitButton';
 import './Modal.css'
 
 export const Modal = ({title,text,onClose,onSubmit}) => {
