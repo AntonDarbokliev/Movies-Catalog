@@ -1,7 +1,25 @@
-const request = async (method, url, data) => {
-  const options = {};
+import { LoginData, RegisterData } from "../types/AuthData";
 
+type RequestParameters = [
+  method:'GET' | 'POST' | 'PUT' | 'DELETE',
+  url?:string,
+  data? : LoginData | RegisterData
+]
+
+interface OptionsValues {
+  method?:string;
+  headers?:{
+    "Content-Type": "application/json"
+  };
+  body?:string;
+
+}
+
+const request = async (method:RequestParameters[0],url:RequestParameters[1],data?:RequestParameters[2]) => {
+  const options:OptionsValues = {};
+  
   if (method !== "GET") {
+
     options.method = method;
 
     if (data) {
@@ -10,9 +28,9 @@ const request = async (method, url, data) => {
       };
       options.body = JSON.stringify(data);
     }
-  }
-
-  const response = await fetch(url, options);
+  }  
+  
+  const response = await fetch(url!, options);
   
   if (!response.ok) {
     const result = await response.json()
@@ -34,7 +52,7 @@ const request = async (method, url, data) => {
 export const requestFactory = () => {
     return {
         get: request.bind(null, "GET"),
-        post: request.bind(null, "POST"),
+        post: request.bind(null,"POST"),
         put: request.bind(null, "PUT"),
         delete: request.bind(null, "DELETE"),
     }
