@@ -2,7 +2,7 @@ const Vote = require("../models/Vote.js");
 
 
 async function getVotesForMovie(givenMovieId){
-    return Vote.find({movieId : givenMovieId})
+    return Vote.find({movie : givenMovieId})
 }
 
 async function getVotesForUser(userId){
