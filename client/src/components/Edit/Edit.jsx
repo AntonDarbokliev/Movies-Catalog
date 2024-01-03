@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
-import { movieFactory } from "../../services/movieService.js"
+import { movieFactory } from "../../services/movieService"
 import { useForm } from "../../hooks/useForm"
 import { EditCreateForm } from "../Shared/EditCreateForm/EditCreateForm"
 import { useMovieContext } from "../../contexts/MovieContext"

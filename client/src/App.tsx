@@ -1,21 +1,21 @@
 import { Routes, Route } from "react-router-dom";
-import { NavBar } from "./components/NavBar/NavBar.jsx";
-import { Footer } from "./components/Footer/Footer.jsx";
-import { Home } from "./components/Home/Home.jsx";
-import { MovieDetails } from "./components/MovieDetails/MovieDetails.jsx";
-import { UserRatings } from "./components/User/UserRatings/UserRatings.jsx";
-import { Register } from "./components/Auth/Register/Register.jsx";
-import { Login } from "./components/Auth/Login/Login.jsx";
-import { Catalog } from "./components/Catalog/Catalog.jsx";
-import { About } from "./components/About/About.jsx";
-import { AuthProvider } from "./contexts/AuthContext.jsx";
-import { Create } from "./components/Create/Create.jsx";
-import { MovieProvider } from "./contexts/MovieContext.jsx";
-import { Edit } from "./components/Edit/Edit.jsx";
-import { ErrorProvider } from "./contexts/ErrorContext.jsx";
-import { ErrorNotification } from "./components/ErrorNotification/ErrorNotification.jsx";
-import { RouteGuard } from "./components/Shared/RouteGuard/RouteGuard.jsx";
-import { News } from "./components/News/News.jsx";
+import { NavBar } from "./components/NavBar/NavBar";
+import { Footer } from "./components/Footer/Footer";
+import { Home } from "./components/Home/Home";
+import { MovieDetails } from "./components/MovieDetails/MovieDetails";
+import { UserRatings } from "./components/User/UserRatings/UserRatings";
+import { Register } from "./components/Auth/Register/Register";
+import { Login } from "./components/Auth/Login/Login";
+import { Catalog } from "./components/Catalog/Catalog";
+import { About } from "./components/About/About";
+import { AuthProvider } from "./contexts/AuthContext";
+import { Create } from "./components/Create/Create";
+import { MovieProvider } from "./contexts/MovieContext";
+import { Edit } from "./components/Edit/Edit";
+import { ErrorProvider } from "./contexts/ErrorContext";
+import { ErrorNotification } from "./components/ErrorNotification/ErrorNotification";
+import { RouteGuard } from "./components/Shared/RouteGuard/RouteGuard";
+import { News } from "./components/News/News";
 
 function App() {
   return (

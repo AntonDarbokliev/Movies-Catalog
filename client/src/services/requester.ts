@@ -1,10 +1,13 @@
 import { LoginData, RegisterData } from "../types/AuthData";
+import { MovieData, ExtendedMovieData } from "../types/movieData";
 
 type RequestParameters = [
   method:'GET' | 'POST' | 'PUT' | 'DELETE',
   url?:string,
-  data? : LoginData | RegisterData
+  data? : LoginData | RegisterData | MovieData | ExtendedMovieData
 ]
+
+//{userId:string,movieData?:MovieData}
 
 interface OptionsValues {
   method?:string;
