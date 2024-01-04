@@ -8,33 +8,47 @@ import { useParams } from "react-router-dom";
 import { RatingCard } from "../../RatingCard/RatingCard";
 import { authServiceFactory } from "../../../services/authService";
 import { Spinner } from "../../Shared/Spinner/Spinner";
+import { MovieData } from "../../../types/movieData";
+import { UserData } from "../../../types/AuthData";
+import { voteFactory } from "../../../services/voteService";
 
+export interface UserVote {
+  _id:string;
+  ownerId:string;
+  movieId:MovieData
+  vote: 'upvote' | 'downvote'
+  __v:number
+}
 
 export const UserRatings = () => {
 
   const movieService =  movieFactory()
+  const voteService = voteFactory()
   const authService = authServiceFactory()
-  const [votes,setVotes]  = useState([])
-  const [user,setUser] = useState({})
+  const [votes,setVotes]  = useState<UserVote[]>([])
+  const [user,setUser] = useState<UserData>({__v:0,_id:'',email:'',password:'',username:''})
   const {id} = useParams()
   const [isLoading,setIsLoading] = useState(true)
 
 
   useEffect(() => {
-    authService.getUser(id)
+    authService.getUser(id!)
     .then(data => {
       setUser(data)
       setIsLoading(false)
     } )
-    .catch(err => console.log(err))
-  },[id])
+    .catch(err => {
+      throw err
+    })
+  },[id,authService])
 
   useEffect(() => {
-    movieService.get(`/vote/user/${id}`)
+    // movieService.get(`/vote/user/${id}`)
+    voteService.getUserRatings(id!)
     .then(data => setVotes(data.reverse()))
     .catch(err => console.log(err))
   
-  },[id])
+  },[id,movieService])
   
   
 
@@ -54,7 +68,7 @@ export const UserRatings = () => {
             year={x.movieId.year} 
             genres={x.movieId.genres}
             >
-           <MovieCard movieId={x.movieId._id} imageUrl={x.movieId.moviePoster}/> 
+           <MovieCard movieId={x.movieId._id!} imageUrl={x.movieId.moviePoster}/> 
             </RatingCard>
             )}
       </div>

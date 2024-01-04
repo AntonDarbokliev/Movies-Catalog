@@ -32,7 +32,7 @@ const initialContextValue:AuthContextType = {
 
 export const AuthContext = createContext<AuthContextType>(initialContextValue);
 
-export const AuthProvider:React.FC<AuthProviderProps> = ({ children }) => {
+export const AuthProvider:React.FC<AuthProviderProps> = ({ children, }) => {
   const [auth, setAuth] = useLocalStorage("auth");
   const authService = authServiceFactory();
   const navigate = useNavigate();

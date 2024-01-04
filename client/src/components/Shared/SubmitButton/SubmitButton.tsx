@@ -3,7 +3,7 @@ import './SubmitButton.css'
 interface SubmitButtonProps {
     text?:string,
     disabled?:boolean,
-    onClick?: () => void
+    onClick?: (e:any) => void
 }
 
 export const SubmitButton:React.FC<SubmitButtonProps> = ({text,disabled,onClick}) => {
