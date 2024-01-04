@@ -17,14 +17,31 @@ import { Modal } from "../Shared/Modal/Modal";
 import { Bounce } from "react-awesome-reveal";
 import { Spinner } from "../Shared/Spinner/Spinner";
 
+import { Comment, MovieData, Vote, VoteType } from "../../types/movieData";
+
 export const MovieDetails = () => {
+
+  const initialDetails:MovieData = {
+    description: '',
+    director: '',
+    genres :[''],
+    movieImages: [
+      {movieImage:''}
+    ],
+    moviePoster: '',
+    movieTrailer: '',
+    name: '',
+    topCast: [''],
+    year: 0,
+  }
+
   const { movieId } = useParams();
-  const [details, setDetails] = useState({});
-  const [comments, setComments] = useState([]);
+  const [details, setDetails] = useState<MovieData>(initialDetails);
+  const [comments, setComments] = useState<Comment[]>([]);
   const [showAddComment, setShowAddComment] = useState(false);
   const {userId} = useAuthContext();
   const {onDelete , vote, extractYouTubeVideoId} = useMovieContext()
-  const [votes,setVotes] = useState([])
+  const [votes,setVotes] = useState<Vote[]>([])
   const [openModal,setOpenModal] = useState(false)
   const [isLoading,setIsLoading] = useState(true)
 
@@ -38,7 +55,7 @@ export const MovieDetails = () => {
   useEffect(() => {
   window.scrollTo(0, 0)
     movieService
-      .get(`/${movieId}`)
+      .getOne(movieId!)
       .then((movie) => {
         setDetails(movie)
         setIsLoading(false)
@@ -56,19 +73,23 @@ export const MovieDetails = () => {
         setComments(movieComments);
       })
       .catch((err) => console.error(err));
-  }, [details]);
+  }, [details,movieId]);
 
   useEffect(() => {
-     voteService.get(movieId)
-      .then(data => setVotes(data))
-      .catch((err) => console.error(err))
+    if(movieId){
+      voteService.get(movieId)
+       .then(data => setVotes(data))
+       .catch((err) => console.error(err))
+    }else{
+      throw Error('Movie id was not found')
+    }
   },[movieId])
 
   const onShowAddComment = () => {
     setShowAddComment(true);
   };
 
-  const onVoteSubmit = async (voteType,movieId,ownerId) => {
+  const onVoteSubmit = async (voteType:VoteType,movieId:string,ownerId:string) => {
       //TODO: Check if a user with this ownerId exists in the database before voting
        const newVote = await vote(voteType,movieId,ownerId)
        setVotes(state => [...state,newVote])
@@ -80,8 +101,11 @@ export const MovieDetails = () => {
 
   const handleSubmitModal = async () => {
     setOpenModal(false)
-    console.log('yess');
-    await onDelete(movieId)
+    if(movieId){
+      onDelete(movieId)
+    }else{
+      throw Error('Movie id was not found')
+    }
   }
   
 
@@ -171,10 +195,10 @@ export const MovieDetails = () => {
           { userId && details.owner?.id != userId && !votes.some(x => x.ownerId == userId) && (
               <>
               <Bounce>
-                <button id="upvote" onClick={() => onVoteSubmit("upvote",movieId,userId)}>
+                <button id="upvote" onClick={() => onVoteSubmit("upvote",movieId!,userId)}>
                   <img id="likeButton" src={likeIcon} alt="" />
                 </button>
-                <button id="downvote" onClick={() => onVoteSubmit("downvote",movieId,userId)}>
+                <button id="downvote" onClick={() => onVoteSubmit("downvote",movieId!,userId)}>
                   <img id="dislikeButton" src={disklikeIcon} alt=""></img>
                 </button>
             </Bounce>
@@ -197,7 +221,7 @@ export const MovieDetails = () => {
 
       {showAddComment && (
         <CommentForm
-          comments={comments}
+          // comments={comments}
           setComments={setComments}
           setShowAddComment={setShowAddComment}
         />
