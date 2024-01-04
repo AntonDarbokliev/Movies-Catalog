@@ -2,8 +2,13 @@ import { Fade } from "react-awesome-reveal"
 import { SubmitButton } from "../Shared/SubmitButton/SubmitButton"
 import './NewsCard.css'
 
+import { NewsPiece } from '../../types/other'
 
-export const NewsCard = ({
+interface NewsCardProps extends Omit<NewsPiece,'source'> {
+    source:string    
+}
+
+export const NewsCard:React.FC<NewsCardProps> = ({
     title,
     description,
     publishedAt,

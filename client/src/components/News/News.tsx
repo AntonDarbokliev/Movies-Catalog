@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react"
-import { NewsCard } from "../NewsCard/NewsCard.jsx"
+import { NewsCard } from "../NewsCard/NewsCard"
 
 import './News.css'
-import { Spinner } from "../Shared/Spinner/Spinner.jsx"
+import { Spinner } from "../Shared/Spinner/Spinner"
+
+import { NewsPiece } from '../../types/other'
+
 
 export const News = () => {
-    const [news,setNews] = useState([])
+    const [news,setNews] = useState<NewsPiece[]>([])
     const [isLoading,setIsLoading] = useState(true)
 
-    function cleanText(text) {
+    function cleanText(text:string) {
         const cleanedTitle = text.replace(/‘/g, '\'');
         return cleanedTitle;
       }
