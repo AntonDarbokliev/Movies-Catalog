@@ -2,7 +2,12 @@ import { Link } from "react-router-dom";
 import './MovieCard.css'
 import { Fade } from "react-awesome-reveal";
 
-export const MovieCard = ({ imageUrl, movieId }) => {
+interface MovieCardProps {
+  imageUrl : string,
+  movieId:string
+}
+
+export const MovieCard:React.FC<MovieCardProps> = ({ imageUrl, movieId }) => {
   return (
     <Fade>
     <div className="movieHomeImage">
