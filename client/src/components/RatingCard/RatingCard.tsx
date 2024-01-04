@@ -1,6 +1,15 @@
+import { ReactNode } from 'react'
 import './RatingCard.css'
 
-export const RatingCard = ({children,icon,title,year,genres}) => {
+interface RatingCardProps {
+    children : ReactNode
+    icon: string,
+    title:string,
+    year:number,
+    genres:string[]
+}
+
+export const RatingCard:React.FC<RatingCardProps> = ({children,icon,title,year,genres}) => {
     return (
         <div  id='ratingDiv'>
             {children}

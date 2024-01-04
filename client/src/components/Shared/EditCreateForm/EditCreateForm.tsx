@@ -1,11 +1,35 @@
-import { useState } from "react";
+import { ReactEventHandler, useState } from "react";
 import { FormField } from "../FormField/FormField";
 import { SubmitButton } from "../SubmitButton/SubmitButton";
 
 import "./EditCreateForm.css";
 import { Modal } from "../Modal/Modal";
 
-export const EditCreateForm = ({
+interface formValuesEditCreate {
+  name: string,
+  director: string,
+  year: string,
+  topCast: string,
+  moviePoster: string,
+  movieImagesOne: string,
+  movieImagesTwo: string,
+  movieImagesThree: string,
+  movieTrailer: string,
+  description: string,
+  genres: string,
+}
+
+interface EditCreateFormProps {
+  onSubmit : (e: any) => void,
+  onChangeHandler:(e: React.FormEvent<Element>) => void,
+  formValues: formValuesEditCreate,
+  text:string,
+  modalTitle:string,
+  modalText:string
+
+}
+
+export const EditCreateForm:React.FC<EditCreateFormProps> = ({
   onSubmit,
   onChangeHandler,
   formValues,
@@ -13,12 +37,12 @@ export const EditCreateForm = ({
   modalTitle,
   modalText
 }) => {
-  const [openModal, setOpenModal] = useState();
+  const [openModal, setOpenModal] = useState<boolean>();
   const onCloseModal = () => {
     setOpenModal(false);
   };
 
-  const onSubmitModal = async (e) => {
+  const onSubmitModal = async (e: ReactEventHandler<Element>) => {
     setOpenModal(false);
     onSubmit(e)
   };
@@ -26,7 +50,6 @@ export const EditCreateForm = ({
   return (
     <>
       {openModal && <Modal onClose={onCloseModal} onSubmit={onSubmitModal} title={modalTitle} text={modalText} />}
-
       <form id="createForm" method="POST" onSubmit={onSubmit}>
         <h2 id="createEdit">{text}:</h2>
         <div id="createFormFields">
@@ -59,7 +82,6 @@ export const EditCreateForm = ({
               onChange={onChangeHandler}
               value={formValues.topCast}
             />
-            {/* <p className="formNote">Note: Top cast actors must be seperated by a coma, followed by an empty space</p> */}
             <p className="formNote">
               Note: Top cast actors must be seperated by ", "
             </p>
@@ -99,19 +121,11 @@ export const EditCreateForm = ({
             onChange={onChangeHandler}
             value={formValues.movieTrailer}
           />
-          {/* <FormField
-            type={"text"}
-            name={"description"}
-            placeholder={"Description"}
-            onChange={onChangeHandler}
-            value={formValues.description}
-            // height={'200px'}
-          /> */}
           <textarea
           name="description"
           id="description"
-          cols="23"
-          rows="10"
+          cols= {23}
+          rows= {10}
           placeholder="Description"
           value={formValues.description}
           onChange={onChangeHandler}

@@ -7,8 +7,8 @@ interface FormFieldProps {
     value : string
     onChange: (e:ChangeEvent) => void
     placeholder: string
-    onBlur:FocusEventHandler<HTMLInputElement>
-    onFocus: FocusEventHandler<HTMLInputElement>
+    onBlur?:FocusEventHandler<HTMLInputElement>
+    onFocus?: FocusEventHandler<HTMLInputElement>
 }
 
 export const FormField:React.FC<FormFieldProps> = ({
