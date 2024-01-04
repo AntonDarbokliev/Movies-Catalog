@@ -10,6 +10,7 @@ module.exports = async () => {
             // useNewUrlParser: true,
           })
           console.log('Database connected');
+
     } 
     catch(err){
         console.error('Error initializing database');
