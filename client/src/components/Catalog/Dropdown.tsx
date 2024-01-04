@@ -1,4 +1,12 @@
-export const Dropdown = ({onSortChange,value}) => {
+import { ChangeEvent } from 'react'
+import { FilterValue } from '../../types/other'
+
+interface DropDownProps {
+  onSortChange: (e:ChangeEvent<HTMLSelectElement>) => void,
+  value: FilterValue
+}
+
+export const Dropdown:React.FC<DropDownProps> = ({onSortChange,value}) => {
 return (
 <div id="filterDropdown">
 <label htmlFor="sort">Sort By: </label>

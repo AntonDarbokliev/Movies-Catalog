@@ -1,8 +1,14 @@
 import { Link } from "react-router-dom"
 import './CommentCard.css' 
+import { Owner } from "../../../types/movieData"
 
+interface CommentCardProps {
+    title:string,
+    text:string,
+    owner:Owner
+}
 
-export const CommentCard = ({
+export const CommentCard:React.FC<CommentCardProps> = ({
     title,
     text,
     owner
