@@ -1,17 +1,23 @@
 import { UserData } from "./AuthData";
 
+export interface Owner {
+    id?: string; 
+    _id?: string; 
+    username: string 
+}
+
 export interface MovieData {
     name: string;
     director: string;
     year: number;
     topCast: string[];
     moviePoster: string;
-    movieImages: { movieImage: string }[];
+    movieImages: { movieImage: string, _id?:string }[];
     description: string;
     genres: string[];
     movieTrailer: string;
     _id?: string;
-    owner?: { id: string; username: string };
+    owner?: Owner;
     __v?: number;
 }
 
@@ -28,18 +34,21 @@ export interface RawMovieData {
     description: string;
     genres: string;
 }
+ 
+export type VoteType =  "upvote" | "downvote"
 
 export interface Vote {
     movieId: string;
     ownerId: string;
-    vote: "upvote" | "downvote";
+    vote: VoteType;
 }
+
 
 export interface ExtendedMovieData {
     userId?: string;
     movieData?: MovieData;
     movieId?: string;
-    vote?: Vote;
+    vote?: VoteType;
     ownerId?: string;
 }
 
