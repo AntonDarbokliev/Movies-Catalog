@@ -36,15 +36,3 @@ export const Create = () => {
     </>
   );
 };
-
-// Each movie has:
-// Name
-// Genre
-// Poster image
-// Images from film
-// Year
-// Upvotes
-// Downvotes
-// Descriptiion
-// Top Cast (most likely an array) - may not do this
-// Director

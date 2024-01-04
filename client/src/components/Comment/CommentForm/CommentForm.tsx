@@ -9,24 +9,35 @@ import "./CommentForm.css";
 import { useAuthContext } from "../../../contexts/AuthContext";
 import { useErrorContext } from "../../../contexts/ErrorContext";
 
-export const CommentForm = ({ setShowAddComment, setComments }) => {
+import { Comment, RawComment } from '../../../types/movieData'
+
+interface CommentFormProps {
+  setShowAddComment:  React.Dispatch<React.SetStateAction<boolean>>,
+  setComments: React.Dispatch<React.SetStateAction<Comment[]>> ,
+}
+
+export const CommentForm:React.FC<CommentFormProps> = ({ setShowAddComment, setComments }) => {
   const { setErrors } = useErrorContext();
   const commentService = commentFactory();
   const { movieId } = useParams();
   const { userId } = useAuthContext();
   const owner = userId;
 
-  const onCommentSubmit = async (commentData) => {
-    const comment = {
-      movieId,
-      text: commentData.commentText,
-      title: commentData.commentTitle,
-      owner,
-    };
+  const onCommentSubmit = async (commentData:{commentTitle:string,commentText:string}) => {
+    if(!movieId){
+      throw Error('Movie id wasn\'t found')
+    }
+
     try {
+      const comment:RawComment = {
+        movieId,
+        text: commentData.commentText,
+        title: commentData.commentTitle,
+        owner,
+      };
       const result = await commentService.post(comment);
       setComments((state) => [...state, result]);
-    } catch (err) {
+    } catch (err:any) {
       setErrors(err);
     }
   };
@@ -56,8 +67,8 @@ export const CommentForm = ({ setShowAddComment, setComments }) => {
         <textarea
           name="commentText"
           id="addCommentText"
-          cols="60"
-          rows="10"
+          cols= {60}
+          rows= {10}
           placeholder="Text"
           value={formValues.commentText}
           onChange={onChangeHandler}
