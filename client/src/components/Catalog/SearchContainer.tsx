@@ -1,7 +1,6 @@
 import { ChangeEvent, FormEvent } from "react"
 import { FormField } from "../Shared/FormField/FormField"
 import { SubmitButton } from "../Shared/SubmitButton/SubmitButton"
-import { FilterValue } from "../../types/other";
 
 interface SearchContainerProps{
   onSubmit: (e:FormEvent) => void,
