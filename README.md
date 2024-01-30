@@ -1,6 +1,6 @@
 # Movies Catalog
 
-Welcome to the Movies Catalog! This project consists of a server and a client component to help you manage and explore your favorite movies. Follow the instructions below to get started.
+Welcome to the Movies Catalog! This React project consists of a server and a client component to help you manage and explore your favorite movies. Follow the instructions below to get started.
 
 ## Getting Started
 
