@@ -11,7 +11,16 @@ Follow the instructions at the bottom to get started.
 # Back-End: Node.js, Express,  MongoDB
 
 # Images
+
 - Catalog Page
+
+![CatalogPage](https://github.com/AntonDarbokliev/Movies-Catalog/assets/129558342/c59d929e-2bc3-4c92-a537-2afc6f0e4128)
+
+
+![CatalogPage2](https://github.com/AntonDarbokliev/Movies-Catalog/assets/129558342/c528dabc-ef82-4b3b-83f4-e9238d5ea483)
+
+
+- Details Page
 
 ![Catalog1](https://github.com/AntonDarbokliev/Movies-Catalog/assets/129558342/8dcc0715-ba7d-4078-b71d-94dbcda48e79)
 
