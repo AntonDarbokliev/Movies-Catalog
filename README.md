@@ -4,7 +4,7 @@ Welcome to the Movies Catalog!
 This React project consists of a server and a client component to help you manage and explore your favorite movies. 
 Follow the instructions at the bottom to get started.
 
-# The project is hosted, link - https://movies-catalog-8mqp.onrender.com/
+## The project is hosted, link - https://movies-catalog-8mqp.onrender.com/
  Please keep in mind, initial requests to the server may take a minute ot two, due to using a free hosing provider.
 
 ## Client:  
