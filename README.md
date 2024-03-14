@@ -2,6 +2,11 @@
 
 Welcome to the Movies Catalog! This React project consists of a server and a client component to help you manage and explore your favorite movies. Follow the instructions below to get started.
 
+# Images
+
+![Catalog](https://github.com/AntonDarbokliev/Movies-Catalog/assets/129558342/6e6cd800-d006-4963-b981-a0c4cb999e18)
+
+
 ## Getting Started
 
 1. Open your terminal.
