@@ -9,7 +9,9 @@ Back-End: Node.js, Express,  MongoDB
 
 # Images
 - Catalog Page
+
 ![Catalog1](https://github.com/AntonDarbokliev/Movies-Catalog/assets/129558342/8dcc0715-ba7d-4078-b71d-94dbcda48e79)
+
 
 ![Catalog2](https://github.com/AntonDarbokliev/Movies-Catalog/assets/129558342/f39696ea-59de-4e96-a863-529e4042750d)
 
@@ -26,7 +28,8 @@ Back-End: Node.js, Express,  MongoDB
 
 ![UserRatings](https://github.com/AntonDarbokliev/Movies-Catalog/assets/129558342/99dc6e47-763d-4513-8ef5-d555658cd970)
 
-- News Page ( Done by fetcing to an external API and filtering the news )  
+- News Page ( Done by fetcing to an external API and filtering the news )
+
 ![NewsPage](https://github.com/AntonDarbokliev/Movies-Catalog/assets/129558342/248c39db-2803-42e1-9f8b-a683c3a2da70)
 
 
