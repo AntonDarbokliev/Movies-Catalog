@@ -7,8 +7,8 @@ Follow the instructions at the bottom to get started.
 # The project is hosted, link - https://movies-catalog-8mqp.onrender.com/
 # Please keep in mind, initial requests to the server may take a minute ot two, due to using a free hosing provider.
 
-Client: React, TypeScript 
-Back-End: Node.js, Express,  MongoDB
+# Client: React, TypeScript-- 
+# Back-End: Node.js, Express,  MongoDB
 
 # Images
 - Catalog Page
