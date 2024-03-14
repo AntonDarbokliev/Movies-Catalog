@@ -9,11 +9,11 @@ Follow the instructions at the bottom to get started.
 
 ## Client:  
 * React
-TypeScript  
+* TypeScript  
 ## Back-End:  
-Node.js
-Express
-MongoDB
+* Node.js
+* Express
+* MongoDB
 
 # Images
 
